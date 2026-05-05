@@ -1,11 +1,11 @@
 {
   "date": "2026-05-05",
-  "generated_at_utc": "2026-05-05T19:12:00.586682+00:00",
+  "generated_at_utc": "2026-05-05T19:18:22.382801+00:00",
   "indicators": [
     {
       "key": "usd_try",
       "name": "USD/TRY",
-      "current": 45.2126,
+      "current": 45.2134,
       "format": "%.4f",
       "unit": "TL",
       "decimals": 4,
@@ -14,38 +14,38 @@
     {
       "key": "eur_try",
       "name": "EUR/TRY",
-      "current": 52.9138,
+      "current": 52.9187,
       "format": "%.4f",
       "unit": "TL",
       "decimals": 4,
-      "daily_pct": -0.2
+      "daily_pct": -0.19
     },
     {
       "key": "brent",
       "name": "Brent Petrol",
-      "current": 109.72,
+      "current": 109.67,
       "format": "%.2f",
       "unit": "USD",
       "decimals": 2,
-      "daily_pct": -4.12
+      "daily_pct": -4.17
     },
     {
       "key": "bist_100",
       "name": "BIST 100",
-      "current": 14369.6,
+      "current": 14495.77,
       "format": "%.2f",
       "unit": "puan",
       "decimals": 2,
-      "daily_pct": 0.0
+      "daily_pct": 0.88
     }
   ],
   "biggest_mover": {
     "key": "brent",
     "name": "Brent Petrol",
-    "current": 109.72,
+    "current": 109.67,
     "unit": "USD",
     "decimals": 2,
-    "daily_pct": -4.12
+    "daily_pct": -4.17
   },
-  "note": "Bugün döviz kurlarında sınırlı hareketler görülürken, BIST 100 endeksi yatay bir seyir izledi. Günün en dikkat çekici hareketi ise Brent petrol fiyatlarındaki sert düşüş oldu."
+  "note": "Bugün Borsa İstanbul, küresel emtia piyasalarındaki volatiliteye rağmen yükselişini sürdürerek günü pozitif kapattı. Döviz kurlarında ise sınırlı hareketler gözlemlenirken, Brent petroldeki sert düşüş dikkat çekti."
 }

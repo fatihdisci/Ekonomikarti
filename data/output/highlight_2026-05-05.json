@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-05",
+  "friday": "2026-05-01",
+  "generated_at_utc": "2026-05-05T11:56:40.845611+00:00",
+  "star": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 108.17,
+    "unit": "USD",
+    "decimals": 2,
+    "weekly_pct": 2.7
+  },
+  "loser": {
+    "key": "gram_altin",
+    "name": "Gram Altin",
+    "current": 6719.45,
+    "unit": "TL",
+    "decimals": 2,
+    "weekly_pct": -1.6
+  },
+  "note": "Enerji güvenliği endişelerinin Brent Petrole alım getirdiği bir haftada, küresel belirsizliklerin ve faiz beklentilerinin Gram Altın üzerindeki baskısı devam etti. Enerjinin ivmelendiği bu dönemde, yatırımcıların güvenli liman arayışı farklı enstrümanlarda kendini gösterdi."
+}

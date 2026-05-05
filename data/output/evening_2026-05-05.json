@@ -1,11 +1,11 @@
 {
   "date": "2026-05-05",
-  "generated_at_utc": "2026-05-05T17:42:55.951432+00:00",
+  "generated_at_utc": "2026-05-05T17:48:18.471411+00:00",
   "indicators": [
     {
       "key": "usd_try",
       "name": "USD/TRY",
-      "current": 45.2067,
+      "current": 45.2082,
       "format": "%.4f",
       "unit": "TL",
       "decimals": 4,
@@ -14,7 +14,7 @@
     {
       "key": "eur_try",
       "name": "EUR/TRY",
-      "current": 52.9355,
+      "current": 52.9344,
       "format": "%.4f",
       "unit": "TL",
       "decimals": 4,
@@ -23,11 +23,11 @@
     {
       "key": "brent",
       "name": "Brent Petrol",
-      "current": 109.87,
+      "current": 109.92,
       "format": "%.2f",
       "unit": "USD",
       "decimals": 2,
-      "daily_pct": -3.99
+      "daily_pct": -3.95
     },
     {
       "key": "bist_100",
@@ -42,10 +42,10 @@
   "biggest_mover": {
     "key": "brent",
     "name": "Brent Petrol",
-    "current": 109.87,
+    "current": 109.92,
     "unit": "USD",
     "decimals": 2,
-    "daily_pct": -3.99
+    "daily_pct": -3.95
   },
-  "note": "Bugün Borsa İstanbul, küresel emtia piyasalarındaki sert düşüşe rağmen pozitif bir kapanış yaparken, Türk Lirası döviz kurlarında sınırlı dalgalanmalar yaşadı. Günün en dikkat çekici hareketi ise Brent petrol fiyatlarındaki belirgin gerileme oldu."
+  "note": "Bugün Borsa İstanbul'da yükseliş eğilimi devam ederken, döviz kurları yatay bir seyir izledi. Küresel piyasalarda ise Brent petrol fiyatlarındaki sert düşüş dikkat çekti."
 }

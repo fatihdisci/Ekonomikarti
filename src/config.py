@@ -167,7 +167,7 @@ TROY_OZ_GRAM = 31.1035
 
 # Caption / OpenRouter.
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-OPENROUTER_DEFAULT_MODEL = "z-ai/glm-4.5"
+OPENROUTER_DEFAULT_MODEL = "google/gemini-2.5-flash-lite"
 
 # Posting hashtag (rendered on footer + appended to caption.txt).
 HASHTAG = "#fiyathafizasi"

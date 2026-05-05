@@ -175,14 +175,14 @@ def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
     note_font = load_font("inter_regular", 24)
     note_y = footer_y + 40
     max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
-    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=6)
+    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=3)
     line_h = note_font.getbbox("Ay")[3] + 12
     for i, line in enumerate(lines):
         lw, _ = text_size(note_font, line)
         draw.text(
             ((LAYOUT.canvas_w - lw) // 2, note_y + i * line_h),
             line,
-            fill=color("muted"),
+            fill=color("footer_note"),
             font=note_font,
         )
 
@@ -192,7 +192,7 @@ def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
     draw.text(
         (LAYOUT.padding_x, meta_y),
         source_text,
-        fill=color("divider"),
+        fill=color("footer_note"),
         font=meta_font,
     )
     hw, _ = text_size(meta_font, HASHTAG)

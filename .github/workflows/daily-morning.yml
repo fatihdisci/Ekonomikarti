@@ -1,0 +1,52 @@
+name: Daily Morning Data
+
+on:
+  schedule:
+    - cron: '45 05 * * *' # 05:45 UTC = 08:45 TRT
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  morning-run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to push back to the repository
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download Fonts
+        run: python scripts/download_fonts.py
+
+      - name: Run Morning Pipeline
+        env:
+          TCMB_API_KEY: ${{ secrets.TCMB_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          # Replace --dry-run with production flag when ready
+          python run_morning.py --dry-run
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/output/ output/
+          
+          # Only commit if there are changes
+          if git diff-index --quiet HEAD; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update morning data and image [skip ci]"
+            git push
+          fi

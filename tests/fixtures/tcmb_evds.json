@@ -1,0 +1,11 @@
+{
+    "totalCount": 1,
+    "items": [
+        {
+            "Tarih": "05-05-2026",
+            "TP_DK_USD_A_YTL": "32.1234",
+            "TP_DK_EUR_A_YTL": "34.5678",
+            "UNIXTIME": {"$numberLong": "1715000000000"}
+        }
+    ]
+}

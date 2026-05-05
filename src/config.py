@@ -34,9 +34,9 @@ COLORS = {
     "accent": "#FBBF24",
     "positive": "#10B981",
     "negative": "#EF4444",
-    "muted": "#A8B9CC",
+    "muted": "#B4C6D8",
     "divider": "#334155",
-    "footer_note": "#4D617A",
+    "footer_note": "#3A5068",
 }
 
 

@@ -165,8 +165,8 @@ def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
         width=2,
     )
 
-    note_font = load_font("inter_regular", 20)
-    note_y = footer_y + 40
+    note_font = load_font("inter_regular", 16)
+    note_y = footer_y + 36
     max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
     lines = wrap_lines(note_font, note, max_width=max_width, max_lines=3)
     line_h = note_font.getbbox("Ay")[3] + 12

@@ -96,13 +96,16 @@ def run_morning(dry_run: bool = False) -> Path:
         )
         print(f"  > JSON kaydedildi: {json_path}")
 
-    png_path = out_dir / "morning.png"
-    render_morning(payload, png_path)
+    if dry_run:
+        png_path = out_dir / "morning.png"
+        caption_path = out_dir / "caption.txt"
+    else:
+        png_path = out_dir / f"morning_{payload['date']}.png"
+        caption_path = out_dir / f"caption_morning_{payload['date']}.txt"
 
-    caption_path = out_dir / "caption.txt"
+    render_morning(payload, png_path)
     note = payload.get("note") or ""
     caption_path.write_text(f"{note}\n\n{HASHTAG}\n", encoding="utf-8")
-
     return png_path
 
 
@@ -157,13 +160,17 @@ def run_noon(dry_run: bool = False, focus_key: str | None = None) -> Path:
         )
         print(f"  > JSON kaydedildi: {json_path}")
 
-    png_path = out_dir / "noon.png"
-    render_noon(payload, png_path)
+    if dry_run:
+        png_path = out_dir / "noon.png"
+        caption_path = out_dir / "caption_noon.txt"
+    else:
+        stem = f"noon_{payload['date']}_{payload['focus']['key']}"
+        png_path = out_dir / f"{stem}.png"
+        caption_path = out_dir / f"caption_{stem}.txt"
 
-    caption_path = out_dir / "caption_noon.txt"
+    render_noon(payload, png_path)
     note = payload.get("note") or ""
     caption_path.write_text(f"{note}\n\n{HASHTAG}\n", encoding="utf-8")
-
     return png_path
 
 
@@ -211,13 +218,16 @@ def run_evening(dry_run: bool = False) -> Path:
         )
         print(f"  > JSON kaydedildi: {json_path}")
 
-    png_path = out_dir / "evening.png"
-    render_evening(payload, png_path)
+    if dry_run:
+        png_path = out_dir / "evening.png"
+        caption_path = out_dir / "caption_evening.txt"
+    else:
+        png_path = out_dir / f"evening_{payload['date']}.png"
+        caption_path = out_dir / f"caption_evening_{payload['date']}.txt"
 
-    caption_path = out_dir / "caption_evening.txt"
+    render_evening(payload, png_path)
     note = payload.get("note") or ""
     caption_path.write_text(f"{note}\n\n{HASHTAG}\n", encoding="utf-8")
-
     return png_path
 
 
@@ -269,13 +279,16 @@ def run_weekly(dry_run: bool = False) -> Path:
         )
         print(f"  > JSON kaydedildi: {json_path}")
 
-    png_path = out_dir / "weekly.png"
-    render_weekly(payload, png_path)
+    if dry_run:
+        png_path = out_dir / "weekly.png"
+        caption_path = out_dir / "caption_weekly.txt"
+    else:
+        png_path = out_dir / f"weekly_{payload['date']}.png"
+        caption_path = out_dir / f"caption_weekly_{payload['date']}.txt"
 
-    caption_path = out_dir / "caption_weekly.txt"
+    render_weekly(payload, png_path)
     note = payload.get("note") or ""
     caption_path.write_text(f"{note}\n\n{HASHTAG}\n", encoding="utf-8")
-
     return png_path
 
 
@@ -326,11 +339,14 @@ def run_highlight(dry_run: bool = False) -> Path:
         )
         print(f"  > JSON kaydedildi: {json_path}")
 
-    png_path = out_dir / "highlight.png"
-    render_highlight(payload, png_path)
+    if dry_run:
+        png_path = out_dir / "highlight.png"
+        caption_path = out_dir / "caption_highlight.txt"
+    else:
+        png_path = out_dir / f"highlight_{payload['date']}.png"
+        caption_path = out_dir / f"caption_highlight_{payload['date']}.txt"
 
-    caption_path = out_dir / "caption_highlight.txt"
+    render_highlight(payload, png_path)
     note = payload.get("note") or ""
     caption_path.write_text(f"{note}\n\n{HASHTAG}\n", encoding="utf-8")
-
     return png_path

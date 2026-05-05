@@ -1,0 +1,91 @@
+{
+  "date": "2026-05-05",
+  "generated_at_utc": "2026-05-05T05:45:12Z",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 38.4521,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.42,
+        "monthly": 2.15,
+        "yearly": 14.87,
+        "five_year": 425.3
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 41.7836,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.31,
+        "monthly": 1.92,
+        "yearly": 13.64,
+        "five_year": 312.7
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 4287.50,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.85,
+        "monthly": 4.32,
+        "yearly": 47.21,
+        "five_year": 1284.6
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 71.42,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.23,
+        "monthly": -3.15,
+        "yearly": -8.42,
+        "five_year": 12.5
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 11248.73,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.18,
+        "monthly": 1.47,
+        "yearly": 21.36,
+        "five_year": 671.4
+      }
+    },
+    {
+      "key": "benzin_95",
+      "name": "Benzin 95",
+      "current": 49.85,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.0,
+        "monthly": 3.42,
+        "yearly": 20.12,
+        "five_year": 592.4
+      }
+    }
+  ],
+  "note": "Altın yıllık bazda dolardan üç kat hızlı arttı, makas son beş yılın en yükseğinde."
+}

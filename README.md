@@ -1,76 +1,110 @@
-# Ekonomikartı (Fiyat Hafızası) 📈
+# <p align="center">📊 Ekonomikartı: Fiyat Hafızası</p>
 
-Ekonomikartı, finansal piyasa verilerini (Döviz, Altın, Petrol, Borsa) otomatik olarak çeken, bu verileri tarihsel pencerelerle kıyaslayan ve sosyal medyada paylaşılmaya hazır, modern ve şık bilgi kartları (PNG) üreten bir otomasyon sistemidir.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/PIL-Pillow-lightgrey?style=for-the-badge" alt="Pillow">
+  <img src="https://img.shields.io/badge/OpenRouter-Gemini-orange?style=for-the-badge" alt="Gemini">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT">
+</p>
 
-## 🎨 Yeni Görsel Kimlik & Tasarım
-
-Proje, 2026 Mayıs ayında yapılan büyük bir revizyonla tamamen modern, "premium" bir **Koyu Tema (Dark Mode)** yapısına geçmiştir.
-
-### 🌈 Renk Paleti
-- **Arka Plan (Deep Navy):** `#0B132B` - Kartın ana zemini.
-- **Yüzey (Surface Blue):** `#1C2A46` - Veri kutucuklarının (widget) rengi.
-- **Vurgu (Amber Gold):** `#FBBF24` - Marka ismi ve önemli başlıklar.
-- **Pozitif (Emerald):** `#10B981` - Artış gösteren veriler.
-- **Negatif (Rose Red):** `#EF4444` - Azalış gösteren veriler.
-- **Metin (Slate White):** `#F8FAFC` - Ana içerik yazıları.
-
-### 🔡 Tipografi
-- **Inter (Regular, SemiBold, Bold):** Gösterge isimleri, açıklamalar ve marka başlığı için kullanılan ana font.
-- **JetBrains Mono (Medium, Bold):** Sayısal veriler, fiyatlar ve yüzdelik değişimler için kullanılan monospaced font.
-
-### 🖼️ Kart Düzeni
-- **Kutu (Card) Tasarımı:** Her veri grubu, köşeleri 24px yuvarlatılmış (rounded rectangle) şık kutucuklar içerisinde sunulur.
-- **Dinamik Ölçeklendirme:** Ana veriler ve yüzdelik değişimler, okunabilirliği artırmak adına optimize edilmiş font boyutlarıyla çizilir.
-- **Yorum Alanı (Footer):** Kartların alt kısmında LLM tarafından üretilen piyasa analizi, büyük puntolarla (24px) yer alır.
+<p align="center">
+  <b>Finansal verileri sanat eserine dönüştüren, tam otomatik piyasa takip ve görselleştirme motoru.</b><br>
+  <i>TCMB ve Yahoo Finance verileriyle beslenen, Gemini ile yorumlanan, her gün cebinize gelen şıklık.</i>
+</p>
 
 ---
 
-## 🏗️ Proje Yapısı (Neyin Nerede?)
+## 🌟 Vizyon
 
-```text
+Ekonomikartı, karmaşık finansal verileri "gürültüden" arındırır. Sadece sayıları değil, o sayıların **tarihsel hafızasını** modern bir tasarım diliyle sunar. Her sabah, öğle ve akşam, sosyal medya paylaşımına hazır, premium estetiğe sahip bilgi kartları üretir.
+
+## 🎨 Tasarım Dili: "Premium Dark"
+
+Proje, minimalizm ve yüksek kontrast prensipleri üzerine inşa edilmiştir.
+
+### 🎨 Renk Paleti (UI/UX)
+| Renk | HEX | Görev |
+| :--- | :--- | :--- |
+| **Arka Plan** | `#0B132B` | Derinlik ve odak sağlayan ana zemin. |
+| **Yüzey** | `#1C2A46` | Verileri havada tutan modern widget katmanı. |
+| **Vurgu** | `#FBBF24` | Dikkat çekilmesi gereken marka ve başlık unsurları. |
+| **Pozitif** | `#10B981` | Piyasa yükselişlerini simgeleyen canlı zümrüt. |
+| **Negatif** | `#EF4444` | Piyasa düşüşlerini simgeleyen uyarıcı kırmızı. |
+
+### 🔡 Tipografi Hizalaması
+- **Sans-Serif Gücü:** Başlıklarda ve marka isminde `Inter Bold` ile modern bir duruş.
+- **Monospace Keskinliği:** Fiyatlarda ve yüzdeliklerde `JetBrains Mono` ile matematiksel netlik.
+
+---
+
+## 🛠️ Teknik Mimari
+
+Ekonomikartı'nın kalbinde, verinin ham halden görsel bir karta dönüşmesini sağlayan 4 aşamalı bir **Pipeline** bulunur:
+
+1.  **Ingestion:** `yfinance` ve `TCMB EVDS` API'leri üzerinden canlı verilerin eş zamanlı çekilmesi.
+2.  **Processing:** Çekilen verilerin 1 yıllık, 5 yıllık ve günlük değişimlerinin matematiksel analizi.
+3.  **Intelligence:** `OpenRouter/Gemini` entegrasyonu ile o günün piyasa hareketlerine dair "insansı" bir yorum üretilmesi.
+4.  **Rendering:** `Pillow` motoru ile Anti-Aliasing destekli, 1080x1350 (Instagram optimize) çözünürlükte PNG üretimi.
+
+---
+
+## 📂 Dosya Sistemi Rehberi
+
+```bash
 Ekonomikarti/
-├── .github/workflows/    # Günlük (Sabah-Öğle-Akşam) ve Haftalık otomasyon akışları (Actions)
-├── assets/fonts/         # Kartlarda kullanılan Inter ve JetBrains Mono font dosyaları
-├── data/
-│   ├── manual/           # Manuel müdahale gerektiren (akaryakıt vb.) veri girişleri
-│   └── output/           # Çekilen ham verilerin (JSON) saklandığı geçici klasör
-├── output/
-│   ├── live/             # Üretilen son güncel PNG kartlar ve metin (caption) dosyaları
-│   └── test/             # Geliştirme sırasında test amaçlı üretilen görseller
-├── src/
-│   ├── data/             # Veri çekme (TCMB, Yahoo Finance) ve hesaplama motorları
-│   ├── render/           # Kart çizim mantığı (Morning, Noon, Evening, Weekly, Highlight)
-│   ├── caption/          # LLM tabanlı (Gemini) otomatik caption/yorum üretici
-│   ├── pipeline.py       # Veriyi çekip, görseli üretip, caption'ı hazırlayan ana akış
-│   └── config.py         # Renkler, fontlar, geometri ve gösterge tanımları (Merkezi Ayarlar)
-├── run_morning.py        # Sabah kartını (08:00) üreten tetikleyici script
-├── run_noon.py           # Öğle "Odak" kartını üreten tetikleyici script
-├── run_evening.py        # Akşam "Kapanış" kartını üreten tetikleyici script
-└── run_weekly.py         # Haftalık özet kartlarını üreten tetikleyici script
+├── 🤖 .github/workflows/    # 7/24 çalışan otomasyon (Cron Jobs)
+├── 🖋️ assets/fonts/         # Lisanslı tipografi dosyaları
+├── 💾 data/
+│   ├── manual/             # Harici veri girişleri (Akaryakıt vb.)
+│   └── output/             # Veri bankası (JSON formatında tarihsel loglar)
+├── 🖼️ output/
+│   ├── live/               # Sosyal medya için "Sıcak" çıktılar
+│   └── test/               # Geliştirici önizleme klasörü
+├── 🧠 src/
+│   ├── data/               # Finansal konektörler (TCMB, Yahoo)
+│   ├── render/             # Görsel motor (Her kart için ayrı şablon)
+│   ├── caption/            # Yapay zeka yorumlayıcı
+│   └── config.py           # Sistemin genetik kodları (Renk, Geometri, Gösterge)
+└── 🚀 run_*.py             # Zamanlanmış tetikleyiciler
 ```
 
 ---
 
-## 🚀 Çalıştırma
+## 🍱 Kart Çeşitleri
 
-1. **Bağımlılıkları Kurun:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+- **🌅 Açılış Kartı:** Güne başlarken 5 kritik gösterge ve 4 farklı tarihsel pencere.
+- **🎯 Odak Kartı:** Günün en önemli göstergesine derinlemesine tarihsel bakış.
+- **🌇 Kapanış Kartı:** Gün sonu özeti ve "Günün En Sert Hareketi".
+- **📅 Haftalık Özet:** Hafta boyu trendler ve mini grafikler (Sparklines).
+- **🏆 Haftanın Yıldızı:** Haftalık kazanç ve kayıp şampiyonları.
 
-2. **Fontları İndirin:**
-   ```bash
-   python scripts/download_fonts.py
-   ```
+---
 
-3. **Bir Kart Üretin (Örn: Sabah Kartı):**
-   ```bash
-   python run_morning.py
-   ```
+## ⚙️ Kurulum ve Kullanım
 
-## 🛠️ Teknolojiler
-- **Python 3.10+**
-- **Pillow (PIL):** Görsel oluşturma ve tipografi işleme.
-- **yfinance & TCMB EVDS:** Canlı piyasa verileri.
-- **OpenRouter (Gemini):** Akıllı piyasa yorumları.
-- **GitHub Actions:** Tam otomatik zamanlanmış (cron) çalışma.
+Sistemi yerelinizde ayağa kaldırmak sadece 3 dakika sürer.
+
+```bash
+# 1. Depoyu klonlayın
+git clone https://github.com/fatihdisci/Ekonomikarti.git
+
+# 2. Bağımlılıkları yükleyin
+pip install -r requirements.txt
+
+# 3. Fontları otomatik indirin
+python scripts/download_fonts.py
+
+# 4. İlk kartınızı üretin
+python run_morning.py
+```
+
+---
+
+## 🛡️ Lisans ve Katkı
+
+Bu proje **MIT** lisansı ile korunmaktadır. Fikirlerinize ve Pull Request'lerinize her zaman açığız.
+
+<p align="center">
+  <i>Fiyat Hafızası ile ekonomiyi sadece takip etmeyin, onu görün.</i><br>
+  <b>#fiyathafizasi</b>
+</p>

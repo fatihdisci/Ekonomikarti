@@ -70,13 +70,34 @@ Ekonomikarti/
 
 ---
 
-## 🍱 Kart Çeşitleri
+## 🍱 Kart Çeşitleri & Galeri
 
-- **🌅 Açılış Kartı:** Güne başlarken 5 kritik gösterge ve 4 farklı tarihsel pencere.
-- **🎯 Odak Kartı:** Günün en önemli göstergesine derinlemesine tarihsel bakış.
-- **🌇 Kapanış Kartı:** Gün sonu özeti ve "Günün En Sert Hareketi".
-- **📅 Haftalık Özet:** Hafta boyu trendler ve mini grafikler (Sparklines).
-- **🏆 Haftanın Yıldızı:** Haftalık kazanç ve kayıp şampiyonları.
+Her kart, günün farklı saatlerine ve veri türlerine göre özel olarak tasarlanmıştır.
+
+### 🌅 Açılış Kartı (Morning Card)
+Güne başlarken piyasadaki en kritik 5 göstergeyi, 4 farklı tarihsel penceredeki (Günlük, Aylık, Yıllık, 5 Yıl) değişim yüzdeleriyle birlikte sunar.
+<p align="center">
+  <img src="assets/samples/morning.png" width="400" alt="Sabah Kartı">
+</p>
+
+### 🎯 Odak Kartı (Noon Focus Card)
+Günün rotasyonuna göre (Pzt: USD, Sal: EUR vb.) tek bir göstergeye odaklanır ve onun tarihsel fiyat hafızasını (1 yıl ve 5 yıl önce bugün) detaylandırır.
+<p align="center">
+  <img src="assets/samples/noon.png" width="400" alt="Öğle Odak Kartı">
+</p>
+
+### 🌇 Kapanış Kartı (Evening Card)
+Günün kapanış rakamlarını ve günün "en sert hareketini" (Yıldızını veya Kaybedenini) tek bir karede özetler.
+<p align="center">
+  <img src="assets/samples/evening.png" width="400" alt="Akşam Kapanış Kartı">
+</p>
+
+### 📅 Haftalık Özet & Haftanın Yıldızı
+Hafta sonları (Cumartesi-Pazar) üretilen bu kartlar, haftalık trendleri mini grafikler (sparklines) ve haftalık performans liderleriyle sunar.
+<p align="center">
+  <img src="assets/samples/weekly.png" width="400" alt="Haftalık Özet">
+  <img src="assets/samples/highlight.png" width="400" alt="Haftanın Yıldızı">
+</p>
 
 ---
 

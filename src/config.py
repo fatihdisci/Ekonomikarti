@@ -108,6 +108,52 @@ CHANGE_WINDOWS: list[ChangeWindow] = [
     ChangeWindow("five_year", "5 YIL", 1825),
 ]
 
+
+# Noon "Odak Kartı" — weekday-based rotation (Pzt-Cum).
+# Index = weekday() (0=Mon ... 4=Fri). Hafta sonu için ayrı format kullanılır.
+NOON_ROTATION: list[str] = [
+    "usd_try",      # Pazartesi
+    "eur_try",      # Salı
+    "gram_altin",   # Çarşamba
+    "brent",        # Perşembe
+    "bist_100",     # Cuma
+]
+
+
+@dataclass(frozen=True)
+class HistoryWindow:
+    """Öğle kartında gösterilecek tarihsel pencereler."""
+
+    key: str        # JSON key
+    label: str      # uppercase Turkish label rendered on card
+    days: int
+
+
+NOON_HISTORY_WINDOWS: list[HistoryWindow] = [
+    HistoryWindow("one_year", "1 YIL ÖNCE BUGÜN", 365),
+    HistoryWindow("five_year", "5 YIL ÖNCE BUGÜN", 1825),
+]
+
+
+# Evening "Kapanış Kartı" — 4 gösterge (gram altın hariç).
+EVENING_INDICATORS: list[str] = [
+    "usd_try",
+    "eur_try",
+    "bist_100",
+    "brent",
+]
+
+
+def noon_focus_key_for(target_date: "date | None" = None) -> str:
+    """Verilen güne göre rotasyondan göstergeyi seç. Hafta sonu Pazartesi'ye düşer (fallback)."""
+    from datetime import date as _date
+    if target_date is None:
+        target_date = _date.today()
+    wd = target_date.weekday()
+    if wd >= len(NOON_ROTATION):
+        return NOON_ROTATION[0]
+    return NOON_ROTATION[wd]
+
 # TCMB EVDS API.
 TCMB_BASE_URL = "https://evds3.tcmb.gov.tr/igmevdsms-dis/"
 TCMB_USD_TRY = "TP.DK.USD.A.YTL"

@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-10",
+  "friday": "2026-05-08",
+  "generated_at_utc": "2026-05-10T07:30:00+00:00",
+  "star": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "current": 14455.10,
+    "unit": "puan",
+    "decimals": 2,
+    "weekly_pct": 4.12
+  },
+  "loser": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 112.67,
+    "unit": "USD",
+    "decimals": 2,
+    "weekly_pct": -3.40
+  },
+  "note": "Hafta BIST 100'ün %4'ü aşan yükselişiyle yerli sermaye piyasasının lehine kapanırken, Brent petroldeki sert geri çekiliş emtia tarafının baskısını ortaya koydu."
+}

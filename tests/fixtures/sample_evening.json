@@ -1,0 +1,51 @@
+{
+  "date": "2026-05-05",
+  "generated_at_utc": "2026-05-05T17:00:00+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.2187,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.07
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 52.8721,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.28
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14455.10,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 0.60
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 112.67,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": -1.55
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 112.67,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": -1.55
+  },
+  "note": "Brent petroldeki sert geri çekiliş günün öne çıkan hareketi oldu; BIST 100 ise dirençli kapanışla pozitif ayrıştı. Döviz cephesinde sakin bir gün geride kaldı."
+}

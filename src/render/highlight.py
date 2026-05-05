@@ -1,4 +1,4 @@
-"""Evening "Kapanış Kartı" renderer: kapanış snapshot + günün en sert hareketi."""
+"""Sunday "Haftanın Yıldızı/Kaybedeni" renderer."""
 
 from __future__ import annotations
 
@@ -41,8 +41,8 @@ def _draw_title_block(draw: ImageDraw.ImageDraw) -> None:
     title_font = load_font("inter_bold", 56)
     subtitle_font = load_font("inter_regular", 18)
 
-    title = "KAPANIŞ KARTI"
-    subtitle = "Günü Kapatırken"
+    title = "HAFTANIN ÖZETİ"
+    subtitle = "Yıldız ve Kaybeden"
 
     tw, th = text_size(title_font, title)
     tx = (LAYOUT.canvas_w - tw) // 2
@@ -55,65 +55,18 @@ def _draw_title_block(draw: ImageDraw.ImageDraw) -> None:
     draw.text((sx, sy), subtitle, fill=color("muted"), font=subtitle_font)
 
 
-def _draw_snapshot_table(draw: ImageDraw.ImageDraw, indicators: list[dict[str, Any]]) -> None:
-    """Üstte 4 göstergenin kapanış snapshot'ı."""
-    block_top = LAYOUT.header_h + LAYOUT.title_h
-    block_h = LAYOUT.table_h // 2  # 300
-
-    if not indicators:
-        return
-    rows = len(indicators)
-    row_h = block_h // rows
-
-    name_font = load_font("inter_semibold", 30)
-    value_font = load_font("mono_bold", 36)
-    pct_font = load_font("mono_bold", 26)
-
-    for i, ind in enumerate(indicators):
-        row_top = block_top + row_h * i
-
-        # Üst divider.
-        draw.line(
-            [
-                (LAYOUT.padding_x, row_top),
-                (LAYOUT.canvas_w - LAYOUT.padding_x, row_top),
-            ],
-            fill=color("divider"),
-            width=1,
-        )
-
-        # Sol: ad
-        name_text = ind.get("name", "")
-        nh = text_size(name_font, name_text)[1]
-        name_y = row_top + (row_h - nh) // 2
-        draw.text((LAYOUT.padding_x, name_y), name_text, fill=color("text"), font=name_font)
-
-        # Orta: kapanış değeri
-        decimals = int(ind.get("decimals", 2))
-        unit = ind.get("unit", "")
-        current = float(ind["current"])
-        value_text = f"{format_tr(current, decimals)} {unit}".strip()
-        vw, vh = text_size(value_font, value_text)
-        # Sağ kenardan biraz içeride değil — orta-sağda hizalı: yüzdeyi sağa, değeri ortaya.
-        center_x = LAYOUT.canvas_w // 2 + 60
-        value_x = center_x - vw // 2
-        value_y = row_top + (row_h - vh) // 2
-        draw.text((value_x, value_y), value_text, fill=color("text"), font=value_font)
-
-        # Sağ: günlük yüzde
-        pct = ind.get("daily_pct")
-        if pct is not None:
-            pct_text = f"{arrow_for(pct)} {format_pct(pct)}"
-            pw, ph = text_size(pct_font, pct_text)
-            pct_x = LAYOUT.canvas_w - LAYOUT.padding_x - pw
-            pct_y = row_top + (row_h - ph) // 2
-            draw.text((pct_x, pct_y), pct_text, fill=change_color(pct), font=pct_font)
-
-
-def _draw_biggest_mover(draw: ImageDraw.ImageDraw, mover: dict[str, Any] | None) -> None:
-    """Alt yarıda 'Günün Hareketi' vurgu bloğu."""
-    block_top = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h // 2
-    block_h = LAYOUT.table_h - LAYOUT.table_h // 2  # 300
+def _draw_tile(
+    draw: ImageDraw.ImageDraw,
+    block_top: int,
+    block_h: int,
+    label: str,
+    item: dict[str, Any] | None,
+) -> None:
+    """Tek bir vurgu kutusu (yıldız ya da kaybeden)."""
+    label_font = load_font("inter_regular", 20)
+    name_font = load_font("inter_bold", 50)
+    pct_font = load_font("mono_bold", 78)
+    value_font = load_font("mono_medium", 24)
 
     # Üst divider.
     draw.line(
@@ -125,39 +78,40 @@ def _draw_biggest_mover(draw: ImageDraw.ImageDraw, mover: dict[str, Any] | None)
         width=1,
     )
 
-    label_font = load_font("inter_regular", 18)
-    name_font = load_font("inter_bold", 52)
-    pct_font = load_font("mono_bold", 84)
-
-    label_text = "GÜNÜN HAREKETİ"
-    if mover is None:
-        # Veri yoksa sadece label çiz.
-        lw, _ = text_size(label_font, label_text)
+    if item is None:
+        lw, _ = text_size(label_font, label)
         draw.text(
             ((LAYOUT.canvas_w - lw) // 2, block_top + 60),
-            label_text,
+            label,
             fill=color("muted"),
             font=label_font,
         )
         return
 
-    name_text = mover["name"].upper()
-    pct = float(mover["daily_pct"])
+    name = item["name"].upper()
+    pct = float(item["weekly_pct"])
     pct_text = f"{arrow_for(pct)} {format_pct(pct)}"
 
-    lw, lh = text_size(label_font, label_text)
-    nw, nh = text_size(name_font, name_text)
-    pw, ph = text_size(pct_font, pct_text)
+    decimals = int(item["decimals"])
+    unit = item.get("unit", "")
+    value_text = f"{format_tr(float(item['current']), decimals)} {unit}".strip()
 
-    gap1, gap2 = 28, 24
-    total_h = lh + gap1 + nh + gap2 + ph
+    lw, lh = text_size(label_font, label)
+    nw, nh = text_size(name_font, name)
+    pw, ph = text_size(pct_font, pct_text)
+    vw, vh = text_size(value_font, value_text)
+
+    gap1, gap2, gap3 = 22, 18, 16
+    total_h = lh + gap1 + nh + gap2 + ph + gap3 + vh
     y = block_top + (block_h - total_h) // 2
 
-    draw.text(((LAYOUT.canvas_w - lw) // 2, y), label_text, fill=color("muted"), font=label_font)
+    draw.text(((LAYOUT.canvas_w - lw) // 2, y), label, fill=color("muted"), font=label_font)
     y += lh + gap1
-    draw.text(((LAYOUT.canvas_w - nw) // 2, y), name_text, fill=color("text"), font=name_font)
+    draw.text(((LAYOUT.canvas_w - nw) // 2, y), name, fill=color("text"), font=name_font)
     y += nh + gap2
     draw.text(((LAYOUT.canvas_w - pw) // 2, y), pct_text, fill=change_color(pct), font=pct_font)
+    y += ph + gap3
+    draw.text(((LAYOUT.canvas_w - vw) // 2, y), value_text, fill=color("muted"), font=value_font)
 
 
 def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
@@ -204,11 +158,11 @@ def _parse_target_date(payload: dict[str, Any]) -> date:
     return date.today()
 
 
-def render_evening(payload: dict[str, Any], output_path: Path) -> Path:
-    """Akşam "Kapanış Kartı"nı oluştur ve PNG olarak kaydet."""
+def render_highlight(payload: dict[str, Any], output_path: Path) -> Path:
+    """Pazar 'Haftanın Yıldızı/Kaybedeni' kartını üret."""
     target_date = _parse_target_date(payload)
-    indicators = payload.get("indicators") or []
-    mover = payload.get("biggest_mover")
+    star = payload.get("star")
+    loser = payload.get("loser")
     note = payload.get("note") or ""
 
     img = Image.new("RGB", (LAYOUT.canvas_w, LAYOUT.canvas_h), color=color("bg"))
@@ -216,8 +170,12 @@ def render_evening(payload: dict[str, Any], output_path: Path) -> Path:
 
     _draw_header(draw, target_date)
     _draw_title_block(draw)
-    _draw_snapshot_table(draw, indicators)
-    _draw_biggest_mover(draw, mover)
+
+    block_top = LAYOUT.header_h + LAYOUT.title_h
+    half = LAYOUT.table_h // 2  # 300
+    _draw_tile(draw, block_top, half, "HAFTANIN YILDIZI", star)
+    _draw_tile(draw, block_top + half, LAYOUT.table_h - half, "HAFTANIN KAYBEDENİ", loser)
+
     _draw_footer(draw, note)
 
     output_path = Path(output_path)

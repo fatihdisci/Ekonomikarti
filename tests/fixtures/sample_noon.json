@@ -1,0 +1,29 @@
+{
+  "date": "2026-05-05",
+  "generated_at_utc": "2026-05-05T09:30:00+00:00",
+  "focus": {
+    "key": "usd_try",
+    "name": "USD/TRY",
+    "unit": "TL",
+    "decimals": 4,
+    "current": 45.2187,
+    "daily_pct": 0.07,
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 38.5712,
+        "pct": 17.23
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 8.3251,
+        "pct": 442.91
+      }
+    ]
+  },
+  "note": "USD/TRY beş yıl önce 8,33 TL seviyesindeydi; bugün 45,22 TL ile yaklaşık 5,4 katına ulaşmış durumda. Son bir yıldaki %17'lik yükseliş, kurun yapısal yukarı yönlü trendini koruduğunu gösteriyor."
+}

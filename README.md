@@ -1,54 +1,69 @@
 # Ekonomikarti
 
-Ekonomikarti, her sabah ekonomi verilerini (döviz, altın, petrol, borsa) çekerek şık bir Instagram/X gönderi görseli ve caption metni oluşturan otomasyon projesidir.
+Ekonomikarti, ekonomi göstergelerini (döviz, altın, petrol, borsa) çekerek Instagram/X için günlük ve haftalık şık gönderi görselleri ve caption metinleri oluşturan otomasyon projesidir.
+
+## Yayın Takvimi
+
+| Zaman | Kart | İçerik |
+|---|---|---|
+| Sabah (hergün, 08:45 TRT) | **Açılış Kartı** | 5 gösterge × 4 değişim penceresi (Günlük/Aylık/Yıllık/5 Yıl) |
+| Öğle (Pzt-Cum, 13:00 TRT) | **Odak Kartı** | Tek gösterge × tarihsel snapshot (1 yıl, 5 yıl önce). Rotasyon: Pzt USD, Sal EUR, Çar Gram Altın, Per Brent, Cum BIST |
+| Akşam (Pzt-Cum, 19:00 TRT) | **Kapanış Kartı** | 4 gösterge kapanış snapshot + günün en sert hareketi |
+| Cumartesi (11:00 TRT) | **Haftalık Özet** | 5 gösterge × Cuma kapanışı + bu hafta % |
+| Pazar (11:00 TRT) | **Yıldız/Kaybeden** | Haftanın en sert yükselen ve düşen göstergesi |
 
 ## Kullanım (Usage - TR)
 
-Sistemi çalıştırmak için aşağıdaki adımları izleyebilirsiniz:
-
-1. **Gereksinimlerin Yüklenmesi:**
+1. **Bağımlılıklar:**
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Fontların İndirilmesi:**
-   Görsellerin düzgün oluşturulabilmesi için öncelikle fontların indirilmesi gerekmektedir.
+2. **Fontları indir** (görseller için gereklidir):
    ```bash
    python scripts/download_fonts.py
    ```
 
-3. **Çalıştırma:**
-   Şu an için sistem test verileriyle (dry-run) çalışmaktadır. Görseli oluşturmak için:
+3. **Kartları çalıştır** — her kartın `--dry-run` modu fixture verisiyle çalışır, canlı modda yfinance + OpenRouter kullanır:
    ```bash
-   python run_morning.py --dry-run
+   python run_morning.py    [--dry-run]
+   python run_noon.py       [--dry-run] [--focus usd_try|eur_try|gram_altin|brent|bist_100]
+   python run_evening.py    [--dry-run]
+   python run_weekly.py     [--dry-run]
+   python run_highlight.py  [--dry-run]
    ```
-   Bu komut sonucunda `output/test/morning.png` ve `output/test/caption.txt` dosyaları oluşturulacaktır.
+   Çıktılar: `output/test/<kart>.png` ve `output/test/caption_<kart>.txt` (dry-run) ya da `output/live/...` (canlı).
 
-> **Not:** "Gram Altın" değeri doğrudan bir API'den gelmek yerine uluslararası ons altın fiyatı ve USD/TRY kuru üzerinden formülize edilerek hesaplanmaktadır. Bu nedenle belirtilen değer **yaklaşık** bir değerdir.
+> **Not:** "Gram Altın" değeri uluslararası ons altın fiyatı ve USD/TRY kuru üzerinden hesaplanmaktadır (yaklaşık değerdir).
 
 ## Technical Documentation (EN)
 
-Ekonomikarti is an automated data pipeline that generates daily economic summary cards for social media (Instagram, X).
+Ekonomikarti is an automated data pipeline that generates daily and weekly economic summary cards for social media (Instagram, X).
 
 ### Project Structure
-- `src/config.py`: Static configuration, palettes, geometries, and indicator mapping.
-- `src/data/`: Data ingestion modules (e.g., TCMB EVDS parser).
-- `src/render/`: Pillow-based rendering engine.
-- `src/pipeline.py`: The main execution pipeline.
+- `src/config.py` — palette, geometry, indicator definitions, rotation maps.
+- `src/data/` — data ingestion (`yfinance_api.py`) and payload builders (`calculator.py`).
+- `src/render/` — Pillow-based renderers: `morning.py`, `noon.py`, `evening.py`, `weekly.py`, `highlight.py`.
+- `src/caption/generator.py` — OpenRouter LLM caption generation (one prompt per card type).
+- `src/pipeline.py` — `run_morning`, `run_noon`, `run_evening`, `run_weekly`, `run_highlight` end-to-end pipelines.
 
 ### CI/CD
-A GitHub Actions workflow (`.github/workflows/daily-morning.yml`) is configured to run automatically every morning at 05:45 UTC (08:45 TRT). It sets up the environment, fetches the latest data, generates the output assets, and commits them back to the repository.
+GitHub Actions workflows in `.github/workflows/`:
+- `daily-morning.yml` — every day at 05:45 UTC
+- `daily-noon.yml` — Mon-Fri at 10:00 UTC
+- `daily-evening.yml` — Mon-Fri at 16:00 UTC
+- `weekly-saturday.yml` — Saturday at 08:00 UTC
+- `weekly-sunday.yml` — Sunday at 08:00 UTC
+
+Each workflow installs deps, downloads fonts, runs the pipeline, and commits the generated PNG + JSON back to the repository. Required secret: `OPENROUTER_API_KEY`.
 
 ### Tests
-Tests are built with `pytest` and can be run via:
 ```bash
 pytest tests/
 ```
-The test suite ensures robust formatting, correct JSON parsing (TCMB API), Turkish character rendering, and validating the dry-run output constraints (e.g., ensuring a 1080x1350 PNG is correctly generated).
+Coverage: Turkish number/percent formatting, character rendering, dry-run output validation (1080×1350 PNG) for every card type, weekly Friday-resolution logic, biggest-mover and star/loser selection, noon rotation.
 
 ## Açık Sorular (Open Questions)
 
-- **Canlı Veri Geçişi:** Gerçek API entegrasyonları tamamlanıp canlı (live) veri akışına ne zaman geçilecek?
-- **Caption Model Güncellemesi:** Caption üretimi için kullanılacak OpenRouter LLM modelinde spesifik bir prompt engineering optimizasyonu yapılacak mı?
-- **Akşam/Öğle Modülleri:** `render/evening.py` ve `render/noon.py` için veri kaynakları ve tasarımlar nasıl kurgulanacak?
-- **Oto-Paylaşım:** Görsel ve metin üretildikten sonra Instagram/X hesaplarına API aracılığıyla otomatik gönderim (auto-post) özelliği eklenecek mi?
+- **Oto-Paylaşım:** Görseller üretildikten sonra Instagram/X hesaplarına API aracılığıyla otomatik gönderim eklenecek mi?
+- **Phase 3:** Haftalık karta sparkline (mini grafik), öğle kartına otomatik "önemli hareket" override'ı eklensin mi?

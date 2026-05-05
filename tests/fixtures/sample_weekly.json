@@ -1,0 +1,53 @@
+{
+  "date": "2026-05-09",
+  "friday": "2026-05-08",
+  "generated_at_utc": "2026-05-09T07:30:00+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.2187,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.85
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 52.8721,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": -0.42
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6631.86,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "weekly_pct": 2.18
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 112.67,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "weekly_pct": -3.40
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14455.10,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "weekly_pct": 4.12
+    }
+  ],
+  "note": "Hafta gram altın ve BIST 100 öncülüğünde olumlu kapandı; Brent ise %3,40 gerileyerek haftanın en sert düşüşünü kaydetti. Döviz cephesinde hareket sınırlı kalsa da USD/TRY'deki hafif yükseliş yapısal trendi koruduğunu gösteriyor."
+}

@@ -111,6 +111,29 @@ def _draw_row(
     pct_y = row_top + (LAYOUT.row_h - ph) // 2
     draw.text((pct_x, pct_y), pct_text, fill=fill, font=pct_font)
 
+    # Orta: Sparkline (mini grafik)
+    sparkline = indicator.get("sparkline")
+    if sparkline and len(sparkline) > 1:
+        sw, sh = 180, 40
+        sx = LAYOUT.canvas_w // 2 - sw // 2 + 50
+        sy = row_top + (LAYOUT.row_h - sh) // 2
+        
+        min_v, max_v = min(sparkline), max(sparkline)
+        rng = max_v - min_v if max_v != min_v else 1
+        
+        points = []
+        for i, val in enumerate(sparkline):
+            px = sx + (i / (len(sparkline) - 1)) * sw
+            py = sy + sh - ((val - min_v) / rng) * sh
+            points.append((px, py))
+            
+        draw.line(points, fill=fill, width=4, joint="curve")
+        
+        # Optional: draw dots at each point
+        for px, py in points:
+            r = 4
+            draw.ellipse([px - r, py - r, px + r, py + r], fill=fill)
+
     divider_y = row_top + LAYOUT.row_h - 1
     draw.line(
         [

@@ -45,3 +45,17 @@ jobs:
             git commit -m "chore: update evening close card [skip ci]"
             git push
           fi
+
+      - name: Get Latest Image
+        id: latest_image
+        run: |
+          LATEST_FILE=$(ls -t output/live/*.png | head -n 1)
+          echo "filename=$LATEST_FILE" >> $GITHUB_ENV
+
+      - name: Upload to Google Drive
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}
+          filename: ${{ env.filename }}
+          folderId: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
+          overwrite: "true"

@@ -114,10 +114,7 @@ def _fetch_live_noon_payload(focus_key: str | None, today: date) -> dict:
     from src.data.yfinance_api import fetch_yfinance_data
     from src.data.calculator import build_noon_payload, compute_gram_altin
 
-    if focus_key is None:
-        focus_key = noon_focus_key_for(today)
-
-    print(f"  > Yahoo Finance verisi çekiliyor (odak: {focus_key})...")
+    print("  > Yahoo Finance verisi çekiliyor...")
     yf_data = fetch_yfinance_data(end_date=today)
 
     print("  > Gram Altın hesaplanıyor...")
@@ -130,6 +127,35 @@ def _fetch_live_noon_payload(focus_key: str | None, today: date) -> dict:
         "brent": yf_data["brent"],
         "bist_100": yf_data["bist_100"],
     }
+
+    if focus_key is None:
+        from src.data.calculator import _nearest_value, _pct_change
+        from src.config import INDICATORS
+        from datetime import timedelta
+        
+        biggest_mover_key = None
+        max_abs_change = 0.0
+        
+        for spec in INDICATORS:
+            series = series_map.get(spec.key, {})
+            current = _nearest_value(series, today, lookback=10)
+            prev = _nearest_value(series, today - timedelta(days=1), lookback=10)
+            if current is not None and prev is not None:
+                pct = abs(_pct_change(current, prev))
+                if pct > max_abs_change:
+                    max_abs_change = pct
+                    biggest_mover_key = spec.key
+        
+        if max_abs_change >= 1.5 and biggest_mover_key is not None:
+            focus_key = biggest_mover_key
+            print(f"  > Önemli hareket tespit edildi: {focus_key} ({max_abs_change:.2f}%). Öğle kartı odağı değiştirildi.")
+        else:
+            focus_key = noon_focus_key_for(today)
+            print(f"  > Normal rotasyon uygulanıyor: {focus_key}.")
+    else:
+        print(f"  > Manuel odak: {focus_key}.")
+
+
 
     payload = build_noon_payload(series_map, focus_key=focus_key, target_date=today)
     payload["generated_at_utc"] = datetime.now(timezone.utc).isoformat()

@@ -286,6 +286,14 @@ def build_weekly_payload(
         if close is None:
             continue
         weekly_pct = round(_pct_change(close, prev_close), 2) if prev_close is not None else None
+        
+        sparkline = []
+        for i in range(4, -1, -1):
+            day_date = friday - timedelta(days=i)
+            v = _nearest_value(series, day_date, lookback=3)
+            if v is not None:
+                sparkline.append(round(v, spec.decimals))
+                
         indicators_list.append({
             "key": spec.key,
             "name": spec.name,
@@ -294,6 +302,7 @@ def build_weekly_payload(
             "unit": spec.unit,
             "decimals": spec.decimals,
             "weekly_pct": weekly_pct,
+            "sparkline": sparkline,
         })
 
     return {

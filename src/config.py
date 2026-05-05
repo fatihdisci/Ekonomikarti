@@ -140,11 +140,6 @@ def noon_focus_key_for(target_date: "date | None" = None) -> str:
         return NOON_ROTATION[0]
     return NOON_ROTATION[wd]
 
-# TCMB EVDS API.
-TCMB_BASE_URL = "https://evds3.tcmb.gov.tr/igmevdsms-dis/"
-TCMB_USD_TRY = "TP.DK.USD.A.YTL"
-TCMB_EUR_TRY = "TP.DK.EUR.A.YTL"
-
 # yfinance tickers.
 YF_BIST_100 = "XU100.IS"
 YF_BRENT = "BZ=F"

@@ -9,7 +9,7 @@ import yfinance as yf
 
 from src.config import YF_BIST_100, YF_BRENT, YF_GOLD_OZ
 
-# Currency tickers (replaces TCMB for historical data)
+# Currency tickers
 YF_USD_TRY = "USDTRY=X"
 YF_EUR_TRY = "EURTRY=X"
 

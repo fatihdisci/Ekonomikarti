@@ -9,7 +9,7 @@
 
 <p align="center">
   <b>Finansal verileri sanat eserine dönüştüren, tam otomatik piyasa takip ve görselleştirme motoru.</b><br>
-  <i>TCMB ve Yahoo Finance verileriyle beslenen, Gemini ile yorumlanan, her gün cebinize gelen şıklık.</i>
+  <i>Yahoo Finance verileriyle beslenen, Gemini ile yorumlanan, her gün cebinize gelen şıklık.</i>
 </p>
 
 ---
@@ -41,7 +41,7 @@ Proje, minimalizm ve yüksek kontrast prensipleri üzerine inşa edilmiştir.
 
 Ekonomikartı'nın kalbinde, verinin ham halden görsel bir karta dönüşmesini sağlayan 4 aşamalı bir **Pipeline** bulunur:
 
-1.  **Ingestion:** `yfinance` ve `TCMB EVDS` API'leri üzerinden canlı verilerin eş zamanlı çekilmesi.
+1.  **Ingestion:** `Yahoo Finance` API'si üzerinden canlı verilerin eş zamanlı çekilmesi.
 2.  **Processing:** Çekilen verilerin 1 yıllık, 5 yıllık ve günlük değişimlerinin matematiksel analizi.
 3.  **Intelligence:** `OpenRouter/Gemini` entegrasyonu ile o günün piyasa hareketlerine dair "insansı" bir yorum üretilmesi.
 4.  **Rendering:** `Pillow` motoru ile Anti-Aliasing destekli, 1080x1350 (Instagram optimize) çözünürlükte PNG üretimi.
@@ -61,7 +61,7 @@ Ekonomikarti/
 │   ├── live/               # Sosyal medya için "Sıcak" çıktılar
 │   └── test/               # Geliştirici önizleme klasörü
 ├── 🧠 src/
-│   ├── data/               # Finansal konektörler (TCMB, Yahoo)
+│   ├── data/               # Finansal konektörler (Yahoo Finance)
 │   ├── render/             # Görsel motor (Her kart için ayrı şablon)
 │   ├── caption/            # Yapay zeka yorumlayıcı
 │   └── config.py           # Sistemin genetik kodları (Renk, Geometri, Gösterge)

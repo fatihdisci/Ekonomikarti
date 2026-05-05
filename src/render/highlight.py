@@ -46,12 +46,12 @@ def _draw_title_block(draw: ImageDraw.ImageDraw) -> None:
 
     tw, th = text_size(title_font, title)
     tx = (LAYOUT.canvas_w - tw) // 2
-    ty = LAYOUT.header_h + 30
+    ty = LAYOUT.header_h + 10
     draw.text((tx, ty), title, fill=color("text"), font=title_font)
 
     sw, _ = text_size(subtitle_font, subtitle)
     sx = (LAYOUT.canvas_w - sw) // 2
-    sy = ty + th + 20
+    sy = ty + th + 15
     draw.text((sx, sy), subtitle, fill=color("muted"), font=subtitle_font)
 
 
@@ -63,25 +63,24 @@ def _draw_tile(
     item: dict[str, Any] | None,
 ) -> None:
     """Tek bir vurgu kutusu (yıldız ya da kaybeden)."""
+    card_h = block_h - 20
+    card_top = block_top + 10
+
+    draw.rounded_rectangle(
+        [LAYOUT.padding_x, card_top, LAYOUT.canvas_w - LAYOUT.padding_x, card_top + card_h],
+        radius=LAYOUT.card_radius,
+        fill=color("surface")
+    )
+
     label_font = load_font("inter_regular", 20)
     name_font = load_font("inter_bold", 50)
     pct_font = load_font("mono_bold", 78)
     value_font = load_font("mono_medium", 24)
 
-    # Üst divider.
-    draw.line(
-        [
-            (LAYOUT.padding_x, block_top),
-            (LAYOUT.canvas_w - LAYOUT.padding_x, block_top),
-        ],
-        fill=color("divider"),
-        width=1,
-    )
-
     if item is None:
         lw, _ = text_size(label_font, label)
         draw.text(
-            ((LAYOUT.canvas_w - lw) // 2, block_top + 60),
+            ((LAYOUT.canvas_w - lw) // 2, card_top + 60),
             label,
             fill=color("muted"),
             font=label_font,
@@ -103,7 +102,7 @@ def _draw_tile(
 
     gap1, gap2, gap3 = 22, 18, 16
     total_h = lh + gap1 + nh + gap2 + ph + gap3 + vh
-    y = block_top + (block_h - total_h) // 2
+    y = card_top + (card_h - total_h) // 2
 
     draw.text(((LAYOUT.canvas_w - lw) // 2, y), label, fill=color("muted"), font=label_font)
     y += lh + gap1
@@ -118,30 +117,31 @@ def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
     footer_y = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h
     draw.line(
         [
-            (LAYOUT.padding_x, footer_y),
-            (LAYOUT.canvas_w - LAYOUT.padding_x, footer_y),
+            (LAYOUT.canvas_w // 2 - 100, footer_y),
+            (LAYOUT.canvas_w // 2 + 100, footer_y),
         ],
         fill=color("divider"),
-        width=1,
+        width=2,
     )
 
-    note_font = load_font("inter_regular", 22)
-    note_y = footer_y + 30
+    note_font = load_font("inter_regular", 24)
+    note_y = footer_y + 40
     max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
-    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=8)
+    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=6)
     line_h = note_font.getbbox("Ay")[3] + 12
     for i, line in enumerate(lines):
+        lw, _ = text_size(note_font, line)
         draw.text(
-            (LAYOUT.padding_x, note_y + i * line_h),
+            ((LAYOUT.canvas_w - lw) // 2, note_y + i * line_h),
             line,
-            fill=color("text"),
+            fill=color("muted"),
             font=note_font,
         )
 
     meta_font = load_font("inter_regular", 14)
     source_text = "Kaynak: Yahoo Finance"
-    meta_y = LAYOUT.canvas_h - 40 - meta_font.getbbox("Ay")[3]
-    draw.text((LAYOUT.padding_x, meta_y), source_text, fill=color("muted"), font=meta_font)
+    meta_y = LAYOUT.canvas_h - 50 - meta_font.getbbox("Ay")[3]
+    draw.text((LAYOUT.padding_x, meta_y), source_text, fill=color("divider"), font=meta_font)
     hw, _ = text_size(meta_font, HASHTAG)
     draw.text(
         (LAYOUT.canvas_w - LAYOUT.padding_x - hw, meta_y),
@@ -172,9 +172,9 @@ def render_highlight(payload: dict[str, Any], output_path: Path) -> Path:
     _draw_title_block(draw)
 
     block_top = LAYOUT.header_h + LAYOUT.title_h
-    half = LAYOUT.table_h // 2  # 300
+    half = LAYOUT.table_h // 2
     _draw_tile(draw, block_top, half, "HAFTANIN YILDIZI", star)
-    _draw_tile(draw, block_top + half, LAYOUT.table_h - half, "HAFTANIN KAYBEDENİ", loser)
+    _draw_tile(draw, block_top + half, half, "HAFTANIN KAYBEDENİ", loser)
 
     _draw_footer(draw, note)
 

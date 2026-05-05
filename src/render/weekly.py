@@ -46,24 +46,13 @@ def _draw_title_block(draw: ImageDraw.ImageDraw) -> None:
 
     tw, th = text_size(title_font, title)
     tx = (LAYOUT.canvas_w - tw) // 2
-    ty = LAYOUT.header_h + 30
+    ty = LAYOUT.header_h + 10
     draw.text((tx, ty), title, fill=color("text"), font=title_font)
 
     sw, _ = text_size(subtitle_font, subtitle)
     sx = (LAYOUT.canvas_w - sw) // 2
-    sy = ty + th + 20
+    sy = ty + th + 15
     draw.text((sx, sy), subtitle, fill=color("muted"), font=subtitle_font)
-
-
-def _draw_column_header(draw: ImageDraw.ImageDraw) -> None:
-    """Sağ tarafa tek sütun başlığı: BU HAFTA."""
-    header_font = load_font("inter_regular", 13)
-    table_y = LAYOUT.header_h + LAYOUT.title_h
-    label = "BU HAFTA"
-    w, _ = text_size(header_font, label)
-    # Sağa yasla.
-    x = LAYOUT.canvas_w - LAYOUT.padding_x - w
-    draw.text((x, table_y + 14), label, fill=color("muted"), font=header_font)
 
 
 def _draw_row(
@@ -72,18 +61,27 @@ def _draw_row(
     row_index: int,
 ) -> None:
     table_y = LAYOUT.header_h + LAYOUT.title_h
-    row_top = table_y + LAYOUT.row_h * row_index
+    card_h = LAYOUT.row_h - 20
+    card_top = table_y + LAYOUT.row_h * row_index
+
+    draw.rounded_rectangle(
+        [LAYOUT.padding_x, card_top, LAYOUT.canvas_w - LAYOUT.padding_x, card_top + card_h],
+        radius=LAYOUT.card_radius,
+        fill=color("surface")
+    )
 
     name_font = load_font("inter_semibold", 28)
-    value_font = load_font("mono_bold", 42)
-    pct_font = load_font("mono_bold", 30)
+    value_font = load_font("mono_bold", 30)
+    pct_font = load_font("mono_bold", 24)
+    label_font = load_font("inter_regular", 14)
 
     # Sol: ad + Cuma kapanışı.
-    name_y = row_top + 30
+    text_left_x = LAYOUT.padding_x + 30
+    name_y = card_top + 26
     draw.text(
-        (LAYOUT.padding_x, name_y),
+        (text_left_x, name_y),
         indicator["name"],
-        fill=color("text"),
+        fill=color("muted"),
         font=name_font,
     )
     decimals = int(indicator.get("decimals", 2))
@@ -91,7 +89,7 @@ def _draw_row(
     unit = indicator.get("unit", "")
     value_text = f"{format_tr(current, decimals)} {unit}".strip()
     draw.text(
-        (LAYOUT.padding_x, name_y + 38),
+        (text_left_x, name_y + 36),
         value_text,
         fill=color("text"),
         font=value_font,
@@ -106,17 +104,23 @@ def _draw_row(
         pct = float(pct)
         pct_text = f"{arrow_for(pct)} {format_pct(pct)}"
         fill = change_color(pct)
+    
     pw, ph = text_size(pct_font, pct_text)
-    pct_x = LAYOUT.canvas_w - LAYOUT.padding_x - pw
-    pct_y = row_top + (LAYOUT.row_h - ph) // 2
+    pct_x = LAYOUT.canvas_w - LAYOUT.padding_x - 30 - pw
+    pct_y = card_top + (card_h - ph) // 2 + 8
     draw.text((pct_x, pct_y), pct_text, fill=fill, font=pct_font)
+    
+    # Sağ üst label
+    label_text = "BU HAFTA"
+    lw, _ = text_size(label_font, label_text)
+    draw.text((LAYOUT.canvas_w - LAYOUT.padding_x - 30 - lw, card_top + 28), label_text, fill=color("muted"), font=label_font)
 
     # Orta: Sparkline (mini grafik)
     sparkline = indicator.get("sparkline")
     if sparkline and len(sparkline) > 1:
-        sw, sh = 180, 40
-        sx = LAYOUT.canvas_w // 2 - sw // 2 + 50
-        sy = row_top + (LAYOUT.row_h - sh) // 2
+        sw, sh = 160, 40
+        sx = LAYOUT.canvas_w // 2 - sw // 2 + 10
+        sy = card_top + (card_h - sh) // 2
         
         min_v, max_v = min(sparkline), max(sparkline)
         rng = max_v - min_v if max_v != min_v else 1
@@ -129,24 +133,13 @@ def _draw_row(
             
         draw.line(points, fill=fill, width=4, joint="curve")
         
-        # Optional: draw dots at each point
+        # Draw dots at each point
         for px, py in points:
             r = 4
             draw.ellipse([px - r, py - r, px + r, py + r], fill=fill)
 
-    divider_y = row_top + LAYOUT.row_h - 1
-    draw.line(
-        [
-            (LAYOUT.padding_x, divider_y),
-            (LAYOUT.canvas_w - LAYOUT.padding_x, divider_y),
-        ],
-        fill=color("divider"),
-        width=1,
-    )
-
 
 def _draw_table(draw: ImageDraw.ImageDraw, indicators: list[dict[str, Any]]) -> None:
-    _draw_column_header(draw)
     by_key = {ind["key"]: ind for ind in indicators}
     for i, key in enumerate(INDICATOR_ORDER):
         ind = by_key.get(key)
@@ -159,30 +152,31 @@ def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
     footer_y = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h
     draw.line(
         [
-            (LAYOUT.padding_x, footer_y),
-            (LAYOUT.canvas_w - LAYOUT.padding_x, footer_y),
+            (LAYOUT.canvas_w // 2 - 100, footer_y),
+            (LAYOUT.canvas_w // 2 + 100, footer_y),
         ],
         fill=color("divider"),
-        width=1,
+        width=2,
     )
 
-    note_font = load_font("inter_regular", 22)
-    note_y = footer_y + 30
+    note_font = load_font("inter_regular", 20)
+    note_y = footer_y + 40
     max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
-    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=8)
+    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=6)
     line_h = note_font.getbbox("Ay")[3] + 12
     for i, line in enumerate(lines):
+        lw, _ = text_size(note_font, line)
         draw.text(
-            (LAYOUT.padding_x, note_y + i * line_h),
+            ((LAYOUT.canvas_w - lw) // 2, note_y + i * line_h),
             line,
-            fill=color("text"),
+            fill=color("muted"),
             font=note_font,
         )
 
     meta_font = load_font("inter_regular", 14)
     source_text = "Kaynak: Yahoo Finance"
-    meta_y = LAYOUT.canvas_h - 40 - meta_font.getbbox("Ay")[3]
-    draw.text((LAYOUT.padding_x, meta_y), source_text, fill=color("muted"), font=meta_font)
+    meta_y = LAYOUT.canvas_h - 50 - meta_font.getbbox("Ay")[3]
+    draw.text((LAYOUT.padding_x, meta_y), source_text, fill=color("divider"), font=meta_font)
     hw, _ = text_size(meta_font, HASHTAG)
     draw.text(
         (LAYOUT.canvas_w - LAYOUT.padding_x - hw, meta_y),

@@ -1,0 +1,88 @@
+{
+  "date": "2026-05-05",
+  "friday": "2026-05-01",
+  "generated_at_utc": "2026-05-05T11:22:53.041236+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.141,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.37,
+      "sparkline": [
+        45.0128,
+        45.0298,
+        45.0607,
+        45.166,
+        45.141
+      ]
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 52.9201,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.88,
+      "sparkline": [
+        52.6658,
+        52.7936,
+        52.9189,
+        52.7835,
+        52.9201
+      ]
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altin",
+      "current": 6719.45,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "weekly_pct": -1.6,
+      "sparkline": [
+        6766.21,
+        6647.3,
+        6584.79,
+        6701.1,
+        6719.45
+      ]
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 108.17,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "weekly_pct": 2.7,
+      "sparkline": [
+        108.23,
+        111.26,
+        118.03,
+        114.01,
+        108.17
+      ]
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14442.6,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "weekly_pct": 0.23,
+      "sparkline": [
+        14594.0,
+        14329.3,
+        14311.2,
+        14442.6,
+        14442.6
+      ]
+    }
+  ],
+  "note": "Bu hafta döviz kurlarında hafif yükselişler gözlenirken, altın değer kaybederek haftayı tamamladı. Petrol fiyatlarındaki artış dikkat çekerken, Borsa İstanbul ise sınırlı bir pozitif seyir izledi.\n\n#Ekonomi #PiyasaAnalizi #HaftalıkDeğerlendirme"
+}

@@ -46,23 +46,29 @@ def _draw_title_block(draw: ImageDraw.ImageDraw) -> None:
 
     tw, th = text_size(title_font, title)
     tx = (LAYOUT.canvas_w - tw) // 2
-    ty = LAYOUT.header_h + 30
+    ty = LAYOUT.header_h + 10
     draw.text((tx, ty), title, fill=color("text"), font=title_font)
 
     sw, _ = text_size(subtitle_font, subtitle)
     sx = (LAYOUT.canvas_w - sw) // 2
-    sy = ty + th + 20
+    sy = ty + th + 15
     draw.text((sx, sy), subtitle, fill=color("muted"), font=subtitle_font)
 
 
 def _draw_focus_block(draw: ImageDraw.ImageDraw, focus: dict[str, Any]) -> None:
-    """Üstteki büyük blok: gösterge adı + bugünkü değer + günlük % değişim."""
     block_top = LAYOUT.header_h + LAYOUT.title_h
-    # Aynı 600px alanı paylaşacağız: üst yarısı focus blok, alt yarısı tarih satırları.
     focus_h = LAYOUT.table_h // 2
+    card_h = focus_h - 20
+    card_top = block_top
+
+    draw.rounded_rectangle(
+        [LAYOUT.padding_x, card_top, LAYOUT.canvas_w - LAYOUT.padding_x, card_top + card_h],
+        radius=LAYOUT.card_radius,
+        fill=color("surface")
+    )
 
     name_font = load_font("inter_semibold", 40)
-    value_font = load_font("mono_bold", 96)
+    value_font = load_font("mono_bold", 72)
     daily_font = load_font("mono_medium", 22)
 
     name = focus["name"]
@@ -74,7 +80,6 @@ def _draw_focus_block(draw: ImageDraw.ImageDraw, focus: dict[str, Any]) -> None:
     nw, nh = text_size(name_font, name)
     vw, vh = text_size(value_font, value_text)
 
-    # İçeriği focus_h içinde dikey ortala.
     daily_pct = focus.get("daily_pct")
     if daily_pct is not None:
         daily_text = f"{arrow_for(daily_pct)} {format_pct(daily_pct)} bugün"
@@ -88,7 +93,7 @@ def _draw_focus_block(draw: ImageDraw.ImageDraw, focus: dict[str, Any]) -> None:
         gap2 = 0
         total_h = nh + gap1 + vh
 
-    y = block_top + (focus_h - total_h) // 2
+    y = card_top + (card_h - total_h) // 2
 
     draw.text(((LAYOUT.canvas_w - nw) // 2, y), name, fill=color("muted"), font=name_font)
     y += nh + gap1
@@ -100,9 +105,8 @@ def _draw_focus_block(draw: ImageDraw.ImageDraw, focus: dict[str, Any]) -> None:
 
 
 def _draw_history_rows(draw: ImageDraw.ImageDraw, focus: dict[str, Any]) -> None:
-    """Alt yarıda tarihsel satırlar."""
     block_top = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h // 2
-    block_h = LAYOUT.table_h - LAYOUT.table_h // 2  # 300
+    block_h = LAYOUT.table_h // 2
 
     history = focus.get("history", []) or []
     if not history:
@@ -116,17 +120,15 @@ def _draw_history_rows(draw: ImageDraw.ImageDraw, focus: dict[str, Any]) -> None
     unit = focus.get("unit", "")
 
     row_h = block_h // len(history)
-    for i, item in enumerate(history):
-        row_top = block_top + row_h * i
+    card_h = row_h - 20
 
-        # Satırın üstünde divider (en üst satırda title_block ile ayrım için).
-        draw.line(
-            [
-                (LAYOUT.padding_x, row_top),
-                (LAYOUT.canvas_w - LAYOUT.padding_x, row_top),
-            ],
-            fill=color("divider"),
-            width=1,
+    for i, item in enumerate(history):
+        card_top = block_top + row_h * i + 10
+
+        draw.rounded_rectangle(
+            [LAYOUT.padding_x, card_top, LAYOUT.canvas_w - LAYOUT.padding_x, card_top + card_h],
+            radius=LAYOUT.card_radius,
+            fill=color("surface")
         )
 
         label = item.get("label", "")
@@ -138,18 +140,17 @@ def _draw_history_rows(draw: ImageDraw.ImageDraw, focus: dict[str, Any]) -> None
         else:
             value_text = f"{format_tr(float(value), decimals)} {unit}".strip()
 
-        # Üstte küçük label, altta büyük değer (sol); sağda yüzde değişim büyük.
-        label_y = row_top + 30
-        draw.text((LAYOUT.padding_x, label_y), label, fill=color("muted"), font=label_font)
+        label_y = card_top + (card_h - text_size(label_font, label)[1] - text_size(value_font, value_text)[1] - 10) // 2
+        draw.text((LAYOUT.padding_x + 30, label_y), label, fill=color("muted"), font=label_font)
 
-        value_y = label_y + 28
-        draw.text((LAYOUT.padding_x, value_y), value_text, fill=color("text"), font=value_font)
+        value_y = label_y + 34
+        draw.text((LAYOUT.padding_x + 30, value_y), value_text, fill=color("text"), font=value_font)
 
         if pct is not None:
             pct_text = f"{arrow_for(pct)} {format_pct(pct)}"
             pw, ph = text_size(pct_font, pct_text)
-            pct_x = LAYOUT.canvas_w - LAYOUT.padding_x - pw
-            pct_y = row_top + (row_h - ph) // 2
+            pct_x = LAYOUT.canvas_w - LAYOUT.padding_x - 30 - pw
+            pct_y = card_top + (card_h - ph) // 2
             draw.text((pct_x, pct_y), pct_text, fill=change_color(pct), font=pct_font)
 
 
@@ -157,30 +158,31 @@ def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
     footer_y = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h
     draw.line(
         [
-            (LAYOUT.padding_x, footer_y),
-            (LAYOUT.canvas_w - LAYOUT.padding_x, footer_y),
+            (LAYOUT.canvas_w // 2 - 100, footer_y),
+            (LAYOUT.canvas_w // 2 + 100, footer_y),
         ],
         fill=color("divider"),
-        width=1,
+        width=2,
     )
 
-    note_font = load_font("inter_regular", 22)
-    note_y = footer_y + 30
+    note_font = load_font("inter_regular", 20)
+    note_y = footer_y + 40
     max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
-    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=8)
+    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=6)
     line_h = note_font.getbbox("Ay")[3] + 12
     for i, line in enumerate(lines):
+        lw, _ = text_size(note_font, line)
         draw.text(
-            (LAYOUT.padding_x, note_y + i * line_h),
+            ((LAYOUT.canvas_w - lw) // 2, note_y + i * line_h),
             line,
-            fill=color("text"),
+            fill=color("muted"),
             font=note_font,
         )
 
     meta_font = load_font("inter_regular", 14)
     source_text = "Kaynak: Yahoo Finance"
-    meta_y = LAYOUT.canvas_h - 40 - meta_font.getbbox("Ay")[3]
-    draw.text((LAYOUT.padding_x, meta_y), source_text, fill=color("muted"), font=meta_font)
+    meta_y = LAYOUT.canvas_h - 50 - meta_font.getbbox("Ay")[3]
+    draw.text((LAYOUT.padding_x, meta_y), source_text, fill=color("divider"), font=meta_font)
     hw, _ = text_size(meta_font, HASHTAG)
     draw.text(
         (LAYOUT.canvas_w - LAYOUT.padding_x - hw, meta_y),
@@ -198,10 +200,6 @@ def _parse_target_date(payload: dict[str, Any]) -> date:
 
 
 def render_noon(payload: dict[str, Any], output_path: Path) -> Path:
-    """Öğle "Odak Kartı"nı oluştur ve PNG olarak kaydet.
-
-    Payload schema: see tests/fixtures/sample_noon.json.
-    """
     target_date = _parse_target_date(payload)
     focus = payload.get("focus") or {}
     if not focus:

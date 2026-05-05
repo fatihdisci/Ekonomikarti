@@ -31,11 +31,9 @@ def _draw_header(draw: ImageDraw.ImageDraw, target_date: date) -> None:
     brand_font = load_font("inter_bold", 32)
     date_font = load_font("mono_medium", 18)
 
-    # Top-left brand mark in gold.
     brand = "FİYAT HAFIZASI"
     draw.text((LAYOUT.padding_x, 50), brand, fill=color("accent"), font=brand_font)
 
-    # Top-right Turkish date in muted mono.
     date_str = format_tr_date(target_date)
     w, _ = text_size(date_font, date_str)
     draw.text(
@@ -51,26 +49,33 @@ def _draw_title_block(draw: ImageDraw.ImageDraw) -> None:
     subtitle_font = load_font("inter_regular", 18)
 
     title = "AÇILIŞ KARTI"
-    subtitle = "Bugün · Geçen Ay · Geçen Yıl · 5 Yıl Önce"
+    subtitle = "Güncel Değerler ve Tarihsel Değişimler"
 
     tw, th = text_size(title_font, title)
     tx = (LAYOUT.canvas_w - tw) // 2
-    ty = LAYOUT.header_h + 30
+    ty = LAYOUT.header_h + 10
     draw.text((tx, ty), title, fill=color("text"), font=title_font)
 
     sw, _ = text_size(subtitle_font, subtitle)
     sx = (LAYOUT.canvas_w - sw) // 2
-    sy = ty + th + 20
+    sy = ty + th + 15
     draw.text((sx, sy), subtitle, fill=color("muted"), font=subtitle_font)
 
 
 def _draw_column_headers(draw: ImageDraw.ImageDraw) -> None:
     header_font = load_font("inter_regular", 13)
     table_y = LAYOUT.header_h + LAYOUT.title_h
-    # Sit headers in the small gap above the first row's percent values.
-    y = table_y + 14
+    # Y is just above the first row. We align them horizontally.
+    y = table_y - 20
+    
+    # We define right-side geometry for the 4 percentage columns.
+    # Total right side width from x=480 to 1020
+    row_right_x = 420
+    row_right_end_x = LAYOUT.canvas_w - LAYOUT.padding_x
+    col_w = (row_right_end_x - row_right_x) // 4
+    
     for i, window in enumerate(CHANGE_WINDOWS):
-        col_center = LAYOUT.row_right_x + LAYOUT.change_col_w * i + LAYOUT.change_col_w // 2
+        col_center = row_right_x + col_w * i + col_w // 2
         w, _ = text_size(header_font, window.label)
         draw.text(
             (col_center - w // 2, y),
@@ -86,18 +91,28 @@ def _draw_row(
     row_index: int,
 ) -> None:
     table_y = LAYOUT.header_h + LAYOUT.title_h
-    row_top = table_y + LAYOUT.row_h * row_index
+    # 160px row height -> card height 140, margin 20
+    card_h = LAYOUT.row_h - 20
+    card_top = table_y + LAYOUT.row_h * row_index
+    
+    # Draw rounded card background
+    draw.rounded_rectangle(
+        [LAYOUT.padding_x, card_top, LAYOUT.canvas_w - LAYOUT.padding_x, card_top + card_h],
+        radius=LAYOUT.card_radius,
+        fill=color("surface")
+    )
 
-    name_font = load_font("inter_semibold", 28)
-    value_font = load_font("mono_bold", 42)
-    pct_font = load_font("mono_bold", 22)
+    name_font = load_font("inter_semibold", 24)
+    value_font = load_font("mono_bold", 30)
+    pct_font = load_font("mono_bold", 20)
 
-    # Left zone: indicator name on top, current value below.
-    name_y = row_top + 30
+    # Left zone: Indicator name & current value
+    text_left_x = LAYOUT.padding_x + 20
+    name_y = card_top + 35
     draw.text(
-        (LAYOUT.padding_x, name_y),
+        (text_left_x, name_y),
         indicator["name"],
-        fill=color("text"),
+        fill=color("muted"),
         font=name_font,
     )
 
@@ -105,20 +120,26 @@ def _draw_row(
     current_value = float(indicator["current"])
     unit = indicator.get("unit", "")
     value_text = f"{format_tr(current_value, decimals)} {unit}".strip()
-    value_y = name_y + 38
+    value_y = name_y + 36
     draw.text(
-        (LAYOUT.padding_x, value_y),
+        (text_left_x, value_y),
         value_text,
         fill=color("text"),
         font=value_font,
     )
 
-    # Right zone: 4 percentage columns. Vertically centered in row.
+    # Right zone: Horizontal row of percentage changes
+    row_right_x = 420
+    row_right_end_x = LAYOUT.canvas_w - LAYOUT.padding_x
+    col_w = (row_right_end_x - row_right_x) // 4
+    pct_y = card_top + (card_h - 20) // 2
+    
     changes = indicator.get("changes_pct", {})
-    pct_y = row_top + (LAYOUT.row_h - 22) // 2 + 4
+    
     for i, window in enumerate(CHANGE_WINDOWS):
         raw = changes.get(window.key)
-        col_center = LAYOUT.row_right_x + LAYOUT.change_col_w * i + LAYOUT.change_col_w // 2
+        col_center = row_right_x + col_w * i + col_w // 2
+        
         if raw is None:
             text = "—"
             fill = color("muted")
@@ -126,19 +147,9 @@ def _draw_row(
             value = float(raw)
             text = f"{arrow_for(value)} {format_pct(value)}"
             fill = change_color(value)
-        w, _ = text_size(pct_font, text)
-        draw.text((col_center - w // 2, pct_y), text, fill=fill, font=pct_font)
-
-    # Divider below row.
-    divider_y = row_top + LAYOUT.row_h - 1
-    draw.line(
-        [
-            (LAYOUT.padding_x, divider_y),
-            (LAYOUT.canvas_w - LAYOUT.padding_x, divider_y),
-        ],
-        fill=color("divider"),
-        width=1,
-    )
+            
+        pw, _ = text_size(pct_font, text)
+        draw.text((col_center - pw//2, pct_y), text, fill=fill, font=pct_font)
 
 
 def _draw_table(draw: ImageDraw.ImageDraw, indicators_by_key: dict[str, dict[str, Any]]) -> None:
@@ -152,36 +163,36 @@ def _draw_table(draw: ImageDraw.ImageDraw, indicators_by_key: dict[str, dict[str
 
 def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
     footer_y = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h
-    # Top divider spanning full width minus padding.
     draw.line(
         [
-            (LAYOUT.padding_x, footer_y),
-            (LAYOUT.canvas_w - LAYOUT.padding_x, footer_y),
+            (LAYOUT.canvas_w // 2 - 100, footer_y),
+            (LAYOUT.canvas_w // 2 + 100, footer_y),
         ],
         fill=color("divider"),
-        width=1,
+        width=2,
     )
 
-    note_font = load_font("inter_regular", 22)
-    note_y = footer_y + 30
+    note_font = load_font("inter_regular", 24)
+    note_y = footer_y + 40
     max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
-    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=8)
+    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=6)
     line_h = note_font.getbbox("Ay")[3] + 12
     for i, line in enumerate(lines):
+        lw, _ = text_size(note_font, line)
         draw.text(
-            (LAYOUT.padding_x, note_y + i * line_h),
+            ((LAYOUT.canvas_w - lw) // 2, note_y + i * line_h),
             line,
-            fill=color("text"),
+            fill=color("muted"),
             font=note_font,
         )
 
     meta_font = load_font("inter_regular", 14)
     source_text = "Kaynak: Yahoo Finance"
-    meta_y = LAYOUT.canvas_h - 40 - meta_font.getbbox("Ay")[3]
+    meta_y = LAYOUT.canvas_h - 50 - meta_font.getbbox("Ay")[3]
     draw.text(
         (LAYOUT.padding_x, meta_y),
         source_text,
-        fill=color("muted"),
+        fill=color("divider"),
         font=meta_font,
     )
     hw, _ = text_size(meta_font, HASHTAG)
@@ -201,10 +212,7 @@ def _parse_target_date(payload: dict[str, Any]) -> date:
 
 
 def render_morning(payload: dict[str, Any], output_path: Path) -> Path:
-    """Sabah kartını oluştur ve PNG olarak kaydet.
-
-    `payload` matches the schema in the spec (see tests/fixtures/sample_indicators.json).
-    """
+    """Sabah kartını oluştur ve PNG olarak kaydet."""
     target_date = _parse_target_date(payload)
     indicators_list = payload.get("indicators", []) or []
     indicators_by_key = {ind["key"]: ind for ind in indicators_list}

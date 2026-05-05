@@ -46,83 +46,77 @@ def _draw_title_block(draw: ImageDraw.ImageDraw) -> None:
 
     tw, th = text_size(title_font, title)
     tx = (LAYOUT.canvas_w - tw) // 2
-    ty = LAYOUT.header_h + 30
+    ty = LAYOUT.header_h + 10
     draw.text((tx, ty), title, fill=color("text"), font=title_font)
 
     sw, _ = text_size(subtitle_font, subtitle)
     sx = (LAYOUT.canvas_w - sw) // 2
-    sy = ty + th + 20
+    sy = ty + th + 15
     draw.text((sx, sy), subtitle, fill=color("muted"), font=subtitle_font)
 
 
 def _draw_snapshot_table(draw: ImageDraw.ImageDraw, indicators: list[dict[str, Any]]) -> None:
     """Üstte 4 göstergenin kapanış snapshot'ı."""
     block_top = LAYOUT.header_h + LAYOUT.title_h
-    block_h = LAYOUT.table_h // 2  # 300
+    block_h = LAYOUT.table_h // 2  # 400
 
     if not indicators:
         return
     rows = len(indicators)
     row_h = block_h // rows
+    card_h = row_h - 12
+    margin_y = 12
 
-    name_font = load_font("inter_semibold", 30)
+    name_font = load_font("inter_semibold", 28)
     value_font = load_font("mono_bold", 36)
     pct_font = load_font("mono_bold", 26)
 
     for i, ind in enumerate(indicators):
         row_top = block_top + row_h * i
 
-        # Üst divider.
-        draw.line(
-            [
-                (LAYOUT.padding_x, row_top),
-                (LAYOUT.canvas_w - LAYOUT.padding_x, row_top),
-            ],
-            fill=color("divider"),
-            width=1,
+        # Card bg
+        draw.rounded_rectangle(
+            [LAYOUT.padding_x, row_top, LAYOUT.canvas_w - LAYOUT.padding_x, row_top + card_h],
+            radius=LAYOUT.card_radius,
+            fill=color("surface")
         )
 
-        # Sol: ad
         name_text = ind.get("name", "")
         nh = text_size(name_font, name_text)[1]
-        name_y = row_top + (row_h - nh) // 2
-        draw.text((LAYOUT.padding_x, name_y), name_text, fill=color("text"), font=name_font)
+        name_y = row_top + (card_h - nh) // 2 - 4
+        draw.text((LAYOUT.padding_x + 30, name_y), name_text, fill=color("muted"), font=name_font)
 
-        # Orta: kapanış değeri
         decimals = int(ind.get("decimals", 2))
         unit = ind.get("unit", "")
         current = float(ind["current"])
         value_text = f"{format_tr(current, decimals)} {unit}".strip()
         vw, vh = text_size(value_font, value_text)
-        # Sağ kenardan biraz içeride değil — orta-sağda hizalı: yüzdeyi sağa, değeri ortaya.
+        
         center_x = LAYOUT.canvas_w // 2 + 60
         value_x = center_x - vw // 2
-        value_y = row_top + (row_h - vh) // 2
+        value_y = row_top + (card_h - vh) // 2 - 4
         draw.text((value_x, value_y), value_text, fill=color("text"), font=value_font)
 
-        # Sağ: günlük yüzde
         pct = ind.get("daily_pct")
         if pct is not None:
             pct_text = f"{arrow_for(pct)} {format_pct(pct)}"
             pw, ph = text_size(pct_font, pct_text)
-            pct_x = LAYOUT.canvas_w - LAYOUT.padding_x - pw
-            pct_y = row_top + (row_h - ph) // 2
+            pct_x = LAYOUT.canvas_w - LAYOUT.padding_x - 30 - pw
+            pct_y = row_top + (card_h - ph) // 2 - 4
             draw.text((pct_x, pct_y), pct_text, fill=change_color(pct), font=pct_font)
 
 
 def _draw_biggest_mover(draw: ImageDraw.ImageDraw, mover: dict[str, Any] | None) -> None:
     """Alt yarıda 'Günün Hareketi' vurgu bloğu."""
     block_top = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h // 2
-    block_h = LAYOUT.table_h - LAYOUT.table_h // 2  # 300
+    block_h = LAYOUT.table_h // 2  # 400
+    card_h = block_h - 20
+    card_top = block_top + 10
 
-    # Üst divider.
-    draw.line(
-        [
-            (LAYOUT.padding_x, block_top),
-            (LAYOUT.canvas_w - LAYOUT.padding_x, block_top),
-        ],
-        fill=color("divider"),
-        width=1,
+    draw.rounded_rectangle(
+        [LAYOUT.padding_x, card_top, LAYOUT.canvas_w - LAYOUT.padding_x, card_top + card_h],
+        radius=LAYOUT.card_radius,
+        fill=color("surface")
     )
 
     label_font = load_font("inter_regular", 18)
@@ -131,10 +125,9 @@ def _draw_biggest_mover(draw: ImageDraw.ImageDraw, mover: dict[str, Any] | None)
 
     label_text = "GÜNÜN HAREKETİ"
     if mover is None:
-        # Veri yoksa sadece label çiz.
         lw, _ = text_size(label_font, label_text)
         draw.text(
-            ((LAYOUT.canvas_w - lw) // 2, block_top + 60),
+            ((LAYOUT.canvas_w - lw) // 2, card_top + 60),
             label_text,
             fill=color("muted"),
             font=label_font,
@@ -151,7 +144,7 @@ def _draw_biggest_mover(draw: ImageDraw.ImageDraw, mover: dict[str, Any] | None)
 
     gap1, gap2 = 28, 24
     total_h = lh + gap1 + nh + gap2 + ph
-    y = block_top + (block_h - total_h) // 2
+    y = card_top + (card_h - total_h) // 2
 
     draw.text(((LAYOUT.canvas_w - lw) // 2, y), label_text, fill=color("muted"), font=label_font)
     y += lh + gap1
@@ -164,30 +157,31 @@ def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
     footer_y = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h
     draw.line(
         [
-            (LAYOUT.padding_x, footer_y),
-            (LAYOUT.canvas_w - LAYOUT.padding_x, footer_y),
+            (LAYOUT.canvas_w // 2 - 100, footer_y),
+            (LAYOUT.canvas_w // 2 + 100, footer_y),
         ],
         fill=color("divider"),
-        width=1,
+        width=2,
     )
 
-    note_font = load_font("inter_regular", 22)
-    note_y = footer_y + 30
+    note_font = load_font("inter_regular", 24)
+    note_y = footer_y + 40
     max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
-    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=8)
+    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=6)
     line_h = note_font.getbbox("Ay")[3] + 12
     for i, line in enumerate(lines):
+        lw, _ = text_size(note_font, line)
         draw.text(
-            (LAYOUT.padding_x, note_y + i * line_h),
+            ((LAYOUT.canvas_w - lw) // 2, note_y + i * line_h),
             line,
-            fill=color("text"),
+            fill=color("muted"),
             font=note_font,
         )
 
     meta_font = load_font("inter_regular", 14)
     source_text = "Kaynak: Yahoo Finance"
-    meta_y = LAYOUT.canvas_h - 40 - meta_font.getbbox("Ay")[3]
-    draw.text((LAYOUT.padding_x, meta_y), source_text, fill=color("muted"), font=meta_font)
+    meta_y = LAYOUT.canvas_h - 50 - meta_font.getbbox("Ay")[3]
+    draw.text((LAYOUT.padding_x, meta_y), source_text, fill=color("divider"), font=meta_font)
     hw, _ = text_size(meta_font, HASHTAG)
     draw.text(
         (LAYOUT.canvas_w - LAYOUT.padding_x - hw, meta_y),

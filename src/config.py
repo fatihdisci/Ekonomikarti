@@ -20,36 +20,22 @@ CANVAS_H = 1350
 PADDING_X = 60
 
 HEADER_H = 140
-TITLE_H = 180
-TABLE_H = 600
-FOOTER_H = 430
+TITLE_H = 150
+TABLE_H = 800
+FOOTER_H = 260
 ROW_COUNT = 5
-ROW_H = TABLE_H // ROW_COUNT  # 120
+ROW_H = TABLE_H // ROW_COUNT
 
-# Vertical y-anchors derived from band heights.
-HEADER_Y = 0
-TITLE_Y = HEADER_H
-TABLE_Y = HEADER_H + TITLE_H
-FOOTER_Y = HEADER_H + TITLE_H + TABLE_H
-
-# Row interior split.
-ROW_LEFT_X = 60
-ROW_SPLIT_X = 480
-ROW_RIGHT_X = 480
-ROW_RIGHT_END_X = CANVAS_W - PADDING_X  # 1020
-CHANGE_COL_COUNT = 4
-CHANGE_COL_W = (ROW_RIGHT_END_X - ROW_RIGHT_X) // CHANGE_COL_COUNT  # 135
-
-
-# Palette.
+# Palette - Modern Dark Theme
 COLORS = {
-    "bg": "#F5F1E8",
-    "text": "#1A2332",
-    "accent": "#C9A961",
-    "positive": "#2D5F3F",
-    "negative": "#A33B2A",
-    "muted": "#6B7280",
-    "divider": "#E5DFD0",
+    "bg": "#0B132B",
+    "surface": "#1C2A46",
+    "text": "#F8FAFC",
+    "accent": "#FBBF24",
+    "positive": "#10B981",
+    "negative": "#EF4444",
+    "muted": "#94A3B8",
+    "divider": "#334155",
 }
 
 
@@ -84,7 +70,7 @@ class IndicatorSpec:
 INDICATORS: list[IndicatorSpec] = [
     IndicatorSpec("usd_try", "USD/TRY", "TL", "%.4f", 4),
     IndicatorSpec("eur_try", "EUR/TRY", "TL", "%.4f", 4),
-    IndicatorSpec("gram_altin", "Gram Altin", "TL", "%.2f", 2),
+    IndicatorSpec("gram_altin", "Gram Altın", "TL", "%.2f", 2),
     IndicatorSpec("brent", "Brent Petrol", "USD", "%.2f", 2),
     IndicatorSpec("bist_100", "BIST 100", "puan", "%.2f", 2),
 ]
@@ -182,7 +168,7 @@ TR_MONTHS = [
 
 @dataclass(frozen=True)
 class CardLayout:
-    """Bundle of geometry numbers used by render/morning.py."""
+    """Bundle of geometry numbers used by renderers."""
 
     canvas_w: int = CANVAS_W
     canvas_h: int = CANVAS_H
@@ -192,11 +178,7 @@ class CardLayout:
     table_h: int = TABLE_H
     footer_h: int = FOOTER_H
     row_h: int = ROW_H
-    row_split_x: int = ROW_SPLIT_X
-    row_right_x: int = ROW_RIGHT_X
-    row_right_end_x: int = ROW_RIGHT_END_X
-    change_col_w: int = CHANGE_COL_W
-    change_col_count: int = CHANGE_COL_COUNT
+    card_radius: int = 24  # Yeni kart köşe yuvarlaklığı
 
 
 LAYOUT = CardLayout()

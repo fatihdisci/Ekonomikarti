@@ -1,77 +1,77 @@
 {
   "date": "2026-05-05",
-  "generated_at_utc": "2026-05-05T10:56:13.507315+00:00",
+  "generated_at_utc": "2026-05-05T14:28:45.158091+00:00",
   "indicators": [
     {
       "key": "usd_try",
       "name": "USD/TRY",
-      "current": 45.138,
+      "current": 45.2141,
       "format": "%.4f",
       "unit": "TL",
       "decimals": 4,
       "changes_pct": {
-        "daily": -0.1,
-        "monthly": 1.31,
-        "yearly": 17.02,
-        "five_year": 441.94
+        "daily": 0.06,
+        "monthly": 1.48,
+        "yearly": 17.22,
+        "five_year": 442.85
       }
     },
     {
       "key": "eur_try",
       "name": "EUR/TRY",
-      "current": 52.8883,
+      "current": 52.961,
       "format": "%.4f",
       "unit": "TL",
       "decimals": 4,
       "changes_pct": {
-        "daily": -0.25,
-        "monthly": 2.82,
-        "yearly": 21.04,
-        "five_year": 429.6
+        "daily": -0.11,
+        "monthly": 2.96,
+        "yearly": 21.2,
+        "five_year": 430.33
       }
     },
     {
       "key": "gram_altin",
-      "name": "Gram Altin",
-      "current": 6610.16,
+      "name": "Gram Altın",
+      "current": 6656.34,
       "format": "%.2f",
       "unit": "TL",
       "decimals": 2,
       "changes_pct": {
-        "daily": 0.68,
-        "monthly": -0.64,
-        "yearly": 60.97,
-        "five_year": 1259.67
+        "daily": 1.38,
+        "monthly": 0.05,
+        "yearly": 62.1,
+        "five_year": 1269.16
       }
     },
     {
       "key": "brent",
       "name": "Brent Petrol",
-      "current": 113.05,
+      "current": 111.74,
       "format": "%.2f",
       "unit": "USD",
       "decimals": 2,
       "changes_pct": {
-        "daily": -1.21,
-        "monthly": 3.69,
-        "yearly": 87.7,
-        "five_year": 66.03
+        "daily": -2.36,
+        "monthly": 2.49,
+        "yearly": 85.52,
+        "five_year": 64.11
       }
     },
     {
       "key": "bist_100",
       "name": "BIST 100",
-      "current": 14454.76,
+      "current": 14561.13,
       "format": "%.2f",
       "unit": "puan",
       "decimals": 2,
       "changes_pct": {
-        "daily": 0.59,
-        "monthly": 11.74,
-        "yearly": 58.63,
-        "five_year": 912.46
+        "daily": 1.33,
+        "monthly": 12.56,
+        "yearly": 59.8,
+        "five_year": 919.91
       }
     }
   ],
-  "note": "Döviz kurlarında hafif düşüşler gözlenirken, gram altın ve BIST 100 endeksi son bir yılda önemli yükselişler kaydetti. Brent petrolün yıllık artışı ise dikkat çekici."
+  "note": "Dolar ve Euro'da hafif dalgalanmalar görülürken, Gram Altın'ın yıllık ve 5 yıllık getirilerindeki dikkat çekici yükseliş devam ediyor. Brent Petrol'deki geri çekilmeye rağmen, Borsa İstanbul'un 5 yıllık performansı yatırımcılar için cazip bir tablo sunuyor."
 }

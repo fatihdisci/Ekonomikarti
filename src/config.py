@@ -21,10 +21,10 @@ PADDING_X = 60
 
 HEADER_H = 140
 TITLE_H = 180
-TABLE_H = 800
-FOOTER_H = 230
-ROW_COUNT = 6
-ROW_H = TABLE_H // ROW_COUNT  # 133
+TABLE_H = 600
+FOOTER_H = 430
+ROW_COUNT = 5
+ROW_H = TABLE_H // ROW_COUNT  # 120
 
 # Vertical y-anchors derived from band heights.
 HEADER_Y = 0
@@ -84,10 +84,9 @@ class IndicatorSpec:
 INDICATORS: list[IndicatorSpec] = [
     IndicatorSpec("usd_try", "USD/TRY", "TL", "%.4f", 4),
     IndicatorSpec("eur_try", "EUR/TRY", "TL", "%.4f", 4),
-    IndicatorSpec("gram_altin", "Gram Altın", "TL", "%.2f", 2),
+    IndicatorSpec("gram_altin", "Gram Altin", "TL", "%.2f", 2),
     IndicatorSpec("brent", "Brent Petrol", "USD", "%.2f", 2),
     IndicatorSpec("bist_100", "BIST 100", "puan", "%.2f", 2),
-    IndicatorSpec("benzin_95", "Benzin 95", "TL", "%.2f", 2),
 ]
 
 # Order is significant — drives row order in the morning card.

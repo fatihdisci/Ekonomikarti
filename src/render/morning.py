@@ -165,8 +165,8 @@ def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
     note_font = load_font("inter_regular", 22)
     note_y = footer_y + 30
     max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
-    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=2)
-    line_h = note_font.getbbox("Ay")[3] + 6
+    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=8)
+    line_h = note_font.getbbox("Ay")[3] + 12
     for i, line in enumerate(lines):
         draw.text(
             (LAYOUT.padding_x, note_y + i * line_h),
@@ -176,7 +176,7 @@ def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
         )
 
     meta_font = load_font("inter_regular", 14)
-    source_text = "Kaynak: TCMB · BIST · EPDK"
+    source_text = "Kaynak: Yahoo Finance"
     meta_y = LAYOUT.canvas_h - 40 - meta_font.getbbox("Ay")[3]
     draw.text(
         (LAYOUT.padding_x, meta_y),

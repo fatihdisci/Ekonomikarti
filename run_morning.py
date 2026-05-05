@@ -16,7 +16,7 @@ def main() -> None:
     )
     args = parser.parse_args()
     path = run_morning(dry_run=args.dry_run)
-    print(f"✓ {path}")
+    print(f"OK: {path}")
 
 
 if __name__ == "__main__":

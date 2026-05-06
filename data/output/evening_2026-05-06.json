@@ -1,0 +1,51 @@
+{
+  "date": "2026-05-06",
+  "generated_at_utc": "2026-05-06T17:10:00.466050+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.2087,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.01
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.151,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.52
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 102.59,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": -6.63
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14917.43,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 2.91
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 102.59,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": -6.63
+  },
+  "note": "Bugün Borsa İstanbul'da güçlü bir yükseliş yaşanırken, TL karşısında dolar yatay bir seyir izledi, euro ise değer kazandı. Günün en sert hareketi ise Brent petrol fiyatlarındaki sert düşüş oldu."
+}

@@ -2,7 +2,7 @@ name: Weekly Saturday Summary
 
 on:
   schedule:
-    - cron: '0 8 * * 6' # 08:00 UTC = 11:00 TRT, Cumartesi
+    - cron: '37 07 * * 6' # 07:37 UTC ≈ 10:37 TRT hedef, Cumartesi. :00 yerine tek dakika + erken çalıştırma, GitHub gecikmesini telafi eder.
   workflow_dispatch:
 
 jobs:

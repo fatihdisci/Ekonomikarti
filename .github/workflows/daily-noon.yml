@@ -2,7 +2,7 @@ name: Daily Noon Focus
 
 on:
   schedule:
-    - cron: '0 10 * * 1-5' # 10:00 UTC = 13:00 TRT, Pzt-Cum
+    - cron: '47 09 * * 1-5' # 09:47 UTC ≈ 12:47 TRT hedef (Pzt-Cum). :00 yerine tek dakika + erken çalıştırma, GitHub gecikmesini telafi eder.
   workflow_dispatch:
 
 jobs:

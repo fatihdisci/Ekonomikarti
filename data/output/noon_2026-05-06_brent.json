@@ -1,0 +1,29 @@
+{
+  "date": "2026-05-06",
+  "generated_at_utc": "2026-05-06T11:29:01.863307+00:00",
+  "focus": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "unit": "USD",
+    "decimals": 2,
+    "current": 97.9,
+    "daily_pct": -10.89,
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 62.15,
+        "pct": 57.52
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 68.28,
+        "pct": 43.38
+      }
+    ]
+  },
+  "note": "Brent petrol fiyatlarındaki bugünkü keskin düşüş, bir yıl önceki ve beş yıl önceki seviyelerin oldukça üzerinde seyretse de, piyasanın oynaklığını ve küresel ekonomik koşulların etkisini bir kez daha hatırlatıyor.\n\n#BrentPetrol #EnerjiPiyasası #Ekonomi"
+}

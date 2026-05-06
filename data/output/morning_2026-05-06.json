@@ -1,0 +1,77 @@
+{
+  "date": "2026-05-06",
+  "generated_at_utc": "2026-05-06T07:56:56.104581+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.2246,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.02,
+        "monthly": 1.44,
+        "yearly": 17.13,
+        "five_year": 446.41
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.0987,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.43,
+        "monthly": 3.44,
+        "yearly": 21.84,
+        "five_year": 431.74
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6814.62,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 2.9,
+        "monthly": 2.09,
+        "yearly": 60.92,
+        "five_year": 1298.55
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 106.93,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -2.68,
+        "monthly": -2.59,
+        "yearly": 72.05,
+        "five_year": 56.61
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14743.49,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 1.71,
+        "monthly": 12.44,
+        "yearly": 61.4,
+        "five_year": 922.94
+      }
+    }
+  ],
+  "note": "Bugün döviz kurlarında sınırlı değişimler görülürken, gram altın ve BIST 100 endeksi güçlü yükselişleriyle dikkat çekiyor. Özellikle gram altının yıllık ve 5 yıllık getirisi, döviz kurlarını ve Brent petrolü geride bırakarak yatırımcısına önemli bir kazanç sağlamış durumda."
+}

@@ -1,0 +1,51 @@
+{
+  "date": "2026-05-07",
+  "generated_at_utc": "2026-05-07T17:22:40.159584+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.2442,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.03
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.3035,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.53
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 100.81,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": -0.45
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 15040.25,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 0.82
+    }
+  ],
+  "biggest_mover": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "current": 15040.25,
+    "unit": "puan",
+    "decimals": 2,
+    "daily_pct": 0.82
+  },
+  "note": "Bugün Borsa İstanbul, günü %0.82'lik yükselişle ve en sert hareketini gerçekleştirerek tamamladı. Döviz kurlarında sınırlı dalgalanmalar yaşanırken, Brent petrol hafif düşüş gösterdi."
+}

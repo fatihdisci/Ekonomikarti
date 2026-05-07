@@ -1,0 +1,77 @@
+{
+  "date": "2026-05-07",
+  "generated_at_utc": "2026-05-07T08:05:27.486214+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.2413,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.03,
+        "monthly": 1.43,
+        "yearly": 17.11,
+        "five_year": 446.61
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.3437,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.61,
+        "monthly": 3.51,
+        "yearly": 21.65,
+        "five_year": 434.19
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6908.92,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 1.48,
+        "monthly": 3.45,
+        "yearly": 64.5,
+        "five_year": 1317.91
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 99.83,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.42,
+        "monthly": -8.64,
+        "yearly": 63.33,
+        "five_year": 46.21
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14923.73,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.04,
+        "monthly": 15.49,
+        "yearly": 64.46,
+        "five_year": 935.44
+      }
+    }
+  ],
+  "note": "Bugün Dolar ve Euro'da sınırlı yükselişler görülürken, Gram Altın'ın hem günlük hem de yıllık bazda güçlü performansını sürdürmesi dikkat çekiyor. Borsa İstanbul'un uzun vadeli yükseliş trendi devam ederken, Brent Petrol'de hafif bir geri çekilme yaşandı."
+}

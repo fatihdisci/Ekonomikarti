@@ -8,6 +8,7 @@ from typing import Any
 from src.config import (
     CHANGE_WINDOWS,
     EVENING_INDICATORS,
+    INDICATOR_ORDER,
     INDICATORS,
     NOON_HISTORY_WINDOWS,
     TROY_OZ_GRAM,

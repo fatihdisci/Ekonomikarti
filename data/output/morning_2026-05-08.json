@@ -1,0 +1,77 @@
+{
+  "date": "2026-05-08",
+  "generated_at_utc": "2026-05-08T07:08:05.209630+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.3621,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.3,
+        "monthly": 1.78,
+        "yearly": 17.38,
+        "five_year": 448.07
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.326,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.2,
+        "monthly": 2.48,
+        "yearly": 22.02,
+        "five_year": 434.02
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6905.06,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 1.04,
+        "monthly": 1.46,
+        "yearly": 68.59,
+        "five_year": 1317.11
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 100.62,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.56,
+        "monthly": 6.2,
+        "yearly": 60.12,
+        "five_year": 47.36
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 15040.3,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.0,
+        "monthly": 11.11,
+        "yearly": 62.09,
+        "five_year": 943.53
+      }
+    }
+  ],
+  "note": "Dolar ve Euro'daki TL karşısındaki artış trendi devam ederken, gram altındaki yıllık ve 5 yıllık yükselişler dikkat çekiyor. Brent petrolün de küresel bazda yükselişini sürdürmesiyle birlikte, BIST 100 endeksinin son bir yıldaki güçlü performansına rağmen bu varlıkların gerisinde kalması ilginç bir tablo oluşturuyor."
+}

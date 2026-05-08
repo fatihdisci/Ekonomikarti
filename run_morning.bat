@@ -16,7 +16,7 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo [1/2] Bagimliliklar kontrol ediliyor...
+echo [1/3] Bagimliliklar kontrol ediliyor...
 python -m pip install -r requirements.txt -q --disable-pip-version-check
 if errorlevel 1 (
     echo [HATA] Bagimliliklar yuklenemedi.
@@ -24,7 +24,17 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo [2/2] Kart olusturuluyor...
+echo [2/3] Fontlar kontrol ediliyor...
+if not exist "assets\fonts\Inter-Bold.ttf" (
+    python scripts/download_fonts.py
+    if errorlevel 1 (
+        echo [HATA] Fontlar indirilemedi.
+        pause
+        exit /b 1
+    )
+)
+
+echo [3/3] Kart olusturuluyor...
 echo.
 python run_morning.py
 if errorlevel 1 (

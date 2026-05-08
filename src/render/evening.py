@@ -1,4 +1,4 @@
-"""Evening "Kapanış Kartı" renderer: kapanış snapshot + günün en sert hareketi."""
+"""Evening "Kapanış Kartı" renderer: snapshot table + tinted mover hero."""
 
 from __future__ import annotations
 
@@ -8,187 +8,208 @@ from typing import Any
 
 from PIL import Image, ImageDraw
 
-from src.config import HASHTAG, LAYOUT
+from src.config import LAYOUT
 from src.render.base import (
     arrow_for,
     change_color,
+    change_color_rgba,
     color,
+    color_rgba,
+    composite_rect,
+    draw_corner_marks,
+    draw_eyebrow,
+    draw_footer,
+    draw_header,
+    draw_sparkline,
+    draw_sparkline_with_area,
     format_pct,
     format_tr,
-    format_tr_date,
+    hex_to_rgb,
     load_font,
     text_size,
     wrap_lines,
 )
 
+_PAD = LAYOUT.padding_x
+_W   = LAYOUT.canvas_w
+_H   = LAYOUT.canvas_h
+_TBL = LAYOUT.header_h + LAYOUT.title_h  # 290
 
-def _draw_header(draw: ImageDraw.ImageDraw, target_date: date) -> None:
-    brand_font = load_font("inter_bold", 32)
-    date_font = load_font("mono_medium", 18)
 
-    draw.text((LAYOUT.padding_x, 50), "FİYAT HAFIZASI", fill=color("accent"), font=brand_font)
-    date_str = format_tr_date(target_date)
-    w, _ = text_size(date_font, date_str)
-    draw.text(
-        (LAYOUT.canvas_w - LAYOUT.padding_x - w, 60),
-        date_str,
-        fill=color("muted"),
-        font=date_font,
+def _draw_title(draw: ImageDraw.ImageDraw) -> None:
+    ty = LAYOUT.header_h + 14
+    draw_eyebrow(draw, _PAD, ty, "03", "Kapanış · Closing Bell")
+    h1f = load_font("inter_bold", 62)
+    _, lh = text_size(h1f, "A")
+    draw.text((_PAD, ty + 22), "Gün nasıl", fill=color("text"), font=h1f)
+    draw.text((_PAD, ty + 22 + int(lh * 0.95) + 4), "kapandı?", fill=color("text"), font=h1f)
+
+
+def _draw_snapshot_table(
+    img: Image.Image,
+    draw: ImageDraw.ImageDraw,
+    indicators: list[dict[str, Any]],
+) -> tuple[Image.Image, ImageDraw.ImageDraw, int]:
+    if not indicators:
+        return img, draw, _TBL + 20
+
+    TABLE_Y = _TBL + 16
+    TABLE_H = 330
+    TABLE_END = TABLE_Y + TABLE_H
+
+    # Container card
+    s = color("surface")
+    s_rgb = hex_to_rgb(s)
+    img, draw = composite_rect(
+        img,
+        [_PAD, TABLE_Y, _W - _PAD, TABLE_END],
+        fill_rgba=(*s_rgb, 255),
+        outline_rgba=color_rgba("border"),
+        radius=18,
     )
 
+    row_h = TABLE_H // len(indicators)
+    name_f = load_font("inter_semibold", 20)
+    val_f  = load_font("mono_bold", 24)
+    pct_f  = load_font("mono_bold", 20)
+    num_f  = load_font("mono_medium", 11)
+    unit_f = load_font("mono_medium", 11)
 
-def _draw_title_block(draw: ImageDraw.ImageDraw) -> None:
-    title_font = load_font("inter_bold", 56)
-    subtitle_font = load_font("inter_regular", 18)
-
-    title = "KAPANIŞ KARTI"
-    subtitle = "Günü Kapatırken"
-
-    tw, th = text_size(title_font, title)
-    tx = (LAYOUT.canvas_w - tw) // 2
-    ty = LAYOUT.header_h + 10
-    draw.text((tx, ty), title, fill=color("text"), font=title_font)
-
-    sw, _ = text_size(subtitle_font, subtitle)
-    sx = (LAYOUT.canvas_w - sw) // 2
-    sy = ty + th + 15
-    draw.text((sx, sy), subtitle, fill=color("muted"), font=subtitle_font)
-
-
-def _draw_snapshot_table(draw: ImageDraw.ImageDraw, indicators: list[dict[str, Any]]) -> None:
-    """Üstte 4 göstergenin kapanış snapshot'ı."""
-    block_top = LAYOUT.header_h + LAYOUT.title_h
-    block_h = LAYOUT.table_h // 2  # 400
-
-    if not indicators:
-        return
-    rows = len(indicators)
-    row_h = block_h // rows
-    card_h = row_h - 12
-    margin_y = 12
-
-    name_font = load_font("inter_semibold", 28)
-    value_font = load_font("mono_bold", 36)
-    pct_font = load_font("mono_bold", 26)
+    SPARK_W, SPARK_H = 120, 32
 
     for i, ind in enumerate(indicators):
-        row_top = block_top + row_h * i
+        row_y = TABLE_Y + row_h * i
+        # separator
+        if i > 0:
+            img, draw = composite_rect(
+                img,
+                [_PAD + 16, row_y, _W - _PAD - 16, row_y + 1],
+                fill_rgba=color_rgba("border"),
+                radius=0,
+            )
 
-        # Card bg
-        draw.rounded_rectangle(
-            [LAYOUT.padding_x, row_top, LAYOUT.canvas_w - LAYOUT.padding_x, row_top + card_h],
-            radius=LAYOUT.card_radius,
-            fill=color("surface")
-        )
+        cy = row_y + (row_h - text_size(name_f, "A")[1]) // 2
 
-        name_text = ind.get("name", "")
-        nh = text_size(name_font, name_text)[1]
-        name_y = row_top + (card_h - nh) // 2 - 4
-        draw.text((LAYOUT.padding_x + 30, name_y), name_text, fill=color("muted"), font=name_font)
+        # Index
+        draw.text((_PAD + 22, cy), f"{i+1:02d}", fill=color("dim"), font=num_f)
 
+        # Name
+        draw.text((_PAD + 52, cy - 2), ind.get("name", ""), fill=color("text"), font=name_f)
+
+        # Value (centered-right)
         decimals = int(ind.get("decimals", 2))
-        unit = ind.get("unit", "")
         current = float(ind["current"])
-        value_text = f"{format_tr(current, decimals)} {unit}".strip()
-        vw, vh = text_size(value_font, value_text)
-        
-        center_x = LAYOUT.canvas_w // 2 + 60
-        value_x = center_x - vw // 2
-        value_y = row_top + (card_h - vh) // 2 - 4
-        draw.text((value_x, value_y), value_text, fill=color("text"), font=value_font)
+        unit = ind.get("unit", "")
+        val_str = f"{format_tr(current, decimals)} {unit}".strip()
+        vw, _ = text_size(val_f, val_str)
+        val_x = _W // 2 - vw // 2 + 40
+        draw.text((val_x, cy - 2), val_str, fill=color("text"), font=val_f)
 
-        pct = ind.get("daily_pct")
-        if pct is not None:
-            pct_text = f"{arrow_for(pct)} {format_pct(pct)}"
-            pw, ph = text_size(pct_font, pct_text)
-            pct_x = LAYOUT.canvas_w - LAYOUT.padding_x - 30 - pw
-            pct_y = row_top + (card_h - ph) // 2 - 4
-            draw.text((pct_x, pct_y), pct_text, fill=change_color(pct), font=pct_font)
+        # Sparkline (mini)
+        spark = ind.get("sparkline") or []
+        daily = ind.get("daily_pct")
+        sc = change_color(daily) if daily is not None else color("muted")
+        spark_x = _W - _PAD - 30 - 130 - SPARK_W - 16
+        spark_y = row_y + (row_h - SPARK_H) // 2
+        if spark:
+            draw_sparkline(draw, spark, spark_x, spark_y, SPARK_W, SPARK_H,
+                           sc, pad=2, line_width=2, dot=False)
+
+        # Daily pct
+        if daily is not None:
+            pct_str = f"{arrow_for(daily)} {format_pct(daily)}"
+            pw, _ = text_size(pct_f, pct_str)
+            draw.text((_W - _PAD - 30 - pw, cy - 2), pct_str, fill=change_color(daily), font=pct_f)
+
+    return img, draw, TABLE_END
 
 
-def _draw_biggest_mover(draw: ImageDraw.ImageDraw, mover: dict[str, Any] | None) -> None:
-    """Alt yarıda 'Günün Hareketi' vurgu bloğu."""
-    block_top = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h // 2
-    block_h = LAYOUT.table_h // 2  # 400
-    card_h = block_h - 20
-    card_top = block_top + 10
-
-    draw.rounded_rectangle(
-        [LAYOUT.padding_x, card_top, LAYOUT.canvas_w - LAYOUT.padding_x, card_top + card_h],
-        radius=LAYOUT.card_radius,
-        fill=color("surface")
-    )
-
-    label_font = load_font("inter_regular", 18)
-    name_font = load_font("inter_bold", 52)
-    pct_font = load_font("mono_bold", 84)
-
-    label_text = "GÜNÜN HAREKETİ"
+def _draw_mover_hero(
+    img: Image.Image,
+    draw: ImageDraw.ImageDraw,
+    mover: dict[str, Any] | None,
+    start_y: int,
+) -> tuple[Image.Image, ImageDraw.ImageDraw]:
     if mover is None:
-        lw, _ = text_size(label_font, label_text)
-        draw.text(
-            ((LAYOUT.canvas_w - lw) // 2, card_top + 60),
-            label_text,
-            fill=color("muted"),
-            font=label_font,
-        )
-        return
+        return img, draw
 
-    name_text = mover["name"].upper()
-    pct = float(mover["daily_pct"])
-    pct_text = f"{arrow_for(pct)} {format_pct(pct)}"
+    CARD_Y = start_y + 22
+    # Fit into remaining table area
+    table_end = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h
+    CARD_H = table_end - CARD_Y - 10
+    CARD_END = CARD_Y + CARD_H
 
-    lw, lh = text_size(label_font, label_text)
-    nw, nh = text_size(name_font, name_text)
-    pw, ph = text_size(pct_font, pct_text)
+    daily = float(mover.get("daily_pct", 0))
+    tint = change_color_rgba(daily)
+    s = color("surface")
+    s_rgb = hex_to_rgb(s)
 
-    gap1, gap2 = 28, 24
-    total_h = lh + gap1 + nh + gap2 + ph
-    y = card_top + (card_h - total_h) // 2
-
-    draw.text(((LAYOUT.canvas_w - lw) // 2, y), label_text, fill=color("muted"), font=label_font)
-    y += lh + gap1
-    draw.text(((LAYOUT.canvas_w - nw) // 2, y), name_text, fill=color("text"), font=name_font)
-    y += nh + gap2
-    draw.text(((LAYOUT.canvas_w - pw) // 2, y), pct_text, fill=change_color(pct), font=pct_font)
-
-
-def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
-    footer_y = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h
-    draw.line(
-        [
-            (LAYOUT.canvas_w // 2 - 100, footer_y),
-            (LAYOUT.canvas_w // 2 + 100, footer_y),
-        ],
-        fill=color("divider"),
-        width=2,
+    # Base surface
+    img, draw = composite_rect(
+        img, [_PAD, CARD_Y, _W - _PAD, CARD_END],
+        fill_rgba=(*s_rgb, 255), radius=20,
+    )
+    # Tint overlay
+    img, draw = composite_rect(
+        img, [_PAD, CARD_Y, _W - _PAD, CARD_END],
+        fill_rgba=tint, radius=20,
+    )
+    # Border
+    bc = hex_to_rgb(change_color(daily))
+    img, draw = composite_rect(
+        img, [_PAD, CARD_Y, _W - _PAD, CARD_END],
+        outline_rgba=(*bc, 90), radius=20,
     )
 
-    note_font = load_font("inter_regular", 18)
-    note_y = footer_y + 36
-    max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
-    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=3)
-    line_h = note_font.getbbox("Ay")[3] + 12
-    for i, line in enumerate(lines):
-        lw, _ = text_size(note_font, line)
-        draw.text(
-            ((LAYOUT.canvas_w - lw) // 2, note_y + i * line_h),
-            line,
-            fill=color("footer_note"),
-            font=note_font,
-        )
+    ix = _PAD + 36
+    iy = CARD_Y + 28
 
-    meta_font = load_font("inter_regular", 14)
-    source_text = "Kaynak: Yahoo Finance"
-    meta_y = LAYOUT.canvas_h - 50 - meta_font.getbbox("Ay")[3]
-    draw.text((LAYOUT.padding_x, meta_y), source_text, fill=color("footer_note"), font=meta_font)
-    hw, _ = text_size(meta_font, HASHTAG)
-    draw.text(
-        (LAYOUT.canvas_w - LAYOUT.padding_x - hw, meta_y),
-        HASHTAG,
-        fill=color("accent"),
-        font=meta_font,
-    )
+    # Label
+    lf = load_font("mono_medium", 11)
+    draw.text((ix, iy), "⚡  GÜNÜN HAREKETİ", fill=change_color(daily), font=lf)
+
+    # Indicator name
+    nf = load_font("inter_bold", 42)
+    draw.text((ix, iy + 22), mover.get("name", "").upper(), fill=color("text"), font=nf)
+
+    # Big percentage
+    pf = load_font("mono_bold", 72)
+    af = load_font("inter_bold", 36)
+    pct_str = format_pct(daily)
+    arrow_str = arrow_for(daily)
+    aw, ah = text_size(af, arrow_str)
+    pw, ph = text_size(pf, pct_str)
+    draw.text((ix, iy + 80), arrow_str, fill=change_color(daily), font=af)
+    draw.text((ix + aw + 14, iy + 72), pct_str, fill=change_color(daily), font=pf)
+
+    # Close price
+    decimals = int(mover.get("decimals", 2))
+    current = float(mover["current"])
+    unit = mover.get("unit", "")
+    cf = load_font("mono_medium", 14)
+    close_str = f"Kapanış: {format_tr(current, decimals)} {unit}".strip()
+    draw.text((ix, iy + 80 + ph + 10), close_str, fill=color("muted"), font=cf)
+
+    # Sparkline (right side)
+    spark = mover.get("sparkline") or []
+    if spark:
+        SPARK_X = _W - _PAD - 36 - 270
+        SPARK_Y = iy + 22
+        SPARK_W, SPARK_H = 270, 110
+        img, draw = draw_sparkline_with_area(
+            img, draw, spark,
+            SPARK_X, SPARK_Y, SPARK_W, SPARK_H,
+            change_color(daily), pad=4, line_width=2, area_alpha=40,
+        )
+        day_f = load_font("mono_medium", 10)
+        labels = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"]
+        n = len(spark)
+        step = SPARK_W // max(n - 1, 1)
+        for j in range(min(n, len(labels))):
+            lx = SPARK_X + j * step
+            draw.text((lx, SPARK_Y + SPARK_H + 4), labels[j], fill=color("dim"), font=day_f)
+
+    return img, draw
 
 
 def _parse_target_date(payload: dict[str, Any]) -> date:
@@ -199,20 +220,21 @@ def _parse_target_date(payload: dict[str, Any]) -> date:
 
 
 def render_evening(payload: dict[str, Any], output_path: Path) -> Path:
-    """Akşam "Kapanış Kartı"nı oluştur ve PNG olarak kaydet."""
+    """Akşam Kapanış Kartı'nı oluştur ve PNG olarak kaydet."""
     target_date = _parse_target_date(payload)
     indicators = payload.get("indicators") or []
     mover = payload.get("biggest_mover")
     note = payload.get("note") or ""
 
-    img = Image.new("RGB", (LAYOUT.canvas_w, LAYOUT.canvas_h), color=color("bg"))
+    img = Image.new("RGB", (_W, _H), color=color("bg"))
     draw = ImageDraw.Draw(img)
 
-    _draw_header(draw, target_date)
-    _draw_title_block(draw)
-    _draw_snapshot_table(draw, indicators)
-    _draw_biggest_mover(draw, mover)
-    _draw_footer(draw, note)
+    draw_corner_marks(draw)
+    img, draw = draw_header(img, target_date, "EVENING · 18:30")
+    _draw_title(draw)
+    img, draw, table_end = _draw_snapshot_table(img, draw, indicators)
+    img, draw = _draw_mover_hero(img, draw, mover, table_end)
+    draw_footer(draw, note)
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)

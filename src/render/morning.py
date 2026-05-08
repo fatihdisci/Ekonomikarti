@@ -1,4 +1,4 @@
-"""Morning card renderer: 1080x1350 PNG summarising six indicators."""
+"""Morning card renderer: hero indicator + 2×2 compact grid (1080×1350)."""
 
 from __future__ import annotations
 
@@ -8,200 +8,266 @@ from typing import Any
 
 from PIL import Image, ImageDraw
 
-from src.config import (
-    CHANGE_WINDOWS,
-    HASHTAG,
-    INDICATOR_ORDER,
-    LAYOUT,
-)
+from src.config import CHANGE_WINDOWS, INDICATOR_ORDER, LAYOUT
 from src.render.base import (
     arrow_for,
     change_color,
+    change_color_rgba,
     color,
+    color_rgba,
+    composite_rect,
+    draw_corner_marks,
+    draw_eyebrow,
+    draw_footer,
+    draw_header,
+    draw_sparkline,
+    draw_sparkline_with_area,
+    draw_range_bar,
     format_pct,
     format_tr,
-    format_tr_date,
+    hex_to_rgb,
     load_font,
     text_size,
     wrap_lines,
 )
 
+# ── Layout constants ───────────────────────────────────────────────────────────
+_PAD = LAYOUT.padding_x          # 60
+_W   = LAYOUT.canvas_w           # 1080
+_H   = LAYOUT.canvas_h           # 1350
+_TBL = LAYOUT.header_h + LAYOUT.title_h  # 290 (table area start)
 
-def _draw_header(draw: ImageDraw.ImageDraw, target_date: date) -> None:
-    brand_font = load_font("inter_bold", 32)
-    date_font = load_font("mono_medium", 18)
+_HERO_Y  = _TBL + 18             # 308
+_HERO_H  = 338
+_HERO_END = _HERO_Y + _HERO_H    # 646
 
-    brand = "FİYAT HAFIZASI"
-    draw.text((LAYOUT.padding_x, 50), brand, fill=color("accent"), font=brand_font)
+_GRID_Y   = _HERO_END + 22       # 668
+_GRID_RH  = 218                  # row height
+_GRID_GAP = 16                   # column gap
+_GRID_CW  = (_W - 2 * _PAD - _GRID_GAP) // 2  # 452
 
-    date_str = format_tr_date(target_date)
-    w, _ = text_size(date_font, date_str)
-    draw.text(
-        (LAYOUT.canvas_w - LAYOUT.padding_x - w, 60),
-        date_str,
-        fill=color("muted"),
-        font=date_font,
-    )
-
-
-def _draw_title_block(draw: ImageDraw.ImageDraw) -> None:
-    title_font = load_font("inter_bold", 56)
-    subtitle_font = load_font("inter_regular", 18)
-
-    title = "AÇILIŞ KARTI"
-    subtitle = "Güncel Değerler ve Tarihsel Değişimler"
-
-    tw, th = text_size(title_font, title)
-    tx = (LAYOUT.canvas_w - tw) // 2
-    ty = LAYOUT.header_h + 10
-    draw.text((tx, ty), title, fill=color("text"), font=title_font)
-
-    sw, _ = text_size(subtitle_font, subtitle)
-    sx = (LAYOUT.canvas_w - sw) // 2
-    sy = ty + th + 15
-    draw.text((sx, sy), subtitle, fill=color("muted"), font=subtitle_font)
+_GRID_R1  = _GRID_Y               # 668
+_GRID_R2  = _GRID_R1 + _GRID_RH + 16  # 902
 
 
-def _draw_column_headers(draw: ImageDraw.ImageDraw) -> None:
-    header_font = load_font("inter_regular", 13)
-    table_y = LAYOUT.header_h + LAYOUT.title_h
-    # Y is just above the first row. We align them horizontally.
-    y = table_y - 20
-    
-    # We define right-side geometry for the 4 percentage columns.
-    # Total right side width from x=480 to 1020
-    row_right_x = 420
-    row_right_end_x = LAYOUT.canvas_w - LAYOUT.padding_x
-    col_w = (row_right_end_x - row_right_x) // 4
-    
-    for i, window in enumerate(CHANGE_WINDOWS):
-        col_center = row_right_x + col_w * i + col_w // 2
-        w, _ = text_size(header_font, window.label)
-        draw.text(
-            (col_center - w // 2, y),
-            window.label,
-            fill=color("muted"),
-            font=header_font,
-        )
+def _draw_title(draw: ImageDraw.ImageDraw) -> None:
+    ty = LAYOUT.header_h + 14
+    ey = draw_eyebrow(draw, _PAD, ty, "01", "Açılış · Opening Snapshot")
+    h1f = load_font("inter_bold", 62)
+    draw.text((_PAD, ey + 14), "Bugün piyasa", fill=color("text"), font=h1f)
+    _, lh = text_size(h1f, "A")
+    draw.text((_PAD, ey + 14 + int(lh * 0.95) + 4), "nasıl açıyor?", fill=color("text"), font=h1f)
 
 
-def _draw_row(
+def _draw_hero(
+    img: Image.Image,
     draw: ImageDraw.ImageDraw,
-    indicator: dict[str, Any],
-    row_index: int,
-) -> None:
-    table_y = LAYOUT.header_h + LAYOUT.title_h
-    # 160px row height -> card height 140, margin 20
-    card_h = LAYOUT.row_h - 20
-    card_top = table_y + LAYOUT.row_h * row_index
-    
-    # Draw rounded card background
-    draw.rounded_rectangle(
-        [LAYOUT.padding_x, card_top, LAYOUT.canvas_w - LAYOUT.padding_x, card_top + card_h],
-        radius=LAYOUT.card_radius,
-        fill=color("surface")
+    hero: dict[str, Any],
+) -> tuple[Image.Image, ImageDraw.ImageDraw]:
+    """Hero card: big value, sparkline, 5y range, 4 change columns."""
+    sh_rgb = hex_to_rgb(color("surface_hi"))
+    img, draw = composite_rect(
+        img,
+        [_PAD, _HERO_Y, _W - _PAD, _HERO_END],
+        fill_rgba=(*sh_rgb, 255),
+        outline_rgba=color_rgba("border_hi"),
+        radius=18,
     )
 
-    name_font = load_font("inter_semibold", 24)
-    value_font = load_font("mono_bold", 30)
-    pct_font = load_font("mono_bold", 20)
+    inner_x = _PAD + 30
+    inner_y = _HERO_Y + 26
 
-    # Left zone: Indicator name & current value
-    text_left_x = LAYOUT.padding_x + 20
-    name_y = card_top + 35
-    draw.text(
-        (text_left_x, name_y),
-        indicator["name"],
-        fill=color("muted"),
-        font=name_font,
-    )
+    # ── Left zone ────────────────────────────────────────────────────────────
+    # Label
+    lf = load_font("mono_medium", 11)
+    draw.text((inner_x, inner_y), "★  ANA GÖSTERGE", fill=color("accent"), font=lf)
 
-    decimals = int(indicator.get("decimals", 2))
-    current_value = float(indicator["current"])
-    unit = indicator.get("unit", "")
-    value_text = f"{format_tr(current_value, decimals)} {unit}".strip()
-    value_y = name_y + 36
-    draw.text(
-        (text_left_x, value_y),
-        value_text,
-        fill=color("text"),
-        font=value_font,
-    )
+    # Indicator name
+    nf = load_font("inter_semibold", 22)
+    draw.text((inner_x, inner_y + 20), hero.get("name", ""), fill=color("muted"), font=nf)
 
-    # Right zone: Horizontal row of percentage changes
-    row_right_x = 420
-    row_right_end_x = LAYOUT.canvas_w - LAYOUT.padding_x
-    col_w = (row_right_end_x - row_right_x) // 4
-    pct_y = card_top + (card_h - 20) // 2
-    
-    changes = indicator.get("changes_pct", {})
-    
-    for i, window in enumerate(CHANGE_WINDOWS):
-        raw = changes.get(window.key)
-        col_center = row_right_x + col_w * i + col_w // 2
-        
-        if raw is None:
-            text = "—"
-            fill = color("muted")
-        else:
-            value = float(raw)
-            text = f"{arrow_for(value)} {format_pct(value)}"
-            fill = change_color(value)
-            
-        pw, _ = text_size(pct_font, text)
-        draw.text((col_center - pw//2, pct_y), text, fill=fill, font=pct_font)
+    # Value
+    decimals = int(hero.get("decimals", 2))
+    current = float(hero["current"])
+    unit = hero.get("unit", "")
+    vf = load_font("mono_bold", 62)
+    uf = load_font("mono_medium", 16)
+    val_text = format_tr(current, decimals)
+    vw, vh = text_size(vf, val_text)
+    draw.text((inner_x, inner_y + 46), val_text, fill=color("text"), font=vf)
+    draw.text((inner_x + vw + 10, inner_y + 46 + vh - text_size(uf, unit)[1]), unit, fill=color("muted"), font=uf)
 
+    # Daily change
+    changes = hero.get("changes_pct", {})
+    daily = changes.get("daily")
+    if daily is not None:
+        af = load_font("mono_medium", 16)
+        arrow_text = arrow_for(daily)
+        pct_text = f"{format_pct(daily)} bugün"
+        aw, _ = text_size(af, arrow_text + " ")
+        draw.text((inner_x, inner_y + 126), arrow_text + " ", fill=change_color(daily), font=af)
+        draw.text((inner_x + aw, inner_y + 126), pct_text, fill=change_color(daily), font=af)
 
-def _draw_table(draw: ImageDraw.ImageDraw, indicators_by_key: dict[str, dict[str, Any]]) -> None:
-    _draw_column_headers(draw)
-    for i, key in enumerate(INDICATOR_ORDER):
-        ind = indicators_by_key.get(key)
-        if ind is None:
-            continue
-        _draw_row(draw, ind, i)
+    # ── Right zone: sparkline ─────────────────────────────────────────────────
+    spark = hero.get("sparkline") or []
+    RIGHT_X = _W - _PAD - 30 - 310
+    SPARK_W, SPARK_H = 310, 88
 
+    spark_label_f = load_font("mono_medium", 10)
+    draw.text((RIGHT_X, inner_y), "SON 12 AY", fill=color("dim"), font=spark_label_f)
 
-def _draw_footer(draw: ImageDraw.ImageDraw, note: str) -> None:
-    footer_y = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h
-    draw.line(
-        [
-            (LAYOUT.canvas_w // 2 - 100, footer_y),
-            (LAYOUT.canvas_w // 2 + 100, footer_y),
-        ],
-        fill=color("divider"),
-        width=2,
-    )
-
-    note_font = load_font("inter_regular", 18)
-    note_y = footer_y + 36
-    max_width = LAYOUT.canvas_w - 2 * LAYOUT.padding_x
-    lines = wrap_lines(note_font, note, max_width=max_width, max_lines=3)
-    line_h = note_font.getbbox("Ay")[3] + 12
-    for i, line in enumerate(lines):
-        lw, _ = text_size(note_font, line)
-        draw.text(
-            ((LAYOUT.canvas_w - lw) // 2, note_y + i * line_h),
-            line,
-            fill=color("footer_note"),
-            font=note_font,
+    if spark:
+        img, draw = draw_sparkline_with_area(
+            img, draw, spark,
+            RIGHT_X, inner_y + 16, SPARK_W, SPARK_H,
+            color("accent"), pad=4, line_width=2, area_alpha=55,
         )
 
-    meta_font = load_font("inter_regular", 14)
-    source_text = "Kaynak: Yahoo Finance"
-    meta_y = LAYOUT.canvas_h - 50 - meta_font.getbbox("Ay")[3]
-    draw.text(
-        (LAYOUT.padding_x, meta_y),
-        source_text,
-        fill=color("footer_note"),
-        font=meta_font,
+    # 5-year range bar
+    r5y = hero.get("range_5y")
+    if r5y:
+        lo, hi = float(r5y["lo"]), float(r5y["hi"])
+        rng = hi - lo or 1.0
+        pct = max(0.0, min(100.0, (current - lo) / rng * 100))
+        bar_y = inner_y + 16 + SPARK_H + 18
+        draw.text((RIGHT_X, bar_y), "5 YIL ARALIĞI", fill=color("dim"), font=spark_label_f)
+        draw_range_bar(draw, RIGHT_X, bar_y + 14, SPARK_W, 12, pct,
+                       track_color=color("surface"), dot_color=color("accent"))
+        lof = load_font("mono_medium", 10)
+        draw.text((RIGHT_X, bar_y + 30), format_tr(lo, 2), fill=color("muted"), font=lof)
+        hi_str = format_tr(hi, 2)
+        hiw, _ = text_size(lof, hi_str)
+        draw.text((RIGHT_X + SPARK_W - hiw, bar_y + 30), hi_str, fill=color("muted"), font=lof)
+
+    # ── Bottom: 4 change columns ──────────────────────────────────────────────
+    sep_y = _HERO_Y + _HERO_H - 108
+    draw.line(
+        [(_PAD + 16, sep_y), (_W - _PAD - 16, sep_y)],
+        fill=color_rgba("border")[:3],
+        width=1,
     )
-    hw, _ = text_size(meta_font, HASHTAG)
-    draw.text(
-        (LAYOUT.canvas_w - LAYOUT.padding_x - hw, meta_y),
-        HASHTAG,
-        fill=color("accent"),
-        font=meta_font,
+
+    col_labels = [("GÜNLÜK", "daily"), ("AYLIK", "monthly"), ("YILLIK", "yearly"), ("5 YIL", "five_year")]
+    col_w = (_W - 2 * _PAD) // 4
+    col_y = sep_y + 16
+    lbl_f = load_font("mono_medium", 10)
+    val_f = load_font("mono_bold", 20)
+
+    for i, (lbl, key) in enumerate(col_labels):
+        cx = _PAD + col_w * i + col_w // 2
+        raw = changes.get(key)
+
+        lw, _ = text_size(lbl_f, lbl)
+        draw.text((cx - lw // 2, col_y), lbl, fill=color("dim"), font=lbl_f)
+
+        if raw is None:
+            txt = "—"
+            fc = color("muted")
+        else:
+            v = float(raw)
+            txt = f"{arrow_for(v)} {format_pct(v)}"
+            fc = change_color(v)
+        vw2, _ = text_size(val_f, txt)
+        draw.text((cx - vw2 // 2, col_y + 18), txt, fill=fc, font=val_f)
+
+    return img, draw
+
+
+def _draw_compact_card(
+    img: Image.Image,
+    draw: ImageDraw.ImageDraw,
+    ind: dict[str, Any],
+    idx: int,
+    x: int,
+    y: int,
+) -> tuple[Image.Image, ImageDraw.ImageDraw]:
+    """Single compact 2×2 indicator card."""
+    s = color("surface")
+    s_rgb = (int(s[1:3], 16), int(s[3:5], 16), int(s[5:7], 16))
+    img, draw = composite_rect(
+        img,
+        [x, y, x + _GRID_CW, y + _GRID_RH],
+        fill_rgba=(*s_rgb, 255),
+        outline_rgba=color_rgba("border"),
+        radius=16,
     )
+
+    ix = x + 20
+    iy = y + 18
+
+    # Header row: number + name label + daily badge
+    num_f = load_font("mono_medium", 11)
+    nm_f = load_font("inter_semibold", 14)
+    pct_badge_f = load_font("mono_medium", 11)
+
+    draw.text((ix, iy), f"{idx+2:02d} ·", fill=color("dim"), font=num_f)
+    nw, _ = text_size(num_f, f"{idx+2:02d} · ")
+    draw.text((ix + nw, iy), ind.get("name", ""), fill=color("muted"), font=nm_f)
+
+    changes = ind.get("changes_pct", {})
+    daily = changes.get("daily")
+    if daily is not None:
+        dv = float(daily)
+        badge_text = format_pct(dv)
+        bw, bh = text_size(pct_badge_f, badge_text)
+        bx = x + _GRID_CW - 20 - bw - 16
+        by = iy - 1
+        bc = change_color_rgba(dv)
+        img, draw = composite_rect(
+            img,
+            [bx - 8, by - 2, bx + bw + 8, by + bh + 2],
+            fill_rgba=bc,
+            radius=4,
+        )
+        draw.text((bx, by), badge_text, fill=change_color(dv), font=pct_badge_f)
+
+    # Value
+    decimals = int(ind.get("decimals", 2))
+    current = float(ind["current"])
+    unit = ind.get("unit", "")
+    vf = load_font("mono_bold", 28)
+    uf = load_font("mono_medium", 11)
+    val_str = format_tr(current, decimals)
+    vw, vh = text_size(vf, val_str)
+    draw.text((ix, iy + 30), val_str, fill=color("text"), font=vf)
+    draw.text((ix + vw + 6, iy + 30 + vh - text_size(uf, unit)[1] - 2), unit, fill=color("dim"), font=uf)
+
+    # 1Y / 5Y row
+    y1y = changes.get("yearly")
+    y5y = changes.get("five_year")
+    mf = load_font("mono_medium", 11)
+    bottom_y = y + _GRID_RH - 28
+    parts = []
+    if y1y is not None:
+        parts.append(("1Y ", color("dim")))
+        parts.append((format_pct(float(y1y)) + "  ", change_color(float(y1y))))
+    if y5y is not None:
+        parts.append(("5Y ", color("dim")))
+        parts.append((format_pct(float(y5y)), change_color(float(y5y))))
+    cx2 = ix
+    for txt, fc in parts:
+        draw.text((cx2, bottom_y), txt, fill=fc, font=mf)
+        cx2 += text_size(mf, txt)[0]
+
+    return img, draw
+
+
+def _draw_grid(
+    img: Image.Image,
+    draw: ImageDraw.ImageDraw,
+    inds: list[dict[str, Any]],
+) -> tuple[Image.Image, ImageDraw.ImageDraw]:
+    positions = [
+        (_PAD, _GRID_R1),
+        (_PAD + _GRID_CW + _GRID_GAP, _GRID_R1),
+        (_PAD, _GRID_R2),
+        (_PAD + _GRID_CW + _GRID_GAP, _GRID_R2),
+    ]
+    for i, (x, y) in enumerate(positions):
+        if i >= len(inds):
+            break
+        img, draw = _draw_compact_card(img, draw, inds[i], i, x, y)
+    return img, draw
 
 
 def _parse_target_date(payload: dict[str, Any]) -> date:
@@ -212,19 +278,25 @@ def _parse_target_date(payload: dict[str, Any]) -> date:
 
 
 def render_morning(payload: dict[str, Any], output_path: Path) -> Path:
-    """Sabah kartını oluştur ve PNG olarak kaydet."""
+    """Sabah açılış kartını oluştur ve PNG olarak kaydet."""
     target_date = _parse_target_date(payload)
     indicators_list = payload.get("indicators", []) or []
-    indicators_by_key = {ind["key"]: ind for ind in indicators_list}
     note = payload.get("note") or ""
 
-    img = Image.new("RGB", (LAYOUT.canvas_w, LAYOUT.canvas_h), color=color("bg"))
+    by_key = {ind["key"]: ind for ind in indicators_list}
+    ordered = [by_key[k] for k in INDICATOR_ORDER if k in by_key]
+    hero = ordered[0] if ordered else {}
+    grid_inds = ordered[1:5]  # max 4 in 2×2
+
+    img = Image.new("RGB", (_W, _H), color=color("bg"))
     draw = ImageDraw.Draw(img)
 
-    _draw_header(draw, target_date)
-    _draw_title_block(draw)
-    _draw_table(draw, indicators_by_key)
-    _draw_footer(draw, note)
+    draw_corner_marks(draw)
+    img, draw = draw_header(img, target_date, "MORNING · 09:00")
+    _draw_title(draw)
+    img, draw = _draw_hero(img, draw, hero)
+    img, draw = _draw_grid(img, draw, grid_inds)
+    draw_footer(draw, note)
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)

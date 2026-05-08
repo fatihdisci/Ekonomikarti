@@ -45,7 +45,8 @@
     "current": 112.67,
     "unit": "USD",
     "decimals": 2,
-    "daily_pct": -1.55
+    "daily_pct": -1.55,
+    "sparkline": [114.5, 114.0, 113.5, 113.2, 112.9, 112.67, 112.67]
   },
   "note": "Brent petroldeki sert geri çekiliş günün öne çıkan hareketi oldu; BIST 100 ise dirençli kapanışla pozitif ayrıştı. Döviz cephesinde sakin bir gün geride kaldı."
 }

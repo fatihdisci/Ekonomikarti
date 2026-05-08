@@ -14,6 +14,43 @@ from src.config import (
 )
 
 
+def _build_sparkline(
+    series: dict[date, float],
+    target_date: date,
+    n_points: int = 12,
+    step_days: int = 30,
+    decimals: int = 4,
+) -> list[float]:
+    """n evenly-spaced historical values for a sparkline chart."""
+    result = []
+    for i in range(n_points - 1, -1, -1):
+        d = target_date - timedelta(days=i * step_days)
+        v = _nearest_value_inner(series, d, lookback=15)
+        if v is not None:
+            result.append(round(v, decimals))
+    return result
+
+
+def _build_range_5y(
+    series: dict[date, float],
+    target_date: date,
+    decimals: int = 2,
+) -> dict | None:
+    start = target_date - timedelta(days=1825)
+    values = [v for d, v in series.items() if start <= d <= target_date]
+    if not values:
+        return None
+    return {"lo": round(min(values), decimals), "hi": round(max(values), decimals)}
+
+
+def _nearest_value_inner(series: dict[date, float], target: date, lookback: int = 30) -> float | None:
+    for offset in range(lookback + 1):
+        d = target - timedelta(days=offset)
+        if d in series:
+            return series[d]
+    return None
+
+
 def _nearest_value(series: dict[date, float], target: date, lookback: int = 30) -> float | None:
     """Find the value on target date, or the closest previous date (ffill).
 
@@ -89,7 +126,7 @@ def build_indicator_payload(
             else:
                 changes[window.key] = None
 
-        indicators_list.append({
+        entry: dict = {
             "key": spec.key,
             "name": spec.name,
             "current": round(current, spec.decimals),
@@ -97,7 +134,16 @@ def build_indicator_payload(
             "unit": spec.unit,
             "decimals": spec.decimals,
             "changes_pct": changes,
-        })
+        }
+        # Hero indicator (first in order) gets sparkline + 5-year range
+        if spec.key == INDICATOR_ORDER[0]:
+            entry["sparkline"] = _build_sparkline(
+                series, target_date, n_points=12, step_days=30, decimals=spec.decimals
+            )
+            r5y = _build_range_5y(series, target_date, decimals=2)
+            if r5y:
+                entry["range_5y"] = r5y
+        indicators_list.append(entry)
 
     return {
         "date": target_date.isoformat(),
@@ -169,6 +215,11 @@ def build_noon_payload(
                 "pct": round(_pct_change(current, ref_val), 2),
             })
 
+    sparkline_5y = _build_sparkline(
+        series, target_date, n_points=15, step_days=120, decimals=spec.decimals
+    )
+    range_5y = _build_range_5y(series, target_date, decimals=spec.decimals)
+
     return {
         "date": target_date.isoformat(),
         "generated_at_utc": None,
@@ -179,6 +230,8 @@ def build_noon_payload(
             "decimals": spec.decimals,
             "current": round(current, spec.decimals),
             "daily_pct": daily_pct,
+            "sparkline": sparkline_5y,
+            "range_5y": range_5y,
             "history": history,
         },
         "note": "",
@@ -246,6 +299,12 @@ def build_evening_payload(
                 "decimals": ind["decimals"],
                 "daily_pct": pct,
             }
+
+    if biggest is not None:
+        mover_series = series_map.get(biggest["key"], {})
+        biggest["sparkline"] = _build_sparkline(
+            mover_series, target_date, n_points=7, step_days=1, decimals=biggest["decimals"]
+        )
 
     return {
         "date": target_date.isoformat(),

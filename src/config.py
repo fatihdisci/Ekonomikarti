@@ -19,24 +19,38 @@ CANVAS_W = 1080
 CANVAS_H = 1350
 PADDING_X = 60
 
-HEADER_H = 140
-TITLE_H = 150
-TABLE_H = 800
-FOOTER_H = 260
+HEADER_H = 150
+TITLE_H = 140
+TABLE_H = 840
+FOOTER_H = 220
 ROW_COUNT = 5
 ROW_H = TABLE_H // ROW_COUNT
 
-# Palette - Modern Dark Theme
+# Palette — premium dark design tokens (cards.jsx)
 COLORS = {
-    "bg": "#0B132B",
-    "surface": "#1C2A46",
-    "text": "#F8FAFC",
-    "accent": "#FBBF24",
-    "positive": "#10B981",
-    "negative": "#EF4444",
-    "muted": "#B4C6D8",
-    "divider": "#334155",
-    "footer_note": "#3A5068",
+    "bg":         "#070D1E",
+    "bg_grad1":   "#0A1024",
+    "bg_grad2":   "#050913",
+    "surface":    "#0F1730",
+    "surface_hi": "#152043",
+    "text":       "#F2F5FA",
+    "muted":      "#7A8AA6",
+    "dim":        "#4A5876",
+    "accent":     "#F5C242",
+    "positive":   "#34D399",
+    "negative":   "#F87171",
+    "divider":    "#2A3B5E",
+    "footer_note":"#4A5876",
+}
+
+# RGBA tuples (r, g, b, a) for semi-transparent overlays
+COLORS_RGBA = {
+    "accent_dim":  (245, 194,  66,  41),   # rgba(245,194,66,0.16)
+    "pos_dim":     ( 52, 211, 153,  36),   # rgba(52,211,153,0.14)
+    "neg_dim":     (248, 113, 113,  36),   # rgba(248,113,113,0.14)
+    "border":      (180, 198, 216,  20),   # rgba(180,198,216,0.08)
+    "border_hi":   (180, 198, 216,  41),   # rgba(180,198,216,0.16)
+    "hairline":    (255, 255, 255,  15),   # rgba(255,255,255,0.06)
 }
 
 

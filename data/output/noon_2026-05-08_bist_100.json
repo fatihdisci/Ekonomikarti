@@ -1,0 +1,29 @@
+{
+  "date": "2026-05-08",
+  "generated_at_utc": "2026-05-08T10:56:36.991425+00:00",
+  "focus": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "unit": "puan",
+    "decimals": 2,
+    "current": 15062.78,
+    "daily_pct": 0.15,
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 9279.15,
+        "pct": 62.33
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 1441.29,
+        "pct": 945.09
+      }
+    ]
+  },
+  "note": "BIST 100 endeksi bugün hafif artışla 15062.78 puana ulaşırken, bir yıl öncesine göre %62.33'lük önemli bir yükseliş kaydetti. Beş yıl öncesine kıyasla ise %945.09'luk muazzam bir büyüme göstererek, yatırımcılarına tarihsel olarak güçlü bir getiri sundu.\n\n#BIST100 #Ekonomi #Yatırım"
+}

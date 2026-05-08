@@ -1,227 +1,136 @@
-"""Noon "Odak Kartı" renderer: huge value + 5-year sparkline + history rows."""
+"""Noon card renderer — ODAK KARTI (referans tasarıma göre)."""
 
 from __future__ import annotations
 
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from PIL import Image, ImageDraw
+from PIL import ImageDraw
 
 from src.config import LAYOUT
 from src.render.base import (
     arrow_for,
     change_color,
     color,
-    color_rgba,
     composite_rect,
-    draw_corner_marks,
-    draw_eyebrow,
+    draw_brand_header,
+    draw_card_title,
     draw_footer,
-    draw_header,
-    draw_sparkline_with_area,
     format_pct,
     format_tr,
+    hex_to_rgb,
     load_font,
+    new_canvas,
     text_size,
-    wrap_lines,
 )
 
-_PAD = LAYOUT.padding_x
-_W   = LAYOUT.canvas_w
-_H   = LAYOUT.canvas_h
-_TBL = LAYOUT.header_h + LAYOUT.title_h  # 290
 
+def render_noon(payload: dict[str, Any], out_path: Path) -> None:
+    target_date = datetime.fromisoformat(payload["date"]).date()
+    focus = payload["focus"]
 
-def _draw_title(draw: ImageDraw.ImageDraw) -> None:
-    ty = LAYOUT.header_h + 14
-    draw_eyebrow(draw, _PAD, ty, "02", "Odak · Tarihsel Bakış")
-    h1f = load_font("inter_bold", 62)
-    _, lh = text_size(h1f, "A")
-    lh_actual = int(lh * 0.95)
-    draw.text((_PAD, ty + 22), "Bir göstergenin", fill=color("text"), font=h1f)
-    draw.text((_PAD, ty + 22 + lh_actual + 4), "5 yıllık hafızası.", fill=color("text"), font=h1f)
+    img = new_canvas()
+    draw = ImageDraw.Draw(img)
 
+    draw_brand_header(draw, target_date)
+    draw_card_title(draw, "ODAK KARTI", "Tarihsel Bakış", y=180)
 
-def _draw_focus_hero(
-    img: Image.Image,
-    draw: ImageDraw.ImageDraw,
-    focus: dict[str, Any],
-) -> tuple[Image.Image, ImageDraw.ImageDraw]:
-    CARD_Y = _TBL + 16
-    CARD_H = 410
-    CARD_END = CARD_Y + CARD_H
+    PAD_X = LAYOUT.padding_x
+    W = LAYOUT.canvas_w
 
-    sh = color("surface_hi")
-    sh_rgb = (int(sh[1:3], 16), int(sh[3:5], 16), int(sh[5:7], 16))
+    main_x0, main_x1 = PAD_X, W - PAD_X
+    main_y0 = 360
+    main_h = 320
+    main_y1 = main_y0 + main_h
+
     img, draw = composite_rect(
         img,
-        [_PAD, CARD_Y, _W - _PAD, CARD_END],
-        fill_rgba=(*sh_rgb, 255),
-        outline_rgba=color_rgba("border_hi"),
-        radius=20,
+        [main_x0, main_y0, main_x1, main_y1],
+        fill_rgba=(*hex_to_rgb(color("surface")), 255),
+        radius=24,
     )
 
-    ix = _PAD + 36
-    iy = CARD_Y + 30
+    name_font = load_font("inter_bold", 38)
+    name = focus["name"]
+    nw, nh = text_size(name_font, name)
+    name_y = main_y0 + 80
+    draw.text(((W - nw) // 2, name_y), name, fill=color("muted"), font=name_font)
 
-    # ── Header row ─────────────────────────────────────────────────────────
-    lf = load_font("mono_medium", 11)
-    draw.text((ix, iy), "◆  ODAK", fill=color("accent"), font=lf)
+    val_font = load_font("inter_bold", 96)
+    unit_font = load_font("inter_regular", 50)
+    val_str = format_tr(focus["current"], focus["decimals"])
+    unit_str = focus.get("unit", "")
+    vw, vh = text_size(val_font, val_str)
+    uw, uh = text_size(unit_font, unit_str)
+    spacing = 24
+    total_w = vw + spacing + uw
+    val_x = (W - total_w) // 2
+    val_y = name_y + nh + 24
+    draw.text((val_x, val_y), val_str, fill=color("text"), font=val_font)
+    draw.text((val_x + vw + spacing, val_y + (vh - uh) - 6), unit_str, fill=color("text"), font=unit_font)
 
     daily = focus.get("daily_pct")
     if daily is not None:
-        af = load_font("mono_medium", 18)
-        at = f"{arrow_for(daily)} {format_pct(daily)}"
-        aw, _ = text_size(af, at)
-        draw.text((_W - _PAD - 36 - aw, iy), at, fill=change_color(daily), font=af)
+        dp_font = load_font("mono_medium", 22)
+        arrow = arrow_for(daily)
+        dp_text = f"{arrow} {format_pct(daily)} bugün"
+        dw, dh = text_size(dp_font, dp_text)
+        draw.text(((W - dw) // 2, val_y + vh + 18), dp_text, fill=change_color(daily), font=dp_font)
 
-    # ── Indicator name ──────────────────────────────────────────────────────
-    nf = load_font("inter_bold", 36)
-    name = focus.get("name", "")
-    draw.text((ix, iy + 20), name, fill=color("text"), font=nf)
+    history = focus.get("history", []) or []
+    hist_top = main_y1 + 24
+    hist_h = 130
+    hist_gap = 16
 
-    # ── Big value ───────────────────────────────────────────────────────────
-    decimals = int(focus.get("decimals", 4))
-    current = float(focus["current"])
-    unit = focus.get("unit", "")
-    vf = load_font("mono_bold", 96)
-    uf = load_font("mono_medium", 22)
-    val_str = format_tr(current, decimals)
-    vw, vh = text_size(vf, val_str)
-    draw.text((ix, iy + 68), val_str, fill=color("text"), font=vf)
-    draw.text((ix + vw + 14, iy + 68 + vh - text_size(uf, unit)[1] - 2), unit, fill=color("muted"), font=uf)
+    label_font = load_font("mono_medium", 14)
+    hval_font = load_font("inter_bold", 44)
+    hunit_font = load_font("inter_regular", 22)
+    pct_font = load_font("mono_medium", 28)
 
-    # ── Sparkline ───────────────────────────────────────────────────────────
-    spark = focus.get("sparkline") or []
-    SPARK_Y = iy + 68 + vh + 16
-    SPARK_H = 96
-    SPARK_W = _W - 2 * _PAD - 72
-
-    if spark:
-        img, draw = draw_sparkline_with_area(
-            img, draw, spark,
-            ix, SPARK_Y, SPARK_W, SPARK_H,
-            color("accent"), pad=4, line_width=2, area_alpha=45, dot=True,
-        )
-
-    # ── Axis labels ─────────────────────────────────────────────────────────
-    year_f = load_font("mono_medium", 10)
-    ax_y = SPARK_Y + SPARK_H + 4
-    years = ["2021", "2022", "2023", "2024", "2025", "2026"]
-    step = SPARK_W // (len(years) - 1)
-    for i, yr in enumerate(years):
-        xpos = ix + i * step
-        fc = color("accent") if yr == "2026" else color("dim")
-        draw.text((xpos, ax_y), yr + (" ★" if yr == "2026" else ""), fill=fc, font=year_f)
-
-    return img, draw, CARD_END
-
-
-def _draw_history_rows(
-    img: Image.Image,
-    draw: ImageDraw.ImageDraw,
-    focus: dict[str, Any],
-    start_y: int,
-) -> tuple[Image.Image, ImageDraw.ImageDraw]:
-    history = focus.get("history") or []
-    if not history:
-        return img, draw
-
-    decimals = int(focus.get("decimals", 4))
-    unit = focus.get("unit", "")
-    current = float(focus["current"])
-
-    n = len(history)
-    avail = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h - start_y - 10
-    row_h = min(avail // n, 210)
-
-    for i, item in enumerate(history):
-        row_y = start_y + 14 + i * (row_h + 14)
-        card_h = row_h
-
-        s = color("surface")
-        s_rgb = (int(s[1:3], 16), int(s[3:5], 16), int(s[5:7], 16))
+    for i, h in enumerate(history[:2]):
+        hy0 = hist_top + i * (hist_h + hist_gap)
+        hy1 = hy0 + hist_h
         img, draw = composite_rect(
             img,
-            [_PAD, row_y, _W - _PAD, row_y + card_h],
-            fill_rgba=(*s_rgb, 255),
-            outline_rgba=color_rgba("border"),
-            radius=16,
+            [main_x0, hy0, main_x1, hy1],
+            fill_rgba=(*hex_to_rgb(color("surface")), 255),
+            radius=22,
         )
-
-        ix = _PAD + 30
-        iy = row_y + 18
-
-        # Label + date
-        lbl_f = load_font("mono_medium", 10)
-        lbl = item.get("label", "")
-        days = item.get("days")
-        lbl_date = item.get("date", "")
-        draw.text((ix, iy), lbl, fill=color("dim"), font=lbl_f)
-
-        # Value
-        val = item.get("value")
-        vf = load_font("mono_bold", 38)
-        uf_sm = load_font("mono_medium", 13)
-        if val is None:
-            val_str = "—"
+        lx = main_x0 + 30
+        draw.text((lx, hy0 + 20), h["label"], fill=color("muted"), font=label_font)
+        val = h.get("value")
+        if val is not None:
+            v_str = format_tr(val, focus["decimals"])
+            vy = hy0 + 50
+            draw.text((lx, vy), v_str, fill=color("text"), font=hval_font)
+            vw2, vh2 = text_size(hval_font, v_str)
+            uw2, uh2 = text_size(hunit_font, focus.get("unit", ""))
+            draw.text(
+                (lx + vw2 + 14, vy + (vh2 - uh2) - 4),
+                focus.get("unit", ""),
+                fill=color("text"),
+                font=hunit_font,
+            )
         else:
-            val_str = format_tr(float(val), decimals)
-        draw.text((ix, iy + 18), val_str, fill=color("text"), font=vf)
-        vw, vh = text_size(vf, val_str)
-        draw.text((ix + vw + 8, iy + 18 + vh - text_size(uf_sm, unit)[1] - 2), unit, fill=color("dim"), font=uf_sm)
+            draw.text((lx, hy0 + 60), "—", fill=color("dim"), font=hval_font)
 
-        # ×multiplier
-        if val is not None and float(val) != 0:
-            multiple = current / float(val)
-            mf = load_font("mono_bold", 24)
-            ml = load_font("mono_medium", 10)
-            m_str = f"×{multiple:.1f}"
-            mw, _ = text_size(mf, m_str)
-            mx = _W - _PAD - 36 - mw - 100
-            draw.text((mx, iy + 16), "KAT", fill=color("dim"), font=ml)
-            draw.text((mx, iy + 28), m_str, fill=color("accent"), font=mf)
-
-        # Percentage change
-        pct = item.get("pct")
+        pct = h.get("pct")
         if pct is not None:
-            pf = load_font("mono_bold", 26)
-            pct_str = f"{arrow_for(float(pct))} {format_pct(float(pct))}"
-            pw, _ = text_size(pf, pct_str)
-            pl = load_font("mono_medium", 10)
-            draw.text((_W - _PAD - 36 - pw, iy + 16), "DEĞİŞİM", fill=color("dim"), font=pl)
-            draw.text((_W - _PAD - 36 - pw, iy + 28), pct_str, fill=change_color(float(pct)), font=pf)
+            arrow = arrow_for(pct)
+            ptxt = f"{arrow}  {format_pct(pct)}"
+            pw, ph = text_size(pct_font, ptxt)
+            draw.text(
+                (main_x1 - 30 - pw, hy0 + (hist_h - ph) // 2),
+                ptxt,
+                fill=change_color(pct),
+                font=pct_font,
+            )
 
-    return img, draw
+    last_hist_bottom = hist_top + min(len(history), 2) * (hist_h + hist_gap)
+    note_top_y = max(last_hist_bottom + 24, 1140)
 
+    draw_footer(draw, payload.get("note", "") or "", note_top_y=note_top_y)
 
-def _parse_target_date(payload: dict[str, Any]) -> date:
-    raw = payload.get("date")
-    if isinstance(raw, str):
-        return datetime.strptime(raw, "%Y-%m-%d").date()
-    return date.today()
-
-
-def render_noon(payload: dict[str, Any], output_path: Path) -> Path:
-    """Öğle Odak Kartı'nı oluştur ve PNG olarak kaydet."""
-    target_date = _parse_target_date(payload)
-    focus = payload.get("focus") or {}
-    if not focus:
-        raise ValueError("noon payload missing 'focus' block")
-    note = payload.get("note") or ""
-
-    img = Image.new("RGB", (_W, _H), color=color("bg"))
-    draw = ImageDraw.Draw(img)
-
-    draw_corner_marks(draw)
-    img, draw = draw_header(img, target_date, "NOON · 13:00")
-    _draw_title(draw)
-    img, draw, hero_end = _draw_focus_hero(img, draw, focus)
-    img, draw = _draw_history_rows(img, draw, focus, hero_end)
-    draw_footer(draw, note)
-
-    output_path = Path(output_path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    img.save(output_path, format="PNG", optimize=True)
-    return output_path
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out_path, "PNG")

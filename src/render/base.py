@@ -25,8 +25,6 @@ def load_font(name: str, size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.truetype(str(path), size)
 
 
-# ─── Color helpers ────────────────────────────────────────────────────────────
-
 def color(name: str) -> str:
     return COLORS[name]
 
@@ -44,20 +42,7 @@ def change_color(value: float) -> str:
     return color("positive") if value >= 0 else color("negative")
 
 
-def change_color_rgba(value: float) -> tuple[int, int, int, int]:
-    return color_rgba("pos_dim") if value >= 0 else color_rgba("neg_dim")
-
-
-# ─── Formatting ───────────────────────────────────────────────────────────────
-
 def format_tr(value: float, decimals: int) -> str:
-    """Türkçe sayı formatı: '.' binlik ayraç, ',' ondalık.
-
-    >>> format_tr(1234.56, 2)
-    '1.234,56'
-    >>> format_tr(38.4521, 4)
-    '38,4521'
-    """
     if decimals < 0:
         raise ValueError("decimals must be >= 0")
     negative = value < 0
@@ -76,13 +61,6 @@ def format_tr(value: float, decimals: int) -> str:
 
 
 def format_pct(value: float) -> str:
-    """Yüzdelik: |değer| ≥ 100 ise ondalık yok; işaret zorunlu.
-
-    >>> format_pct(0.42)
-    '+0,42%'
-    >>> format_pct(425.3)
-    '+425%'
-    """
     decimals = 0 if abs(value) >= 100 else 2
     body = format_tr(abs(value), decimals)
     sign = "+" if value >= 0 else "-"
@@ -106,7 +84,7 @@ def wrap_lines(
     font: ImageFont.FreeTypeFont,
     text: str,
     max_width: int,
-    max_lines: int = 2,
+    max_lines: int = 3,
 ) -> list[str]:
     words = text.split()
     if not words:
@@ -133,13 +111,10 @@ def wrap_lines(
     return lines
 
 
-# ─── RGBA compositing ─────────────────────────────────────────────────────────
-
 def _composite(
     img: Image.Image,
     draw_fn,
 ) -> tuple[Image.Image, ImageDraw.ImageDraw]:
-    """Run draw_fn on a transparent overlay, composite onto img."""
     overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
     draw_fn(ImageDraw.Draw(overlay))
     result = Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
@@ -152,280 +127,95 @@ def composite_rect(
     fill_rgba: tuple[int, int, int, int] | None = None,
     outline_rgba: tuple[int, int, int, int] | None = None,
     radius: int = 18,
+    width: int = 1,
 ) -> tuple[Image.Image, ImageDraw.ImageDraw]:
     def _draw(d: ImageDraw.ImageDraw) -> None:
         if fill_rgba:
             d.rounded_rectangle(bbox, radius=radius, fill=fill_rgba)
         if outline_rgba:
-            d.rounded_rectangle(bbox, radius=radius, outline=outline_rgba, width=1)
-
+            d.rounded_rectangle(bbox, radius=radius, outline=outline_rgba, width=width)
     return _composite(img, _draw)
 
 
-def composite_poly(
-    img: Image.Image,
-    points: list[tuple[float, float]],
-    fill_rgba: tuple[int, int, int, int],
-) -> tuple[Image.Image, ImageDraw.ImageDraw]:
-    int_pts = [(int(x), int(y)) for x, y in points]
-
-    def _draw(d: ImageDraw.ImageDraw) -> None:
-        d.polygon(int_pts, fill=fill_rgba)
-
-    return _composite(img, _draw)
+def new_canvas() -> Image.Image:
+    return Image.new("RGB", (LAYOUT.canvas_w, LAYOUT.canvas_h), color("bg"))
 
 
-# ─── Drawing primitives ───────────────────────────────────────────────────────
-
-def draw_corner_marks(
+def draw_brand_header(
     draw: ImageDraw.ImageDraw,
-    w: int = LAYOUT.canvas_w,
-    h: int = LAYOUT.canvas_h,
-    pad: int = 30,
-    size: int = 14,
-) -> None:
-    c = color("dim")
-    # top-left
-    draw.line([(pad, pad), (pad + size, pad)], fill=c, width=1)
-    draw.line([(pad, pad), (pad, pad + size)], fill=c, width=1)
-    # top-right
-    draw.line([(w - pad - size, pad), (w - pad, pad)], fill=c, width=1)
-    draw.line([(w - pad, pad), (w - pad, pad + size)], fill=c, width=1)
-    # bottom-left
-    draw.line([(pad, h - pad), (pad + size, h - pad)], fill=c, width=1)
-    draw.line([(pad, h - pad - size), (pad, h - pad)], fill=c, width=1)
-    # bottom-right
-    draw.line([(w - pad - size, h - pad), (w - pad, h - pad)], fill=c, width=1)
-    draw.line([(w - pad, h - pad - size), (w - pad, h - pad)], fill=c, width=1)
-
-
-def draw_grid_lines(
-    img: Image.Image,
-    spacing: int = 90,
-    alpha: int = 15,
-) -> tuple[Image.Image, ImageDraw.ImageDraw]:
-    w, h = img.size
-    overlay = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    d = ImageDraw.Draw(overlay)
-    c = (255, 255, 255, alpha)
-    for x in range(0, w, spacing):
-        d.line([(x, 0), (x, h)], fill=c, width=1)
-    for y in range(0, h, spacing):
-        d.line([(0, y), (w, y)], fill=c, width=1)
-    result = Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
-    return result, ImageDraw.Draw(result)
-
-
-def draw_sparkline(
-    draw: ImageDraw.ImageDraw,
-    values: list[float],
-    x: int,
-    y: int,
-    w: int,
-    h: int,
-    line_color: str,
-    pad: int = 4,
-    line_width: int = 2,
-    dot: bool = True,
-) -> None:
-    if not values or len(values) < 2:
-        return
-    min_v = min(values)
-    max_v = max(values)
-    rng = max_v - min_v or 1.0
-    step_x = (w - pad * 2) / (len(values) - 1)
-    pts = []
-    for i, val in enumerate(values):
-        px = x + pad + i * step_x
-        py = y + pad + (h - pad * 2) - ((val - min_v) / rng) * (h - pad * 2)
-        pts.append((px, py))
-    draw.line(pts, fill=line_color, width=line_width, joint="curve")
-    if dot:
-        lx, ly = int(pts[-1][0]), int(pts[-1][1])
-        r = line_width + 2
-        draw.ellipse([lx - r, ly - r, lx + r, ly + r], fill=line_color)
-
-
-def draw_sparkline_with_area(
-    img: Image.Image,
-    draw: ImageDraw.ImageDraw,
-    values: list[float],
-    x: int,
-    y: int,
-    w: int,
-    h: int,
-    line_color: str,
-    pad: int = 4,
-    line_width: int = 2,
-    area_alpha: int = 50,
-    dot: bool = True,
-) -> tuple[Image.Image, ImageDraw.ImageDraw]:
-    if not values or len(values) < 2:
-        return img, draw
-    min_v = min(values)
-    max_v = max(values)
-    rng = max_v - min_v or 1.0
-    step_x = (w - pad * 2) / (len(values) - 1)
-    pts = []
-    for i, val in enumerate(values):
-        px = x + pad + i * step_x
-        py = y + pad + (h - pad * 2) - ((val - min_v) / rng) * (h - pad * 2)
-        pts.append((px, py))
-
-    # Area polygon (close at bottom)
-    area_pts = list(pts) + [(x + w - pad, y + h - pad), (x + pad, y + h - pad)]
-    r, g, b = hex_to_rgb(line_color)
-    img, draw = composite_poly(img, area_pts, (r, g, b, area_alpha))
-
-    draw.line(pts, fill=line_color, width=line_width, joint="curve")
-    if dot:
-        lx, ly = int(pts[-1][0]), int(pts[-1][1])
-        rd = line_width + 2
-        draw.ellipse([lx - rd, ly - rd, lx + rd, ly + rd], fill=line_color)
-    return img, draw
-
-
-def draw_range_bar(
-    draw: ImageDraw.ImageDraw,
-    x: int,
-    y: int,
-    w: int,
-    h: int,
-    pct: float,
-    track_color: str | None = None,
-    dot_color: str | None = None,
-) -> None:
-    tc = track_color or color("surface")
-    dc = dot_color or color("accent")
-    draw.rounded_rectangle([x, y + h // 2 - 2, x + w, y + h // 2 + 2], radius=2, fill=tc)
-    dot_x = int(x + pct / 100 * w)
-    r = h // 2
-    draw.ellipse([dot_x - r, y, dot_x + r, y + h], fill=dc)
-
-
-# ─── Shared card sections ─────────────────────────────────────────────────────
-
-def draw_header(
-    img: Image.Image,
     target_date: date,
-    slot: str,
-) -> tuple[Image.Image, ImageDraw.ImageDraw]:
-    """Premium header: ₺ brand logo (left) + slot badge + date (right)."""
+) -> None:
+    """Sade üst bant: sol 'FİYAT HAFIZASI' (sarı), sağ tarih."""
     PAD_X = LAYOUT.padding_x
-    TOP_Y = 58
+    Y = 60
 
-    # ── ₺ icon box ──────────────────────────────────────────────────────────
-    ICON = 42
-    accent_rgb = hex_to_rgb(color("accent"))
-    img, draw = composite_rect(
-        img,
-        [PAD_X, TOP_Y, PAD_X + ICON, TOP_Y + ICON],
-        fill_rgba=(*accent_rgb, 255),
-        radius=10,
-    )
-    tl_font = load_font("inter_bold", 24)
-    tl_text = "₺"
-    tw, th = text_size(tl_font, tl_text)
+    brand_font = load_font("inter_bold", 32)
+    draw.text((PAD_X, Y), "FİYAT HAFIZASI", fill=color("accent"), font=brand_font)
+
+    date_font = load_font("mono_medium", 20)
+    date_str = f"{target_date.day} {TR_MONTHS[target_date.month - 1]} {target_date.year}, {TR_WEEKDAYS[target_date.weekday()]}"
+    dw, dh = text_size(date_font, date_str)
+    bw, bh = text_size(brand_font, "FİYAT HAFIZASI")
+    # baseline'ı eşitle: brand metnin alt kenarına hizala
     draw.text(
-        (PAD_X + (ICON - tw) // 2, TOP_Y + (ICON - th) // 2 - 1),
-        tl_text,
-        fill="#0B0F1E",
-        font=tl_font,
+        (LAYOUT.canvas_w - PAD_X - dw, Y + (bh - dh)),
+        date_str,
+        fill=color("muted"),
+        font=date_font,
     )
 
-    # ── Brand text ───────────────────────────────────────────────────────────
-    bf = load_font("inter_bold", 16)
-    mf = load_font("mono_medium", 11)
-    bx = PAD_X + ICON + 14
-    draw.text((bx, TOP_Y + 2), "FİYAT HAFIZASI", fill=color("text"), font=bf)
-    draw.text((bx, TOP_Y + 24), "SINCE · 2024", fill=color("dim"), font=mf)
 
-    # ── Slot badge (right) ───────────────────────────────────────────────────
-    sf = load_font("mono_medium", 11)
-    sw, sh = text_size(sf, slot)
-    bpad_x, bpad_y = 10, 5
-    badge_w = sw + bpad_x * 2
-    badge_h = sh + bpad_y * 2
-    badge_x = LAYOUT.canvas_w - PAD_X - badge_w
-    badge_y = TOP_Y
-
-    img, draw = composite_rect(
-        img,
-        [badge_x, badge_y, badge_x + badge_w, badge_y + badge_h],
-        fill_rgba=(*accent_rgb, 13),
-        outline_rgba=(*accent_rgb, 90),
-        radius=20,
-    )
-    draw.text((badge_x + bpad_x, badge_y + bpad_y), slot, fill=color("accent"), font=sf)
-
-    # ── Date line ────────────────────────────────────────────────────────────
-    df = load_font("mono_medium", 13)
-    date_str = f"{target_date.day} {TR_MONTHS[target_date.month - 1]} {target_date.year}"
-    weekday = TR_WEEKDAYS[target_date.weekday()]
-    date_text = f"{date_str} · "
-    dt_w, _ = text_size(df, date_text)
-    wd_w, _ = text_size(df, weekday)
-    date_y = badge_y + badge_h + 6
-    right_x = LAYOUT.canvas_w - PAD_X
-    draw.text((right_x - dt_w - wd_w, date_y), date_text, fill=color("muted"), font=df)
-    draw.text((right_x - wd_w, date_y), weekday, fill=color("text"), font=df)
-
-    return img, draw
-
-
-def draw_eyebrow(
+def draw_card_title(
     draw: ImageDraw.ImageDraw,
-    x: int,
-    y: int,
-    no: str,
-    label: str,
+    title: str,
+    subtitle: str,
+    y: int = 180,
 ) -> int:
-    """Returns bottom y of eyebrow."""
-    nf = load_font("mono_medium", 11)
-    lf = load_font("inter_semibold", 11)
-    nw, nh = text_size(nf, no)
-    draw.text((x, y), no, fill=color("dim"), font=nf)
-    line_x = x + nw + 12
-    draw.line([(line_x, y + nh // 2), (line_x + 24, y + nh // 2)], fill=color("dim"), width=1)
-    draw.text((line_x + 36, y), label.upper(), fill=color("muted"), font=lf)
-    return y + nh
+    """Ortalanmış büyük başlık + altyazı. Altyazının alt y'sini döner."""
+    title_font = load_font("inter_bold", 70)
+    sub_font = load_font("inter_regular", 22)
+
+    tw, th = text_size(title_font, title)
+    draw.text(((LAYOUT.canvas_w - tw) // 2, y), title, fill=color("text"), font=title_font)
+
+    sy = y + th + 14
+    sw, sh = text_size(sub_font, subtitle)
+    draw.text(((LAYOUT.canvas_w - sw) // 2, sy), subtitle, fill=color("muted"), font=sub_font)
+    return sy + sh
 
 
 def draw_footer(
     draw: ImageDraw.ImageDraw,
     note: str,
-    footer_y: int | None = None,
+    note_top_y: int,
 ) -> None:
-    if footer_y is None:
-        footer_y = LAYOUT.header_h + LAYOUT.title_h + LAYOUT.table_h
+    """Note + 'Kaynak: Yahoo Finance' (sol) + '#fiyathafizasi' sarı (sağ).
+
+    note_top_y: küçük dekoratif çizginin başlayacağı y (notun üstü).
+    """
     W = LAYOUT.canvas_w
     PAD_X = LAYOUT.padding_x
 
-    # Gradient divider (approximated as a wide faint line)
+    # Küçük orta divider
+    div_w = 80
     draw.line(
-        [(W // 2 - 180, footer_y), (W // 2 + 180, footer_y)],
+        [((W - div_w) // 2, note_top_y), ((W + div_w) // 2, note_top_y)],
         fill=color("divider"),
-        width=1,
+        width=2,
     )
 
     if note:
-        note_font = load_font("inter_regular", 17)
-        note_y = footer_y + 32
-        max_w = W - 2 * PAD_X
+        note_font = load_font("inter_regular", 22)
+        max_w = W - 2 * PAD_X - 60
         lines = wrap_lines(note_font, note, max_width=max_w, max_lines=3)
-        line_h = note_font.getbbox("Ay")[3] + 10
+        line_h = note_font.getbbox("Ay")[3] + 14
+        ny = note_top_y + 36
         for i, line in enumerate(lines):
             lw, _ = text_size(note_font, line)
-            draw.text(((W - lw) // 2, note_y + i * line_h), line, fill=color("muted"), font=note_font)
+            draw.text(((W - lw) // 2, ny + i * line_h), line, fill=color("muted"), font=note_font)
 
-    meta_f = load_font("mono_medium", 11)
-    meta_y = LAYOUT.canvas_h - 52
-    draw.text((PAD_X, meta_y), "SOURCE · YAHOO FINANCE", fill=color("dim"), font=meta_f)
-    hw, _ = text_size(meta_f, HASHTAG.upper())
-    draw.rounded_rectangle(
-        [W - PAD_X - hw - 20, meta_y - 4, W - PAD_X, meta_y + meta_f.getbbox("A")[3] + 4],
-        radius=4,
-        outline=color_rgba("accent_dim"),
-        width=1,
-    )
-    draw.text((W - PAD_X - hw - 10, meta_y), HASHTAG.upper(), fill=color("accent"), font=meta_f)
+    meta_f = load_font("mono_medium", 14)
+    meta_y = LAYOUT.canvas_h - 56
+    draw.text((PAD_X, meta_y), "Kaynak: Yahoo Finance", fill=color("dim"), font=meta_f)
+    hw, _ = text_size(meta_f, HASHTAG)
+    draw.text((W - PAD_X - hw, meta_y), HASHTAG, fill=color("accent"), font=meta_f)

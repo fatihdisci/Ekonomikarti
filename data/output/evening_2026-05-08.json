@@ -1,0 +1,51 @@
+{
+  "date": "2026-05-08",
+  "generated_at_utc": "2026-05-08T16:54:48.272368+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.3628,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.3
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.4311,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.4
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 101.71,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": 1.65
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 15062.65,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 0.15
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 101.71,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": 1.65
+  },
+  "note": "Bugün döviz kurlarında hafif yükselişler gözlemlenirken, BIST 100 endeksi de sınırlı bir artışla günü tamamladı. Günün en dikkat çekici hareketi ise Brent petrol fiyatlarındaki belirgin yükseliş oldu."
+}

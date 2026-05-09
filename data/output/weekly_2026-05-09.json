@@ -1,0 +1,88 @@
+{
+  "date": "2026-05-09",
+  "friday": "2026-05-08",
+  "generated_at_utc": "2026-05-09T09:02:09.081556+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.3448,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.45,
+      "sparkline": [
+        45.1853,
+        45.2144,
+        45.2296,
+        45.2279,
+        45.3448
+      ]
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.4458,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.99,
+      "sparkline": [
+        53.0212,
+        52.8739,
+        53.0205,
+        53.2195,
+        53.4458
+      ]
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6881.72,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "weekly_pct": 2.41,
+      "sparkline": [
+        6565.66,
+        6622.66,
+        6808.25,
+        6834.02,
+        6881.72
+      ]
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 101.29,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "weekly_pct": -6.36,
+      "sparkline": [
+        114.44,
+        109.87,
+        101.27,
+        100.06,
+        101.29
+      ]
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 15062.7,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "weekly_pct": 4.29,
+      "sparkline": [
+        14369.6,
+        14495.8,
+        14917.4,
+        15040.3,
+        15062.7
+      ]
+    }
+  ],
+  "note": "Bu hafta BIST 100 endeksi güçlü bir yükselişle haftayı tamamlarken, TL karşısında dolar ve euroda hafif artışlar gözlemlendi. Altın haftayı pozitif kapatırken, Brent petrol önemli bir düşüş yaşadı.\n\n#Ekonomi #PiyasaAnalizi #BIST100 #Döviz #Altın #Petrol"
+}

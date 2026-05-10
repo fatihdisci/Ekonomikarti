@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-10",
+  "friday": "2026-05-08",
+  "generated_at_utc": "2026-05-10T09:15:43.865405+00:00",
+  "star": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "current": 15062.7,
+    "unit": "puan",
+    "decimals": 2,
+    "weekly_pct": 4.29
+  },
+  "loser": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 101.29,
+    "unit": "USD",
+    "decimals": 2,
+    "weekly_pct": -6.36
+  },
+  "note": "Bu hafta Borsa İstanbul'un rekor seviyelere ulaşması, yatırımcıların yerel piyasalara olan güvenini gösterirken, küresel enerji fiyatlarındaki düşüşün petrol üreticileri için zorlu bir döneme işaret ettiğini gözlemliyoruz.\n\n#BIST100 #BrentPetrol #EkonomiAnalizi #PiyasaDeğerlendirmesi"
+}

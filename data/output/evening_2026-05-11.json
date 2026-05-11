@@ -1,0 +1,60 @@
+{
+  "date": "2026-05-11",
+  "generated_at_utc": "2026-05-11T17:35:55.106384+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.3498,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.28
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.4561,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.71
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 104.45,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": 3.12
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 15133.54,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 0.47
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 104.45,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": 3.12,
+    "sparkline": [
+      109.87,
+      101.27,
+      100.06,
+      101.29,
+      101.29,
+      101.29,
+      104.45
+    ]
+  },
+  "note": "Bugün döviz kurlarında sınırlı yükselişler görülürken, BIST 100 endeksi de pozitif bir kapanış yaptı. Günün en dikkat çekici hareketi ise Brent petrolün arz endişeleriyle birlikte sert yükselişi oldu."
+}

@@ -1,0 +1,60 @@
+{
+  "date": "2026-05-12",
+  "generated_at_utc": "2026-05-12T17:36:28.228193+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.3928,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.09
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.2877,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.04
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 107.24,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": 2.91
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14779.93,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": -2.34
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 107.24,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": 2.91,
+    "sparkline": [
+      101.27,
+      100.06,
+      101.29,
+      101.29,
+      101.29,
+      104.21,
+      107.24
+    ]
+  },
+  "note": "Bugün BIST 100 endeksi %2.34'lük düşüşle günü tamamlarken, küresel emtia piyasalarında Brent petrolün %2.91'lik yükselişi dikkat çekti. Döviz kurlarında ise sınırlı hareketler gözlemlendi."
+}

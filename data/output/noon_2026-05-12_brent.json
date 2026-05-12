@@ -1,0 +1,50 @@
+{
+  "date": "2026-05-12",
+  "generated_at_utc": "2026-05-12T11:33:25.900419+00:00",
+  "focus": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "unit": "USD",
+    "decimals": 2,
+    "current": 107.44,
+    "daily_pct": 3.1,
+    "sparkline": [
+      82.56,
+      89.47,
+      117.61,
+      87.96,
+      86.66,
+      76.95,
+      93.29,
+      79.55,
+      81.9,
+      74.88,
+      80.79,
+      65.41,
+      66.99,
+      63.87,
+      107.44
+    ],
+    "range_5y": {
+      "lo": 58.92,
+      "hi": 127.98
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 64.96,
+        "pct": 65.39
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 67.05,
+        "pct": 60.24
+      }
+    ]
+  },
+  "note": "Bugün Brent petrol fiyatı, geçen yıla göre belirgin bir artış göstererek 107.44 USD seviyesine ulaştı. Bu yükseliş, 5 yıl önceki fiyatlara kıyasla da önemli bir farkı ortaya koyuyor.\n\n#BrentPetrol #EnerjiFiyatları #Ekonomi"
+}

@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-12",
+  "generated_at_utc": "2026-05-12T08:11:36.448465+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.315,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.08,
+        "monthly": 1.52,
+        "yearly": 16.97,
+        "five_year": 437.36
+      },
+      "sparkline": [
+        39.368,
+        40.2543,
+        40.8469,
+        41.3428,
+        41.8123,
+        42.2484,
+        42.6324,
+        43.1054,
+        43.6275,
+        44.1854,
+        44.6381,
+        45.315
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.35
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.3496,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.07,
+        "monthly": 2.46,
+        "yearly": 22.74,
+        "five_year": 423.86
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6865.25,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.22,
+        "monthly": 0.46,
+        "yearly": 71.18,
+        "five_year": 1288.39
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 106.53,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 2.23,
+        "monthly": 11.9,
+        "yearly": 63.99,
+        "five_year": 58.88
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 15079.09,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.36,
+        "monthly": 7.14,
+        "yearly": 54.7,
+        "five_year": 946.22
+      }
+    }
+  ],
+  "note": "Son bir yılda dolar ve euro karşısında TL'nin değer kaybı devam ederken, gram altının 5 yıllık getirisi BIST 100'ün performansını gölgede bırakıyor. Brent petrolün yıllık artışı dikkat çekerken, Borsa İstanbul ise 5 yıllık bazda güçlü bir yükseliş trendinde."
+}

@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-13",
+  "generated_at_utc": "2026-05-13T08:17:56.387261+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.4162,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.07,
+        "monthly": 1.6,
+        "yearly": 17.08,
+        "five_year": 434.35
+      },
+      "sparkline": [
+        39.3876,
+        40.2407,
+        40.8469,
+        41.2783,
+        41.8192,
+        42.2852,
+        42.6324,
+        43.1418,
+        43.6361,
+        44.1854,
+        44.6996,
+        45.4162
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.42
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.2196,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.49,
+        "monthly": 2.06,
+        "yearly": 23.62,
+        "five_year": 418.32
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6875.03,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.73,
+        "monthly": 0.87,
+        "yearly": 70.13,
+        "five_year": 1268.91
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 106.96,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.75,
+        "monthly": 7.65,
+        "yearly": 60.53,
+        "five_year": 55.67
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14721.62,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.39,
+        "monthly": 4.72,
+        "yearly": 51.77,
+        "five_year": 921.42
+      }
+    }
+  ],
+  "note": "Bugün döviz kurlarında sınırlı hareketlilik gözlenirken, gram altındaki ve BIST 100 endeksindeki yükseliş dikkat çekiyor. Özellikle gram altının son bir yıldaki getirisi, döviz kurlarındaki yıllık artışın oldukça üzerinde seyrederek yatırımcılar için cazip bir alan olmaya devam ediyor."
+}

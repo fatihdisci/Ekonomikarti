@@ -1,0 +1,50 @@
+{
+  "date": "2026-05-13",
+  "generated_at_utc": "2026-05-13T11:51:10.552820+00:00",
+  "focus": {
+    "key": "gram_altin",
+    "name": "Gram Altın",
+    "unit": "TL",
+    "decimals": 2,
+    "current": 6879.64,
+    "daily_pct": 0.79,
+    "sparkline": [
+      501.6,
+      780.57,
+      977.98,
+      988.64,
+      1166.36,
+      1248.48,
+      1662.35,
+      1960.55,
+      2413.63,
+      2870.62,
+      3136.28,
+      3973.08,
+      4886.74,
+      6365.4,
+      6879.64
+    ],
+    "range_5y": {
+      "lo": 475.31,
+      "hi": 7480.88
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 4041.05,
+        "pct": 70.24
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 502.23,
+        "pct": 1269.82
+      }
+    ]
+  },
+  "note": "Gram altın, bir yıl öncesine göre %70'in üzerinde bir artış göstererek yatırımcılarına önemli bir getiri sağladı. Beş yıl öncesine kıyasla ise bu değerlenmenin %1200'ü aştığı görülüyor.\n\n#GramAltın #Ekonomi #Yatırım"
+}

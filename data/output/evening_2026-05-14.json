@@ -1,0 +1,60 @@
+{
+  "date": "2026-05-14",
+  "generated_at_utc": "2026-05-14T17:24:49.699917+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.4177,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.04
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.1861,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.22
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 105.41,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": -0.21
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14644.7,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 0.32
+    }
+  ],
+  "biggest_mover": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "current": 14644.7,
+    "unit": "puan",
+    "decimals": 2,
+    "daily_pct": 0.32,
+    "sparkline": [
+      15062.7,
+      15062.7,
+      15062.7,
+      15133.5,
+      14779.9,
+      14598.5,
+      14644.7
+    ]
+  },
+  "note": "Bugün Borsa İstanbul, güne hafif alıcılı bir seyirle başlasa da gün sonuna doğru %0.32'lik bir yükselişle en sert hareketi gerçekleştirdi. Dolar TL'de sınırlı bir artış yaşanırken, Euro TL ve Brent Petrol'de hafif geri çekilmeler gözlemlendi."
+}

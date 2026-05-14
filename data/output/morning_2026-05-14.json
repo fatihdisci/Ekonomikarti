@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-14",
+  "generated_at_utc": "2026-05-14T08:12:08.934755+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.4327,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.07,
+        "monthly": 1.63,
+        "yearly": 17.22,
+        "five_year": 434.54
+      },
+      "sparkline": [
+        39.5209,
+        40.336,
+        40.8469,
+        41.3077,
+        41.8512,
+        42.2852,
+        42.6822,
+        43.1524,
+        43.7281,
+        44.1854,
+        44.703,
+        45.4327
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.43
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.3139,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.02,
+        "monthly": 1.38,
+        "yearly": 22.86,
+        "five_year": 419.23
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6871.84,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.22,
+        "monthly": -0.91,
+        "yearly": 73.34,
+        "five_year": 1268.27
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 106.6,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.92,
+        "monthly": 12.46,
+        "yearly": 61.3,
+        "five_year": 55.14
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14660.44,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.42,
+        "monthly": 3.23,
+        "yearly": 51.11,
+        "five_year": 917.17
+      }
+    }
+  ],
+  "note": "Döviz kurlarında sınırlı artışlar gözlenirken, gram altının yıllık ve 5 yıllık performansı döviz kurlarını geride bırakarak yatırımcısına daha yüksek getiri sağlamış durumda. Borsa ise 5 yıllık periyotta altının ardından en yüksek getiriyi sunarken, petrol fiyatlarındaki yükseliş de dikkat çekiyor."
+}

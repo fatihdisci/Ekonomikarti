@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-15",
+  "generated_at_utc": "2026-05-15T08:23:06.651304+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.54,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.24,
+        "monthly": 1.81,
+        "yearly": 17.47,
+        "five_year": 435.8
+      },
+      "sparkline": [
+        39.5341,
+        40.336,
+        40.8989,
+        41.3073,
+        41.8963,
+        42.2852,
+        42.6939,
+        43.1696,
+        43.7281,
+        44.171,
+        44.7317,
+        45.54
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.54
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.0659,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.57,
+        "monthly": 0.56,
+        "yearly": 22.3,
+        "five_year": 416.82
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6690.99,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -2.08,
+        "monthly": -3.07,
+        "yearly": 66.68,
+        "five_year": 1232.26
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 107.97,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 2.13,
+        "monthly": 13.74,
+        "yearly": 67.32,
+        "five_year": 57.14
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14380.66,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.8,
+        "monthly": 0.9,
+        "yearly": 50.72,
+        "five_year": 897.76
+      }
+    }
+  ],
+  "note": "Döviz kurlarında bir miktar ayrışma gözlenirken, altın ve petrol gibi emtia fiyatlarındaki artış eğilimi devam ediyor. Borsa İstanbul ise bu yükselişlere rağmen günü negatif kapatarak yatırımcıları için karmaşık bir tablo sunuyor."
+}

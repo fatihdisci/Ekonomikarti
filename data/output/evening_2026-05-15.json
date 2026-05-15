@@ -1,0 +1,60 @@
+{
+  "date": "2026-05-15",
+  "generated_at_utc": "2026-05-15T17:14:20.200502+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.5296,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.22
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.0507,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.59
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 109.03,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": 3.13
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14367.6,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": -1.89
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 109.03,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": 3.13,
+    "sparkline": [
+      101.29,
+      101.29,
+      104.21,
+      107.77,
+      105.63,
+      105.72,
+      109.03
+    ]
+  },
+  "note": "Bugün BIST 100 endeksi %1.89'luk düşüşle günü tamamlarken, küresel emtia piyasasında Brent petrolün %3.13'lük sert yükselişi dikkat çekti. Dolar TL hafif yukarıda seyrederken, Euro TL ise günü hafif düşüşle kapattı."
+}

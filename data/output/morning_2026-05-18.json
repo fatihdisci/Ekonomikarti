@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-18",
+  "generated_at_utc": "2026-05-18T08:57:52.431715+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.5775,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.08,
+        "monthly": 1.63,
+        "yearly": 17.36,
+        "five_year": 445.5
+      },
+      "sparkline": [
+        39.6637,
+        40.4044,
+        40.9118,
+        41.3972,
+        41.9304,
+        42.3269,
+        42.7853,
+        43.2722,
+        43.7228,
+        44.319,
+        44.8485,
+        45.5775
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.58
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.0483,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.25,
+        "monthly": 0.39,
+        "yearly": 22.22,
+        "five_year": 419.25
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6677.89,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.11,
+        "monthly": -4.66,
+        "yearly": 68.08,
+        "five_year": 1221.41
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 110.04,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.71,
+        "monthly": 21.75,
+        "yearly": 68.23,
+        "five_year": 65.08
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14160.38,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.44,
+        "monthly": -2.93,
+        "yearly": 46.46,
+        "five_year": 870.16
+      }
+    }
+  ],
+  "note": "Bugün döviz kurlarında sınırlı hareketler görülürken, Gram Altın ve Brent Petrol haftalık bazda yükselişini sürdürdü. Borsa İstanbul ise haftanın ilk işlem gününü düşüşle kapatarak yatırımcılarına negatif bir başlangıç yaşattı."
+}

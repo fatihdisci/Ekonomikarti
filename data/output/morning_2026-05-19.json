@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-19",
+  "generated_at_utc": "2026-05-19T08:44:39.398213+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.5751,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.18,
+        "monthly": 1.62,
+        "yearly": 17.29,
+        "five_year": 441.88
+      },
+      "sparkline": [
+        39.7205,
+        40.434,
+        41.0076,
+        41.3972,
+        41.9289,
+        42.3429,
+        42.7853,
+        43.2683,
+        43.7345,
+        44.3037,
+        44.8485,
+        45.5751
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.58
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.0219,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.37,
+        "monthly": 0.34,
+        "yearly": 22.09,
+        "five_year": 418.49
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6662.74,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.06,
+        "monthly": -4.88,
+        "yearly": 65.18,
+        "five_year": 1209.37
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 110.18,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.71,
+        "monthly": 21.91,
+        "yearly": 68.11,
+        "five_year": 69.22
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14029.5,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.0,
+        "monthly": -3.83,
+        "yearly": 45.11,
+        "five_year": 867.69
+      }
+    }
+  ],
+  "note": "Döviz kurlarında sınırlı artışlar gözlenirken, gram altın ve BIST 100 endeksi uzun vadede güçlü bir getiri performansı sergilemeye devam ediyor. Brent petrol ise son bir yılda dikkat çekici bir yükseliş gösterse de, günlük bazda hafif bir düşüşte."
+}

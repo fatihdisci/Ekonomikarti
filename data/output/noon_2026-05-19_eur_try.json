@@ -1,0 +1,50 @@
+{
+  "date": "2026-05-19",
+  "generated_at_utc": "2026-05-19T12:30:13.254784+00:00",
+  "focus": {
+    "key": "eur_try",
+    "name": "EUR/TRY",
+    "unit": "TL",
+    "decimals": 4,
+    "current": 53.001,
+    "daily_pct": 0.33,
+    "sparkline": [
+      10.3918,
+      15.5051,
+      18.4086,
+      18.1798,
+      20.5084,
+      22.4633,
+      28.9758,
+      32.8985,
+      34.9467,
+      38.0219,
+      37.1492,
+      44.0594,
+      48.7838,
+      50.343,
+      53.001
+    ],
+    "range_5y": {
+      "lo": 9.8073,
+      "hi": 53.4806
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 43.4274,
+        "pct": 22.05
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 10.2262,
+        "pct": 418.29
+      }
+    ]
+  },
+  "note": "EUR/TRY kuru bugün 53.001 TL seviyesinde işlem görerek bir önceki yıla göre %22.05'lik bir artış kaydetti. Beş yıl öncesine kıyasla ise %418.29 gibi dikkat çekici bir yükseliş yaşandığı görülüyor.\n\n#EURTRY #Ekonomi #KurAnalizi"
+}

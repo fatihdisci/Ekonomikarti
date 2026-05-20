@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-20",
+  "generated_at_utc": "2026-05-20T08:41:43.355623+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.5926,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.04,
+        "monthly": 1.65,
+        "yearly": 17.37,
+        "five_year": 444.76
+      },
+      "sparkline": [
+        39.6707,
+        40.4511,
+        41.0076,
+        41.4079,
+        41.9682,
+        42.4387,
+        42.7853,
+        43.2761,
+        43.764,
+        44.3037,
+        44.8542,
+        45.5926
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.59
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 52.8809,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.5,
+        "monthly": 0.52,
+        "yearly": 21.28,
+        "five_year": 416.82
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6579.4,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.35,
+        "monthly": -5.08,
+        "yearly": 60.6,
+        "five_year": 1202.9
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 109.69,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.43,
+        "monthly": 14.88,
+        "yearly": 67.77,
+        "five_year": 65.1
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14040.68,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.08,
+        "monthly": -3.07,
+        "yearly": 47.58,
+        "five_year": 867.13
+      }
+    }
+  ],
+  "note": "Yılın başından bu yana TL'deki değer kaybına rağmen, BIST 100 endeksi ve gram altın enflasyona karşı önemli bir getiri sağlamış durumda. Doların TL karşısındaki yükselişi devam ederken, euro TL karşısında bir miktar gerileme gösterdi. Brent petrol ise küresel dalgalanmaların etkisiyle düşüş eğiliminde."
+}

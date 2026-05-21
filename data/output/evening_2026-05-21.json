@@ -1,0 +1,60 @@
+{
+  "date": "2026-05-21",
+  "generated_at_utc": "2026-05-21T17:38:20.291171+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.6037,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.04
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.2327,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.56
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 104.7,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": -0.3
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13163.88,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": -6.05
+    }
+  ],
+  "biggest_mover": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "current": 13163.88,
+    "unit": "puan",
+    "decimals": 2,
+    "daily_pct": -6.05,
+    "sparkline": [
+      14367.6,
+      14367.6,
+      14367.6,
+      14029.5,
+      14029.5,
+      14012.0,
+      13163.88
+    ]
+  },
+  "note": "Bugün Borsa İstanbul'da sert bir düşüş yaşanırken, döviz kurlarında sınırlı dalgalanmalar görüldü. Brent petrol ise hafif geri çekilmeyle günü tamamladı."
+}

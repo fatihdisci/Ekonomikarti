@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-21",
+  "generated_at_utc": "2026-05-21T08:47:39.097747+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.6103,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.06,
+        "monthly": 1.61,
+        "yearly": 17.45,
+        "five_year": 444.97
+      },
+      "sparkline": [
+        39.6245,
+        40.536,
+        41.0076,
+        41.3919,
+        41.9764,
+        42.4387,
+        42.8069,
+        43.2894,
+        43.8383,
+        44.3037,
+        44.8855,
+        45.6103
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.61
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.1859,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.47,
+        "monthly": 0.49,
+        "yearly": 21.36,
+        "five_year": 419.8
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6644.86,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.06,
+        "monthly": -2.0,
+        "yearly": 60.82,
+        "five_year": 1215.86
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 105.85,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.79,
+        "monthly": 7.48,
+        "yearly": 63.07,
+        "five_year": 59.32
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13878.82,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.95,
+        "monthly": -3.45,
+        "yearly": 47.67,
+        "five_year": 855.98
+      }
+    }
+  ],
+  "note": "Bugün döviz kurlarında sınırlı yükselişler görülürken, gram altın ve brent petrolün yükseliş trendi devam etti. BIST 100 endeksi ise günü düşüşle kapatarak, son dönemdeki güçlü performansının ardından bir miktar geri çekildi. Özellikle gram altının yıllık ve 5 yıllık getirileri, diğer varlık sınıflarına göre dikkat çekici bir performans sergilemektedir."
+}

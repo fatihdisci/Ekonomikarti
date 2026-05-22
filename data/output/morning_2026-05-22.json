@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-22",
+  "generated_at_utc": "2026-05-22T08:37:57.996330+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.734,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.31,
+        "monthly": 1.81,
+        "yearly": 17.78,
+        "five_year": 446.45
+      },
+      "sparkline": [
+        39.7586,
+        40.536,
+        40.9603,
+        41.4187,
+        42.0311,
+        42.4387,
+        42.8158,
+        43.2958,
+        43.8383,
+        44.2928,
+        44.9192,
+        45.734
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.73
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.0837,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.06,
+        "monthly": 0.63,
+        "yearly": 20.36,
+        "five_year": 418.8
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6654.95,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.01,
+        "monthly": -2.63,
+        "yearly": 61.91,
+        "five_year": 1217.86
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 105.65,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 2.99,
+        "monthly": 3.67,
+        "yearly": 63.95,
+        "five_year": 59.02
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13410.43,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 1.87,
+        "monthly": -6.45,
+        "yearly": 41.53,
+        "five_year": 823.72
+      }
+    }
+  ],
+  "note": "Dolar ve Euro'daki günlük artış eğiliminin aksine, gram altın ve BIST 100 endeksinde gözlenen güçlü yükselişler dikkat çekiyor. Özellikle gram altının yıllık ve 5 yıllık getirisi, döviz kurlarını önemli ölçüde geride bırakarak yatırımcılar için cazip bir alternatif olduğunu gösteriyor."
+}

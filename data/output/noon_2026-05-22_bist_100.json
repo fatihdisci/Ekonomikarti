@@ -1,0 +1,50 @@
+{
+  "date": "2026-05-22",
+  "generated_at_utc": "2026-05-22T12:07:29.004945+00:00",
+  "focus": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "unit": "puan",
+    "decimals": 2,
+    "current": 13513.68,
+    "daily_pct": 2.66,
+    "sparkline": [
+      1409.59,
+      2051.09,
+      2543.09,
+      3581.98,
+      4505.28,
+      5561.17,
+      8487.96,
+      8665.65,
+      10400.45,
+      9777.45,
+      9997.85,
+      9213.55,
+      11366.9,
+      12851.5,
+      13513.68
+    ],
+    "range_5y": {
+      "lo": 1346.79,
+      "hi": 15133.5
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 9475.15,
+        "pct": 42.62
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 1451.79,
+        "pct": 830.83
+      }
+    ]
+  },
+  "note": "Bugün BIST 100 endeksi %2.66 artışla 13513.68 puana ulaştı. Bir yıl önce bugün 9475.15 puanda olan endeksin, beş yıl önce ise 1451.79 puanda olduğunu hatırlatmak isteriz.\n\n#BIST100 #Ekonomi"
+}

@@ -1,0 +1,60 @@
+{
+  "date": "2026-05-22",
+  "generated_at_utc": "2026-05-22T17:26:29.993312+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.7333,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.31
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.0997,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.03
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 102.98,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": 0.39
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13808.2,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 4.89
+    }
+  ],
+  "biggest_mover": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "current": 13808.2,
+    "unit": "puan",
+    "decimals": 2,
+    "daily_pct": 4.89,
+    "sparkline": [
+      14367.6,
+      14367.6,
+      14029.5,
+      14029.5,
+      14012.0,
+      13163.9,
+      13808.2
+    ]
+  },
+  "note": "Bugün Borsa İstanbul, günü %4.89'luk güçlü bir yükselişle tamamlarken, döviz kurlarında sınırlı hareketler gözlendi. Brent petroldeki artış da dikkat çekiciydi."
+}

@@ -1,0 +1,88 @@
+{
+  "date": "2026-05-23",
+  "friday": "2026-05-22",
+  "generated_at_utc": "2026-05-23T09:23:10.694776+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.7138,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.38,
+      "sparkline": [
+        45.4924,
+        45.5727,
+        45.5843,
+        45.5913,
+        45.7138
+      ]
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.0276,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": -0.28,
+      "sparkline": [
+        52.8243,
+        53.1444,
+        52.9359,
+        53.1155,
+        53.0276
+      ]
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6644.66,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "weekly_pct": -0.39,
+      "sparkline": [
+        6658.54,
+        6602.61,
+        6640.93,
+        6654.41,
+        6644.66
+      ]
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 103.54,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "weekly_pct": -5.24,
+      "sparkline": [
+        112.1,
+        111.28,
+        105.02,
+        102.58,
+        103.54
+      ]
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13808.2,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "weekly_pct": -3.89,
+      "sparkline": [
+        14029.5,
+        14029.5,
+        14012.0,
+        13163.9,
+        13808.2
+      ]
+    }
+  ],
+  "note": "Bu hafta Türk Lirası, dolar karşısında hafif bir değer kazanırken euro karşısında bir miktar değer kaybetti. Altın ve petrol fiyatlarındaki düşüşe paralel olarak Borsa İstanbul'da da haftayı negatif bir kapanışla tamamladık.\n\n#Ekonomi #Borsa #Döviz #Altın #Petrol"
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-24",
+  "friday": "2026-05-22",
+  "generated_at_utc": "2026-05-24T09:30:14.944136+00:00",
+  "star": {
+    "key": "usd_try",
+    "name": "USD/TRY",
+    "current": 45.7138,
+    "unit": "TL",
+    "decimals": 4,
+    "weekly_pct": 0.38
+  },
+  "loser": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 100.21,
+    "unit": "USD",
+    "decimals": 2,
+    "weekly_pct": -8.28
+  },
+  "note": "Bu hafta doların TL karşısındaki hafif yükselişi, küresel petrol fiyatlarındaki sert düşüşün gölgesinde kaldı. Dolar, yatırımcıların güvenli liman arayışıyla bir nebze değer kazanırken, Brent petrolü jeopolitik belirsizliklerin azalmasıyla önemli bir değer kaybı yaşadı.\n\nDolarTL BrentPetrol"
+}

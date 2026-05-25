@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-25",
+  "generated_at_utc": "2026-05-25T09:38:21.274233+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.7199,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.01,
+        "monthly": 1.65,
+        "yearly": 17.13,
+        "five_year": 440.92
+      },
+      "sparkline": [
+        39.8543,
+        40.5617,
+        41.0519,
+        41.564,
+        41.9922,
+        42.4622,
+        42.8545,
+        43.3399,
+        43.8466,
+        44.3546,
+        44.9758,
+        45.7199
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.72
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.4904,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.7,
+        "monthly": 1.97,
+        "yearly": 21.41,
+        "five_year": 416.61
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6648.77,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.06,
+        "monthly": -2.63,
+        "yearly": 57.51,
+        "five_year": 1186.84
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 100.21,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -3.22,
+        "monthly": -4.86,
+        "yearly": 54.69,
+        "five_year": 45.51
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13793.9,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.1,
+        "monthly": -4.27,
+        "yearly": 47.43,
+        "five_year": 866.57
+      }
+    }
+  ],
+  "note": "Döviz kurlarında sınırlı günlük artışlar gözlemlenirken, özellikle gram altının yıllık ve 5 yıllık getirisi, yatırımcısına döviz karşısında önemli bir değer artışı sağlamış görünüyor. Brent petrolün son bir günde yaşadığı düşüşe rağmen, yıllık bazda güçlü bir yükseliş trendi sergilemesi dikkat çekiyor. BIST 100 endeksi ise hem günlükte hafif bir geri çekilme yaşasa da, uzun vadede yatırımcılarına güçlü bir getiri sunmaya devam ediyor."
+}

@@ -1,0 +1,60 @@
+{
+  "date": "2026-05-25",
+  "generated_at_utc": "2026-05-25T17:21:36.806900+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.6661,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.1
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.4066,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.54
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 100.21,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": -3.22
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13890.91,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 0.6
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 100.21,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": -3.22,
+    "sparkline": [
+      111.28,
+      105.02,
+      102.58,
+      103.54,
+      103.54,
+      103.54,
+      100.21
+    ]
+  },
+  "note": "Bugün Borsa İstanbul günü pozitif bir kapanışla tamamlarken, döviz kurlarında karışık bir seyir izlendi. Küresel piyasalarda ise Brent petrolündeki sert düşüş dikkat çekti."
+}

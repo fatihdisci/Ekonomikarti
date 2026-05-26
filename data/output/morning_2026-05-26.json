@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-26",
+  "generated_at_utc": "2026-05-26T08:51:04.280850+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.9033,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.38,
+        "monthly": 2.06,
+        "yearly": 17.7,
+        "five_year": 443.16
+      },
+      "sparkline": [
+        39.8906,
+        40.572,
+        41.1405,
+        41.564,
+        41.9594,
+        42.4424,
+        42.8545,
+        43.3864,
+        43.8548,
+        44.4556,
+        44.9758,
+        45.9033
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.9
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.4267,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.35,
+        "monthly": 1.85,
+        "yearly": 20.46,
+        "five_year": 418.43
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6675.59,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.47,
+        "monthly": -2.24,
+        "yearly": 58.15,
+        "five_year": 1196.02
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 96.65,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -6.65,
+        "monthly": -8.24,
+        "yearly": 49.2,
+        "five_year": 39.14
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13720.49,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.23,
+        "monthly": -4.78,
+        "yearly": 46.82,
+        "five_year": 869.65
+      }
+    }
+  ],
+  "note": "Bugün dolar ve euro TL karşısında hafif yükselişini sürdürürken, gram altındaki artış dikkat çekiyor. Beş yıllık verilere bakıldığında, hem TL'deki değer kaybının hem de altının performansının BIST 100'ün oldukça üzerinde kaldığı görülüyor. Petrol fiyatlarındaki sert düşüş ise küresel ekonomideki dalgalanmalara işaret ediyor."
+}

@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-27",
+  "generated_at_utc": "2026-05-27T08:53:10.321495+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.8991,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.0,
+        "monthly": 1.97,
+        "yearly": 17.71,
+        "five_year": 441.11
+      },
+      "sparkline": [
+        39.8266,
+        40.587,
+        41.1405,
+        41.5611,
+        41.9485,
+        42.4851,
+        42.8545,
+        43.3818,
+        43.865,
+        44.4556,
+        45.0128,
+        45.8991
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.9
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.4512,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.09,
+        "monthly": 1.49,
+        "yearly": 20.51,
+        "five_year": 416.56
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6679.27,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.58,
+        "monthly": -1.28,
+        "yearly": 61.49,
+        "five_year": 1187.35
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 93.47,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -6.14,
+        "monthly": -13.64,
+        "yearly": 45.84,
+        "five_year": 34.24
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13662.8,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.0,
+        "monthly": -6.38,
+        "yearly": 48.29,
+        "five_year": 860.75
+      }
+    }
+  ],
+  "note": "Döviz kurlarında günlük sınırlı değişimler gözlenirken, gram altın ve BIST 100 endeksi son bir yılda belirgin bir yükseliş trendi sergilemeye devam ediyor. Brent petrol ise haftalık bazda sert bir düşüş yaşasa da yıllık bazda güçlü performansını koruyor."
+}

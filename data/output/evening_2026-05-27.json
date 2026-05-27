@@ -1,0 +1,60 @@
+{
+  "date": "2026-05-27",
+  "generated_at_utc": "2026-05-27T18:13:34.204712+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.8962,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.0
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.3489,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.1
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 92.75,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": -6.86
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13662.8,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 0.0
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 92.75,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": -6.86,
+    "sparkline": [
+      102.58,
+      103.54,
+      103.54,
+      103.54,
+      103.54,
+      99.58,
+      92.75
+    ]
+  },
+  "note": "Bugün Borsa İstanbul yatay bir seyir izlerken, döviz kurlarında sınırlı dalgalanmalar gözlemlendi. Günün en dikkat çekici hareketi ise küresel piyasalarda Brent petrol fiyatlarındaki sert düşüş oldu."
+}

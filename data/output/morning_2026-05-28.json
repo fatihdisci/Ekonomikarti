@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-28",
+  "generated_at_utc": "2026-05-28T09:00:50.420745+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.8961,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.01,
+        "monthly": 1.92,
+        "yearly": 17.5,
+        "five_year": 441.08
+      },
+      "sparkline": [
+        39.8388,
+        40.6628,
+        41.1405,
+        41.5766,
+        41.8976,
+        42.4851,
+        42.9041,
+        43.4146,
+        43.9554,
+        44.4556,
+        45.0298,
+        45.8961
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.9
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.3101,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.15,
+        "monthly": 0.98,
+        "yearly": 20.56,
+        "five_year": 415.19
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6523.3,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.6,
+        "monthly": -1.87,
+        "yearly": 57.72,
+        "five_year": 1157.29
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 94.41,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.13,
+        "monthly": -15.14,
+        "yearly": 45.47,
+        "five_year": 35.59
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13662.8,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.0,
+        "monthly": -4.65,
+        "yearly": 48.87,
+        "five_year": 860.75
+      }
+    }
+  ],
+  "note": "Dolar ve Euro TL karşısında yatay seyir izlerken, gram altının yıllık ve 5 yıllık getirisi, borsanın performansını ve petrolün yükselişini geride bırakarak dikkat çekiyor."
+}

@@ -1,0 +1,95 @@
+{
+  "date": "2026-05-29",
+  "generated_at_utc": "2026-05-29T08:57:26.190419+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.8799,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.03,
+        "monthly": 1.82,
+        "yearly": 17.36,
+        "five_year": 440.89
+      },
+      "sparkline": [
+        39.9047,
+        40.6628,
+        41.1424,
+        41.5827,
+        42.0268,
+        42.4851,
+        42.9357,
+        43.4073,
+        43.9554,
+        44.4452,
+        45.0607,
+        45.8799
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.9
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.3683,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.12,
+        "monthly": 0.85,
+        "yearly": 21.4,
+        "five_year": 415.76
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6703.17,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.97,
+        "monthly": 1.8,
+        "yearly": 60.77,
+        "five_year": 1191.96
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 92.68,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.1,
+        "monthly": -21.48,
+        "yearly": 44.47,
+        "five_year": 33.1
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13662.8,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.0,
+        "monthly": -4.53,
+        "yearly": 48.99,
+        "five_year": 860.75
+      }
+    }
+  ],
+  "note": "Dolar ve Euro TL karşısında yatay seyrederken, Gram Altın son bir yılda TL bazında petrol ve Borsa İstanbul'u geride bırakarak dikkat çekici bir yükseliş gösterdi. Brent Petrol'deki düşüşe rağmen yıllık bazda güçlü performansını koruyor."
+}

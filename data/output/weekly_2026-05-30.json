@@ -1,0 +1,88 @@
+{
+  "date": "2026-05-30",
+  "friday": "2026-05-29",
+  "generated_at_utc": "2026-05-30T09:31:46.447385+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.7418,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.06,
+      "sparkline": [
+        45.7274,
+        45.8975,
+        45.8937,
+        45.8928,
+        45.7418
+      ]
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.4636,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.65,
+      "sparkline": [
+        53.2384,
+        53.4024,
+        53.3898,
+        53.3031,
+        53.4636
+      ]
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6706.82,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "weekly_pct": 0.94,
+      "sparkline": [
+        6644.66,
+        6640.96,
+        6562.36,
+        6638.66,
+        6706.82
+      ]
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 92.05,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "weekly_pct": -11.1,
+      "sparkline": [
+        103.54,
+        99.58,
+        94.29,
+        93.71,
+        92.05
+      ]
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13662.8,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "weekly_pct": -1.05,
+      "sparkline": [
+        13890.9,
+        13662.8,
+        13662.8,
+        13662.8,
+        13662.8
+      ]
+    }
+  ],
+  "note": "Bu hafta döviz kurlarında hafif yükselişler, gram altında artış gözlemlenirken, Brent petrol ve BIST 100 endeksinde düşüşler yaşandı. Küresel petrol fiyatlarındaki sert gerileme, yerel endeksi baskılamaya devam etti.\n\n#Ekonomi #PiyasaAnalizi #HaftalıkDeğerlendirme"
+}

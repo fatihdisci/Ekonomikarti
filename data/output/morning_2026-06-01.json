@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-01",
+  "generated_at_utc": "2026-06-01T10:57:32.009672+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.9003,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.02,
+        "monthly": 1.68,
+        "yearly": 17.07,
+        "five_year": 433.62
+      },
+      "sparkline": [
+        39.8206,
+        40.6749,
+        41.1586,
+        41.6418,
+        42.0396,
+        42.4523,
+        42.994,
+        43.4551,
+        43.965,
+        44.4864,
+        45.141,
+        45.9003
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.9
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.5052,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.01,
+        "monthly": 1.11,
+        "yearly": 19.84,
+        "five_year": 408.06
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6697.0,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.47,
+        "monthly": -0.33,
+        "yearly": 61.53,
+        "five_year": 1169.52
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 94.16,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 2.29,
+        "monthly": -12.95,
+        "yearly": 47.36,
+        "five_year": 31.97
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13826.18,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 1.2,
+        "monthly": -4.27,
+        "yearly": 53.29,
+        "five_year": 866.4
+      }
+    }
+  ],
+  "note": "Yılbaşından bu yana dolar ve euro TL karşısında değer kazanırken, altın ve BIST 100'de ciddi bir yükseliş yaşandı. Özellikle son bir yılda altının performansı, döviz kurlarındaki artışın üzerinde dikkat çekiyor. Brent petrolün de son bir yılda önemli bir sıçrama yapması, küresel emtia fiyatlarındaki genel eğilimi yansıtıyor."
+}

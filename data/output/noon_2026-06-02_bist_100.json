@@ -1,0 +1,50 @@
+{
+  "date": "2026-06-02",
+  "generated_at_utc": "2026-06-02T13:01:12.542291+00:00",
+  "focus": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "unit": "puan",
+    "decimals": 2,
+    "current": 14094.3,
+    "daily_pct": 2.85,
+    "sparkline": [
+      1509.19,
+      2015.99,
+      2543.19,
+      3934.58,
+      5026.77,
+      5475.47,
+      7934.56,
+      8993.95,
+      10165.45,
+      8964.05,
+      9951.65,
+      9486.55,
+      10858.5,
+      13621.0,
+      14094.3
+    ],
+    "range_5y": {
+      "lo": 1346.79,
+      "hi": 15133.5
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 9008.85,
+        "pct": 56.45
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 1428.09,
+        "pct": 886.93
+      }
+    ]
+  },
+  "note": "Bugün BIST 100'deki artışla birlikte, bir yıl önceki seviyesini yaklaşık %56, beş yıl önceki seviyesini ise yaklaşık %887 aşmış bulunuyoruz. Bu durum, geçmişe dönüp baktığımızda ne kadar önemli bir yükseliş trendinde olduğumuzu hatırlatıyor.\n\n#BIST100 #Ekonomi #Borsa"
+}

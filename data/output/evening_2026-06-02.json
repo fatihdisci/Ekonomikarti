@@ -1,0 +1,60 @@
+{
+  "date": "2026-06-02",
+  "generated_at_utc": "2026-06-02T19:02:17.271030+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.9107,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.03
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.425,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.1
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 96.1,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": 1.18
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14200.2,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 3.62
+    }
+  ],
+  "biggest_mover": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "current": 14200.2,
+    "unit": "puan",
+    "decimals": 2,
+    "daily_pct": 3.62,
+    "sparkline": [
+      13662.8,
+      13662.8,
+      13662.8,
+      13662.8,
+      13662.8,
+      13704.0,
+      14200.2
+    ]
+  },
+  "note": "Bugün Borsa İstanbul, günü %3.62'lik güçlü bir yükselişle rekor seviyelerde tamamlarken, döviz kurlarında sını"
+}

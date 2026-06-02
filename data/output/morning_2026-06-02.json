@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-02",
+  "generated_at_utc": "2026-06-02T09:50:34.278605+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.9125,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.03,
+        "monthly": 1.71,
+        "yearly": 16.96,
+        "five_year": 435.08
+      },
+      "sparkline": [
+        39.951,
+        40.669,
+        41.2475,
+        41.6418,
+        42.0695,
+        42.447,
+        42.994,
+        43.482,
+        43.948,
+        44.5558,
+        45.141,
+        45.9125
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.91
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.5099,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.06,
+        "monthly": 1.11,
+        "yearly": 20.14,
+        "five_year": 410.78
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6722.55,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 1.8,
+        "monthly": 0.05,
+        "yearly": 58.03,
+        "five_year": 1202.3
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 93.5,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.56,
+        "monthly": -13.56,
+        "yearly": 44.67,
+        "five_year": 31.12
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13931.36,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 1.66,
+        "monthly": -3.54,
+        "yearly": 54.64,
+        "five_year": 875.52
+      }
+    }
+  ],
+  "note": "Döviz kurlarında sınırlı günlük artışlar gözlenirken, gram altının yıllık ve 5 yıllık getirisi döviz kurlarını geride bırakarak yatırımcılar için cazip bir seçenek olmaya devam ediyor. Borsa ise hem yıllık hem de 5 yıllık bazda en yüksek getiriyi sağlayarak dikkat çekiyor. Brent petrolün fiyatındaki düşüş, enflasyonist baskıları bir miktar hafifletebilir."
+}

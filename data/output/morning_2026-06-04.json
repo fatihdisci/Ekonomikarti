@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-04",
+  "generated_at_utc": "2026-06-04T09:34:22.543340+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 45.9698,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.05,
+        "monthly": 1.67,
+        "yearly": 17.44,
+        "five_year": 427.98
+      },
+      "sparkline": [
+        40.0295,
+        40.656,
+        41.2475,
+        41.7038,
+        42.1112,
+        42.5001,
+        43.0112,
+        43.491,
+        44.0334,
+        44.5558,
+        45.2144,
+        45.9698
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 45.97
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.5693,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.24,
+        "monthly": 1.32,
+        "yearly": 20.24,
+        "five_year": 407.53
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6642.11,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 1.35,
+        "monthly": 0.29,
+        "yearly": 56.45,
+        "five_year": 1155.57
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 96.33,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.51,
+        "monthly": -12.32,
+        "yearly": 48.52,
+        "five_year": 34.0
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13840.54,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.9,
+        "monthly": -4.52,
+        "yearly": 46.08,
+        "five_year": 865.92
+      }
+    }
+  ],
+  "note": "Döviz kurlarındaki yatay seyrin aksine, gram altın son bir yılda dövizdeki artışın çok üzerinde bir yükseliş göstererek yatırımcısını sevindirdi. Borsa ise hem yıllık hem de 5 yıllık bazda güçlü getirilerle dikkat çekmeye devam ediyor. Brent petrolün bir yıllık artışına rağmen günlük düşüşü dikkat çekici."
+}

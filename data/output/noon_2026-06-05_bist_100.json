@@ -1,0 +1,50 @@
+{
+  "date": "2026-06-05",
+  "generated_at_utc": "2026-06-05T12:26:25.312015+00:00",
+  "focus": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "unit": "puan",
+    "decimals": 2,
+    "current": 13772.7,
+    "daily_pct": -0.72,
+    "sparkline": [
+      1521.99,
+      1952.39,
+      2554.09,
+      3977.48,
+      5149.37,
+      5186.77,
+      7768.96,
+      9250.35,
+      10471.24,
+      8876.15,
+      9845.85,
+      9659.25,
+      10756.3,
+      13589.1,
+      13772.7
+    ],
+    "range_5y": {
+      "lo": 1346.79,
+      "hi": 15133.5
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 9486.55,
+        "pct": 45.18
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 1432.89,
+        "pct": 861.18
+      }
+    ]
+  },
+  "note": "BIST 100 endeksi, bir yıl öncesine göre önemli bir artış gösterse de, son dönemde hafif bir geri çekilme yaşadı. Beş yıl öncesine kıyasla ise yatırımcısına olağanüstü bir getiri sağladığı görülüyor.\n\n#BIST100 #Ekonomi #Yatırım"
+}

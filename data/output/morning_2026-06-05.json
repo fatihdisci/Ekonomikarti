@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-05",
+  "generated_at_utc": "2026-06-05T08:56:58.928054+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.0817,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.23,
+        "monthly": 1.88,
+        "yearly": 17.36,
+        "five_year": 429.26
+      },
+      "sparkline": [
+        40.0463,
+        40.656,
+        41.2556,
+        41.7174,
+        42.1647,
+        42.5001,
+        43.0392,
+        43.5195,
+        44.0334,
+        44.5841,
+        45.2296,
+        46.0817
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 46.08
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.662,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.32,
+        "monthly": 1.21,
+        "yearly": 19.23,
+        "five_year": 408.41
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6651.46,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.54,
+        "monthly": -2.3,
+        "yearly": 57.25,
+        "five_year": 1157.34
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 94.39,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.67,
+        "monthly": -6.79,
+        "yearly": 44.46,
+        "five_year": 31.3
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13781.18,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.66,
+        "monthly": -7.62,
+        "yearly": 45.27,
+        "five_year": 861.77
+      }
+    }
+  ],
+  "note": "Döviz kurlarında gözlenen artış eğilimi devam ederken, gram altının son bir yıldaki performansı döviz kurlarını geride bırakmış durumda. Borsa ise hem yıllık hem de 5 yıllık bazda güçlü bir yükseliş sergileyerek yatırımcısına kazandırmaya devam ediyor. Brent petrolün son bir yıllık performansı ise dikkat çekici bir artış gösterse de, kısa vadede hafif bir düşüş eğiliminde."
+}

@@ -1,0 +1,88 @@
+{
+  "date": "2026-06-06",
+  "friday": "2026-06-05",
+  "generated_at_utc": "2026-06-06T09:36:08.370383+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.0644,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.38,
+      "sparkline": [
+        45.8977,
+        45.9254,
+        45.9451,
+        45.9738,
+        46.0644
+      ]
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.0541,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": -0.85,
+      "sparkline": [
+        53.4772,
+        53.437,
+        53.4403,
+        53.4899,
+        53.0541
+      ]
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6423.26,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "weekly_pct": -4.54,
+      "sparkline": [
+        6603.8,
+        6628.31,
+        6553.75,
+        6615.64,
+        6423.26
+      ]
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 93.09,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "weekly_pct": 1.13,
+      "sparkline": [
+        94.98,
+        96.0,
+        97.81,
+        95.03,
+        93.09
+      ]
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13694.2,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "weekly_pct": 0.23,
+      "sparkline": [
+        13704.0,
+        14200.2,
+        13965.7,
+        13872.3,
+        13694.2
+      ]
+    }
+  ],
+  "note": "Bu hafta döviz kurlarında karışık bir seyir izlenirken, emtia piyasalarında altındaki düşüş dikkat çekti. Borsa İstanbul ise haftayı hafif pozitif bir kapanışla tamamladı.\n\n#Ekonomi #PiyasaAnalizi #HaftalıkDeğerlendirme"
+}

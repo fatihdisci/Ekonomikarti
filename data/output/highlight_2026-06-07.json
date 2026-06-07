@@ -1,0 +1,22 @@
+{
+  "date": "2026-06-07",
+  "friday": "2026-06-05",
+  "generated_at_utc": "2026-06-07T10:15:17.102098+00:00",
+  "star": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 93.09,
+    "unit": "USD",
+    "decimals": 2,
+    "weekly_pct": 1.13
+  },
+  "loser": {
+    "key": "gram_altin",
+    "name": "Gram Altın",
+    "current": 6465.03,
+    "unit": "TL",
+    "decimals": 2,
+    "weekly_pct": -3.92
+  },
+  "note": "Enerjinin lokomotifi Brent Petrol haftayı yükselişle tamamlarken, güvenli liman arayışının cazibesi azalan Gram Altın haftayı düşüşle kapattı. Bu durum, küresel ekonomik belirsizliklerin yatırımcıları enerji kaynaklarına yöneltirken, enflasyonist endişelerin yumuşamasıyla altının cazibesini yitirdiğini gösteriyor.\n\n#Ekonomi #PiyasaAnalizi #BrentPetrol #GramAltın"
+}

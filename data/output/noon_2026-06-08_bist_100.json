@@ -1,0 +1,50 @@
+{
+  "date": "2026-06-08",
+  "generated_at_utc": "2026-06-08T13:52:18.864012+00:00",
+  "focus": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "unit": "puan",
+    "decimals": 2,
+    "current": 13901.04,
+    "daily_pct": 1.51,
+    "sparkline": [
+      1536.29,
+      1969.89,
+      2401.99,
+      3934.48,
+      5058.77,
+      5582.77,
+      7510.66,
+      9196.35,
+      10471.24,
+      8955.95,
+      9914.65,
+      9311.85,
+      10720.4,
+      13522.0,
+      13901.04
+    ],
+    "range_5y": {
+      "lo": 1346.79,
+      "hi": 15133.5
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 9486.55,
+        "pct": 46.53
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 1449.19,
+        "pct": 859.23
+      }
+    ]
+  },
+  "note": "BIST 100 endeksi bugünkü yükselişine rağmen, bir yıl öncesine kıyasla önemli bir değer artışı kaydetti. Beş yıl önceki seviyelerle karşılaştırıldığında ise yatırımcılar için dikkate değer bir getiri söz konusu.\n\n#BIST100 #Ekonomi #Yatırım"
+}

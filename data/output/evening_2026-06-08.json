@@ -1,0 +1,60 @@
+{
+  "date": "2026-06-08",
+  "generated_at_utc": "2026-06-08T18:13:32.063059+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.095,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.07
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.2241,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": -0.54
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 94.26,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": 1.26
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13860.59,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 1.22
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 94.26,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": 1.26,
+    "sparkline": [
+      96.0,
+      97.81,
+      95.03,
+      93.09,
+      93.09,
+      93.09,
+      94.26
+    ]
+  },
+  "note": "Bugün Borsa İstanbul, Brent Petrol'deki yükselişin de desteğiyle pozitif bir kapanış yaparken, dolar TL'deki küçük yükselişine karşın euro TL'de geri çekilmeler görüldü."
+}

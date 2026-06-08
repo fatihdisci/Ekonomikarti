@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-08",
+  "generated_at_utc": "2026-06-08T10:07:07.590976+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.0983,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.07,
+        "monthly": 1.93,
+        "yearly": 17.35,
+        "five_year": 436.05
+      },
+      "sparkline": [
+        40.1591,
+        40.7085,
+        41.2754,
+        41.8225,
+        42.2303,
+        42.5494,
+        43.1289,
+        43.6093,
+        44.0798,
+        44.4847,
+        45.2238,
+        46.0983
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 46.1
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.1302,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": -0.71,
+        "monthly": 0.1,
+        "yearly": 18.08,
+        "five_year": 407.52
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6397.75,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.4,
+        "monthly": -6.78,
+        "yearly": 52.46,
+        "five_year": 1122.24
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 96.95,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 4.15,
+        "monthly": -4.28,
+        "yearly": 45.86,
+        "five_year": 34.24
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13660.11,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.25,
+        "monthly": -9.31,
+        "yearly": 43.99,
+        "five_year": 842.6
+      }
+    }
+  ],
+  "note": "Bugün döviz kurlarında sınırlı hareketler görülürken, gram altın hafif düşüşle günü tamamladı. Yıllık bazda bakıldığında ise hem döviz kurları hem de gram altın önemli artışlar kaydetmiş durumda. Enerjideki yükseliş eğilimi devam ederken, Borsa İstanbul haftayı sınırlı bir düşüşle kapattı ancak yıllık performansı oldukça güçlü seyrediyor. Özellikle gram altının son 5 yıldaki %1122'lik artışı dikkat çekici."
+}

@@ -1,0 +1,60 @@
+{
+  "date": "2026-06-09",
+  "generated_at_utc": "2026-06-09T17:35:28.423826+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.1147,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.05
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.2873,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.28
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 90.81,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": -3.65
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13741.89,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": -0.86
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 90.81,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": -3.65,
+    "sparkline": [
+      97.81,
+      95.03,
+      93.09,
+      93.09,
+      93.09,
+      94.25,
+      90.81
+    ]
+  },
+  "note": "Bugün döviz kurlarında sınırlı yukarı yönlü hareketler gözlemlenirken, BIST 100 endeksi negatif bir kapanış yaptı. Günün en dikkat çekici hareketi ise Brent petrol fiyatlarındaki sert düşüş oldu."
+}

@@ -1,0 +1,50 @@
+{
+  "date": "2026-06-09",
+  "generated_at_utc": "2026-06-09T12:25:20.159446+00:00",
+  "focus": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "unit": "USD",
+    "decimals": 2,
+    "current": 92.76,
+    "daily_pct": -1.58,
+    "sparkline": [
+      84.72,
+      112.93,
+      114.81,
+      95.77,
+      83.16,
+      73.85,
+      89.83,
+      82.34,
+      85.33,
+      74.45,
+      74.74,
+      74.23,
+      62.73,
+      69.04,
+      92.76
+    ],
+    "range_5y": {
+      "lo": 58.92,
+      "hi": 127.98
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 67.04,
+        "pct": 38.37
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 72.52,
+        "pct": 27.91
+      }
+    ]
+  },
+  "note": "Brent petrol, bir yıl öncesine göre önemli ölçüde artış gösterse de, son dönemdeki düşüş eğilimi dikkat çekiyor. Bu durum, küresel ekonomik aktivite ve arz-talep dengesindeki değişimleri yansıtıyor.\n\n#BrentPetrol #EnerjiPiyasaları #Ekonomi"
+}

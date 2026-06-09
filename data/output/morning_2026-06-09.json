@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-09",
+  "generated_at_utc": "2026-06-09T08:47:53.844908+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.1161,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.05,
+        "monthly": 1.97,
+        "yearly": 17.51,
+        "five_year": 437.34
+      },
+      "sparkline": [
+        40.1946,
+        40.755,
+        41.3428,
+        41.8225,
+        42.2341,
+        42.6116,
+        43.1289,
+        43.4688,
+        44.0884,
+        44.6381,
+        45.2238,
+        46.1161
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 46.12
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.2845,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.28,
+        "monthly": 0.39,
+        "yearly": 19.12,
+        "five_year": 409.91
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6457.75,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.51,
+        "monthly": -5.91,
+        "yearly": 53.6,
+        "five_year": 1135.55
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 92.56,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.79,
+        "monthly": -8.62,
+        "yearly": 38.07,
+        "five_year": 27.63
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13896.07,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.26,
+        "monthly": -7.75,
+        "yearly": 46.48,
+        "five_year": 853.95
+      }
+    }
+  ],
+  "note": "Döviz kurlarında günlük hafif artışlar görülürken, gram altında yıllık bazda yaşanan yükseliş dikkat çekiyor. Brent petrolün düşüşüne rağmen BIST 100 endeksi son beş yılda kaydettiği istikrarlı artışla öne çıkıyor."
+}

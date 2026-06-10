@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-10",
+  "generated_at_utc": "2026-06-10T09:05:56.951988+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.1328,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.06,
+        "monthly": 1.72,
+        "yearly": 17.39,
+        "five_year": 447.56
+      },
+      "sparkline": [
+        40.2269,
+        40.7819,
+        41.3428,
+        41.813,
+        42.2379,
+        42.6324,
+        43.1289,
+        43.5841,
+        44.0984,
+        44.6381,
+        45.3525,
+        46.1328
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 46.13
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.351,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.34,
+        "monthly": 0.07,
+        "yearly": 18.67,
+        "five_year": 420.38
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6222.18,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.47,
+        "monthly": -9.57,
+        "yearly": 48.29,
+        "five_year": 1123.53
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 90.8,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.71,
+        "monthly": -12.87,
+        "yearly": 35.79,
+        "five_year": 24.91
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13686.62,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -1.26,
+        "monthly": -9.56,
+        "yearly": 41.69,
+        "five_year": 836.87
+      }
+    }
+  ],
+  "note": "Dolar ve Euro TL karşısında yatay seyrini sürdürürken, gram altın son bir yılda önemli bir yükseliş göstererek yatırımcılarına rekor kazandırdı. Brent petrolün düşüşte olduğu bu ortamda, BIST 100 endeksi ise son beş yılda TL bazında güçlü bir performans sergilemeye devam ediyor."
+}

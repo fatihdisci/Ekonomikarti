@@ -1,0 +1,50 @@
+{
+  "date": "2026-06-11",
+  "generated_at_utc": "2026-06-11T13:04:24.649416+00:00",
+  "focus": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "unit": "USD",
+    "decimals": 2,
+    "current": 93.09,
+    "daily_pct": -0.01,
+    "sparkline": [
+      80.54,
+      118.11,
+      111.63,
+      95.77,
+      82.45,
+      72.26,
+      90.13,
+      83.67,
+      85.24,
+      73.06,
+      74.74,
+      73.23,
+      62.39,
+      69.4,
+      93.09
+    ],
+    "range_5y": {
+      "lo": 58.92,
+      "hi": 127.98
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 69.77,
+        "pct": 33.42
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 72.69,
+        "pct": 28.06
+      }
+    ]
+  },
+  "note": "Brent petrol fiyatı bugün hafif bir düşüş gösterse de, geçen yıla kıyasla önemli ölçüde yükselmiş durumda. 5 yıl öncesine göre de artışını sürdüren petrol, küresel enerji piyasalarındaki dalgalanmaların bir göstergesi olmaya devam ediyor.\n#BrentPetrol #EnerjiPiyasaları"
+}

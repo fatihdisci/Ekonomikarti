@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-11",
+  "generated_at_utc": "2026-06-11T09:52:00.879049+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.1371,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.04,
+        "monthly": 1.66,
+        "yearly": 17.71,
+        "five_year": 447.61
+      },
+      "sparkline": [
+        40.2543,
+        40.8469,
+        41.3428,
+        41.8123,
+        42.2484,
+        42.6324,
+        43.1054,
+        43.6275,
+        44.1854,
+        44.6381,
+        45.3853,
+        46.1371
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 46.14
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.354,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.26,
+        "monthly": -0.24,
+        "yearly": 19.03,
+        "five_year": 420.41
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6096.53,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 0.08,
+        "monthly": -10.68,
+        "yearly": 45.66,
+        "five_year": 1098.82
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 92.6,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.54,
+        "monthly": -14.08,
+        "yearly": 32.72,
+        "five_year": 27.39
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13739.24,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -0.04,
+        "monthly": -7.04,
+        "yearly": 41.85,
+        "five_year": 840.47
+      }
+    }
+  ],
+  "note": "Döviz kurlarında görülen hafif yükselişlere karşılık, gram altının yıllık ve 5 yıllık getirisi döviz kurlarını geride bırakarak yatırımcısına önemli bir kazanç sağlamış görünüyor. Borsa İstanbul ise uzun vadede en yüksek getiriyi sunmaya devam ediyor."
+}

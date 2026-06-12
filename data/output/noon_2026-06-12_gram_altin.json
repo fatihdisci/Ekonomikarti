@@ -1,0 +1,50 @@
+{
+  "date": "2026-06-12",
+  "generated_at_utc": "2026-06-12T12:43:01.450171+00:00",
+  "focus": {
+    "key": "gram_altin",
+    "name": "Gram Altın",
+    "unit": "TL",
+    "decimals": 2,
+    "current": 6276.56,
+    "daily_pct": 3.42,
+    "sparkline": [
+      566.12,
+      891.68,
+      965.39,
+      976.85,
+      1110.4,
+      1597.91,
+      1798.39,
+      2036.63,
+      2444.94,
+      2983.18,
+      3355.75,
+      4288.59,
+      5615.91,
+      6907.62,
+      6276.56
+    ],
+    "range_5y": {
+      "lo": 475.31,
+      "hi": 7480.88
+    },
+    "history": [
+      {
+        "key": "one_year",
+        "label": "1 YIL ÖNCE BUGÜN",
+        "days": 365,
+        "value": 4253.32,
+        "pct": 47.57
+      },
+      {
+        "key": "five_year",
+        "label": "5 YIL ÖNCE BUGÜN",
+        "days": 1825,
+        "value": 508.54,
+        "pct": 1134.22
+      }
+    ]
+  },
+  "note": "Gram altının bugünkü değeri, bir yıl öncesine göre belirgin bir artış gösterirken, beş yıl öncesine kıyasla yaşanan büyük yükseliş, yatırımcılar için geçmiş performansın önemini bir kez daha hatırlatıyor.\n\n#GramAltın #AltınFiyatı #Ekonomi"
+}

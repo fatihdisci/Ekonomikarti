@@ -1,0 +1,60 @@
+{
+  "date": "2026-06-12",
+  "generated_at_utc": "2026-06-12T17:52:16.936848+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.2465,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.21
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.5715,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "daily_pct": 0.39
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 87.24,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "daily_pct": -3.47
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13938.48,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "daily_pct": 1.42
+    }
+  ],
+  "biggest_mover": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 87.24,
+    "unit": "USD",
+    "decimals": 2,
+    "daily_pct": -3.47,
+    "sparkline": [
+      93.09,
+      93.09,
+      94.25,
+      91.45,
+      93.1,
+      90.38,
+      87.24
+    ]
+  },
+  "note": "Bugün piyasalarda genel bir toparlanma gözlemlenirken, özellikle Borsa İstanbul'da belirgin bir yükseliş yaşandı. Ancak küresel emtia piyasalarındaki satış baskısı, Brent petroldeki sert düşüşle kendini gösterdi ve günün en dikkat çekici hareketi oldu."
+}

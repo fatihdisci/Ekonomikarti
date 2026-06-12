@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-12",
+  "generated_at_utc": "2026-06-12T09:46:11.945343+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.2551,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.23,
+        "monthly": 1.88,
+        "yearly": 18.21,
+        "five_year": 449.01
+      },
+      "sparkline": [
+        40.2407,
+        40.8469,
+        41.2783,
+        41.8192,
+        42.2852,
+        42.6324,
+        43.1418,
+        43.6361,
+        44.1854,
+        44.6996,
+        45.4002,
+        46.2551
+      ],
+      "range_5y": {
+        "lo": 8.28,
+        "hi": 46.26
+      }
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.6208,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "changes_pct": {
+        "daily": 0.48,
+        "monthly": 0.6,
+        "yearly": 18.76,
+        "five_year": 423.02
+      }
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6316.16,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 4.07,
+        "monthly": -7.89,
+        "yearly": 48.5,
+        "five_year": 1142.01
+      }
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 86.43,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": -4.37,
+        "monthly": -18.18,
+        "yearly": 24.61,
+        "five_year": 18.9
+      }
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 14095.35,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "changes_pct": {
+        "daily": 2.56,
+        "monthly": -3.45,
+        "yearly": 48.06,
+        "five_year": 864.85
+      }
+    }
+  ],
+  "note": "Döviz kurlarındaki hafif yükselişlere rağmen, gram altında yaşanan güçlü prim ve BIST 100'deki kayda değer artış, yatırımcıların enflasyonist beklentilere karşı varlıklarını çeşitlendirme eğiliminde olduğunu gösteriyor. Brent petroldeki düşüş ise küresel dinamiklerin yerel piyasalardaki etkisini vurguluyor."
+}

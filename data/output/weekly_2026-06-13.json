@@ -1,0 +1,88 @@
+{
+  "date": "2026-06-13",
+  "friday": "2026-06-12",
+  "generated_at_utc": "2026-06-13T10:13:44.547635+00:00",
+  "indicators": [
+    {
+      "key": "usd_try",
+      "name": "USD/TRY",
+      "current": 46.2606,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.43,
+      "sparkline": [
+        46.0911,
+        46.1066,
+        46.12,
+        46.1509,
+        46.2606
+      ]
+    },
+    {
+      "key": "eur_try",
+      "name": "EUR/TRY",
+      "current": 53.5176,
+      "format": "%.4f",
+      "unit": "TL",
+      "decimals": 4,
+      "weekly_pct": 0.01,
+      "sparkline": [
+        53.1367,
+        53.1704,
+        53.2155,
+        53.3639,
+        53.5176
+      ]
+    },
+    {
+      "key": "gram_altin",
+      "name": "Gram Altın",
+      "current": 6269.02,
+      "format": "%.2f",
+      "unit": "TL",
+      "decimals": 2,
+      "weekly_pct": -2.4,
+      "sparkline": [
+        6425.21,
+        6314.86,
+        6091.6,
+        6069.13,
+        6269.02
+      ]
+    },
+    {
+      "key": "brent",
+      "name": "Brent Petrol",
+      "current": 87.33,
+      "format": "%.2f",
+      "unit": "USD",
+      "decimals": 2,
+      "weekly_pct": -6.19,
+      "sparkline": [
+        94.25,
+        91.45,
+        93.1,
+        90.38,
+        87.33
+      ]
+    },
+    {
+      "key": "bist_100",
+      "name": "BIST 100",
+      "current": 13938.5,
+      "format": "%.2f",
+      "unit": "puan",
+      "decimals": 2,
+      "weekly_pct": 1.78,
+      "sparkline": [
+        13860.6,
+        13741.9,
+        13744.6,
+        13743.5,
+        13938.5
+      ]
+    }
+  ],
+  "note": "Bu hafta döviz kurlarında sınırlı artışlar gözlenirken, gram altın ve Brent petrolde belirgin düşüşler yaşandı. Borsa İstanbul ise haftayı pozitif bir ivmeyle tamamladı.\n\n#Ekonomi #PiyasaAnalizi #Borsa #Döviz #Altın #Petrol"
+}

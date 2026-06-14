@@ -1,0 +1,22 @@
+{
+  "date": "2026-06-14",
+  "friday": "2026-06-12",
+  "generated_at_utc": "2026-06-14T10:39:01.692227+00:00",
+  "star": {
+    "key": "bist_100",
+    "name": "BIST 100",
+    "current": 13938.5,
+    "unit": "puan",
+    "decimals": 2,
+    "weekly_pct": 1.78
+  },
+  "loser": {
+    "key": "brent",
+    "name": "Brent Petrol",
+    "current": 87.33,
+    "unit": "USD",
+    "decimals": 2,
+    "weekly_pct": -6.19
+  },
+  "note": "Bu hafta Borsa İstanbul, yatırımcılarına kazandırarak bir nebze olsun yüzleri güldürürken, küresel emtia piyasalarında Brent petrolün sert düşüşü dikkat çekti. Bir yanda yerel borsanın yükselişi, diğer yanda uluslararası petrol fiyatlarındaki gerileme, farklı ekonomik dinamiklerin aynı haftada nasıl bir arada var olabileceğinin göstergesi oldu.\n\n#Ekonomi #Borsa #Petrol #PiyasaAnalizi"
+}
